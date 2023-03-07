@@ -1,9 +1,6 @@
 package com.tecmis.database;
 
-
-
 import java.sql.*;
-
 
 public class Database {
     private static Connection conn;
