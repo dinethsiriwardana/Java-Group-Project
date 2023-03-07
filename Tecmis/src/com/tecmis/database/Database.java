@@ -1,8 +1,8 @@
 package com.tecmis.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+
+import java.sql.*;
 
 
 public class Database {
@@ -41,5 +41,6 @@ public class Database {
 //    public static void main(String[] args) {
 //        getConnection();
 //    }
+
 
 }
