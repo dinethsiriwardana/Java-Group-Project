@@ -15,6 +15,7 @@ public class UserLogin {
 
 
         acctype = acctype == "Technical Officer" ? "TechnicalOfficer" : acctype;
+
         String sql = "SELECT * FROM "+acctype+" WHERE username = ? AND password = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, username);
