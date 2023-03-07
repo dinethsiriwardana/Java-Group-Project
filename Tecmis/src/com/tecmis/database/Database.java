@@ -1,5 +1,6 @@
 package com.tecmis.database;
 
+
 import java.sql.*;
 
 public class Database {
@@ -41,4 +42,5 @@ public class Database {
         database.getConnection();
 
     }
+
 }
