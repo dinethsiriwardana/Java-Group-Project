@@ -1,14 +1,66 @@
 package com.tecmis.ui.lecture;
 
-import javax.swing.*;
+import com.tecmis.database.GetUserDetails;
 
-public class LectureEditUser {
-    private JTextField textField1;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField2;
-    private JTextField textField5;
-    private JComboBox comboBox1;
-    private JTextArea textArea1;
-    private JComboBox comboBox2;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.HashMap;
+
+public class LectureEditUser extends JFrame{
+    private JTextField txtFname;
+    private JTextField txtMobileNo;
+    private JTextField txtEmailAdd;
+    private JTextField txtLname;
+    private JTextField txtDob;
+    private JComboBox comboGender;
+    private JTextArea txtareaAddress;
+    private JComboBox comboPosition;
+    private JPanel pnlEditLecDetilas;
+    private JButton refreshButton;
+    private JButton updateButton;
+
+    public  LectureEditUser() throws SQLException {
+        add(pnlEditLecDetilas);
+        setVisible(true);
+        setTitle("Lecturer Details");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(600,600);
+        setPreferredSize(new Dimension(220,400));
+        setResizable(false);
+
+
+        refreshButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    dataLoad();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
+    static LectureEditUser lecUI;
+    public static void main(String[] args) throws SQLException {
+        lecUI = new LectureEditUser();
+        lecUI.dataLoad();
+
+    }
+    public  void dataLoad() throws SQLException {
+        GetUserDetails getuserdetails = new GetUserDetails();
+        HashMap<String, String> udata = getuserdetails.getUserDetails();
+        lecUI.txtFname.setText(udata.get("Fname"));
+        lecUI.txtLname.setText(udata.get("Lname"));
+        lecUI.txtMobileNo.setText(udata.get("Mobile"));
+        lecUI.txtareaAddress.setText(String.join("\n", udata.get("Address").split(",\\s*")));
+        lecUI.txtDob.setText(udata.get("DOM"));
+        lecUI.txtEmailAdd.setText(udata.get("Email"));
+        lecUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
+        lecUI.comboPosition.getModel().setSelectedItem(udata.get("Position"));
+
+    }
 }
