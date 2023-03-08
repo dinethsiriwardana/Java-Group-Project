@@ -17,6 +17,7 @@ public class StudentForm extends JFrame{
     private JButton btnMedicalRecord;
     private JPanel pnlLecturer;
     private JLabel lblWelcomText;
+    private JButton btnUploadMarks;
     private JList list1;
     private JLabel lblNotices;
 
