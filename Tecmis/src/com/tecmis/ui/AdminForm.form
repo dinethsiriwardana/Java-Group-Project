@@ -87,7 +87,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -102,7 +102,7 @@
               <component id="59e33" class="javax.swing.JButton" binding="btnAddUser">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="100" height="35"/>
+                    <preferred-size width="-1" height="40"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -230,6 +230,46 @@
                 </constraints>
                 <properties>
                   <icon value="com/tecmis/assets/icon/icons8-person-student-40.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="7bcc2" class="javax.swing.JButton" binding="btnCourseDetails">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="-1" height="40"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <text value="Course Details"/>
+                </properties>
+              </component>
+              <component id="b9369" class="javax.swing.JButton" binding="timeTableButton" default-binding="true">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="-1" height="40"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <text value="Time Table"/>
+                </properties>
+              </component>
+              <component id="7cefb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="com/tecmis/assets/icon/Manage-Materials.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="1e2e1" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="com/tecmis/assets/icon/icons8-timetable-40.png"/>
                   <text value=""/>
                 </properties>
               </component>

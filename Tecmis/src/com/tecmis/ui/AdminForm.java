@@ -19,6 +19,8 @@ public class AdminForm extends JFrame{
     private JLabel lblWelcomText;
     private JButton btnAddAdmin;
     private JList list1;
+    private JButton btnCourseDetails;
+    private JButton timeTableButton;
     private JLabel lblNotices;
 
     public AdminForm() {
@@ -26,7 +28,7 @@ public class AdminForm extends JFrame{
         setVisible(true);
         setTitle("Admin");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,600);
+        setSize(1000,1500);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
