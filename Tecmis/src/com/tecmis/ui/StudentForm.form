@@ -87,7 +87,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -108,33 +108,34 @@
                 <properties>
                   <enabled value="true"/>
                   <font size="18"/>
-                  <text value="Manage Materials"/>
+                  <text value="Time tables"/>
                 </properties>
               </component>
-              <component id="1c469" class="javax.swing.JButton" binding="btnUploadMarks">
+              <component id="665c2" class="javax.swing.JButton" binding="btnStudentDetails">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
                   </grid>
                 </constraints>
                 <properties>
+                  <enabled value="true"/>
                   <font size="18"/>
-                  <text value="Upload Marks"/>
+                  <hideActionText value="true"/>
+                  <text value="Grades &amp; GPA"/>
                 </properties>
               </component>
-              <component id="665c2" class="javax.swing.JButton" binding="btnStudentDetails">
+              <component id="98e7e" class="javax.swing.JButton" binding="btnStudentEligibility">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
                   <font size="18"/>
-                  <text value="Student Details"/>
+                  <text value="Student Attendance"/>
                 </properties>
               </component>
-              <component id="98e7e" class="javax.swing.JButton" binding="btnStudentEligibility">
+              <component id="3adb" class="javax.swing.JButton" binding="btnStudentResult">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
@@ -142,10 +143,10 @@
                 </constraints>
                 <properties>
                   <font size="18"/>
-                  <text value="Student Eligibility"/>
+                  <text value="Course Details"/>
                 </properties>
               </component>
-              <component id="3adb" class="javax.swing.JButton" binding="btnStudentResult">
+              <component id="cd0c1" class="javax.swing.JButton" binding="btnMedicalRecord">
                 <constraints>
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
@@ -153,29 +154,7 @@
                 </constraints>
                 <properties>
                   <font size="18"/>
-                  <text value="Student Result"/>
-                </properties>
-              </component>
-              <component id="cd0c1" class="javax.swing.JButton" binding="btnMedicalRecord">
-                <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <font size="18"/>
                   <text value="Medical Record"/>
-                </properties>
-              </component>
-              <component id="98ce8" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <icon value="com/tecmis/assets/icon/upload_marks.png"/>
-                  <text value=""/>
                 </properties>
               </component>
               <component id="3c166" class="javax.swing.JLabel">
@@ -191,7 +170,7 @@
               </component>
               <component id="b1b2d" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
@@ -202,7 +181,7 @@
               </component>
               <component id="18199" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
@@ -213,7 +192,7 @@
               </component>
               <component id="5dd33" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
@@ -224,7 +203,7 @@
               </component>
               <component id="93c8f" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
