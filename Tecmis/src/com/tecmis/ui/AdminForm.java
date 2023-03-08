@@ -10,27 +10,27 @@ import java.awt.event.MouseEvent;
 public class AdminForm extends JFrame{
 
 
-    private JButton btnManageMaterials;
-    private JButton btnStudentDetails;
-    private JButton btnStudentEligibility;
-    private JButton btnStudentResult;
-    private JButton btnMedicalRecord;
-    private JPanel pnlLecturer;
+    private JButton btnAddUser;
+    private JButton btnAddLecturer;
+    private JButton btnNoticeDetails;
+    private JButton btnAddTechnicalOfficer;
+    private JButton btnAddStudent;
+    private JPanel pnlAdmin;
     private JLabel lblWelcomText;
-    private JButton btnUploadMarks;
+    private JButton btnAddAdmin;
     private JList list1;
     private JLabel lblNotices;
 
     public AdminForm() {
-        add(pnlLecturer);
+        add(pnlAdmin);
         setVisible(true);
-        setTitle("Lecturer");
+        setTitle("Admin");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
-        btnManageMaterials.addMouseListener(new MouseAdapter() {
+        btnNoticeDetails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -40,10 +40,10 @@ public class AdminForm extends JFrame{
 
 
     public static void main(String[] args) {
-        AdminForm lec = new AdminForm();
+        AdminForm admin = new AdminForm();
         Notices notices = new Notices();
         JList<String> jlist = notices.main();
-        lec.list1.setModel(jlist.getModel());
+        admin.list1.setModel(jlist.getModel());
 
     }
 
