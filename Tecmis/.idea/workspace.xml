@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/util/mariadb-java-client-3.1.2.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,26 +40,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/ui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
       <recent name="$PROJECT_DIR$/src/com/tecmis/util" />
     </key>
   </component>
