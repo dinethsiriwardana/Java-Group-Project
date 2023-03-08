@@ -1,4 +1,4 @@
-package com.tecmis.ui;
+package com.tecmis.ui.lecture;
 
 import com.tecmis.database.Notices;
 
@@ -19,6 +19,7 @@ public class LectureForm extends JFrame{
     private JLabel lblWelcomText;
     private JButton btnUploadMarks;
     private JList list1;
+    private JLabel lblSetting;
     private JLabel lblNotices;
 
     public LectureForm() {
@@ -30,7 +31,14 @@ public class LectureForm extends JFrame{
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
+
         btnManageMaterials.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        lblSetting.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);

@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/util/mariadb-java-client-3.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/assets/icon/icons8-send-letter-40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/assets/icon/icons8-update-left-rotation-40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/database/GetUserDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +48,11 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;left&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;right&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/ui&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -53,11 +61,18 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/assets/icon" />
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui/lecture" />
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
       <recent name="$PROJECT_DIR$/src/com/tecmis/util" />
     </key>
   </component>
