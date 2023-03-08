@@ -10,27 +10,26 @@ import java.awt.event.MouseEvent;
 public class StudentForm extends JFrame{
 
 
-    private JButton btnManageMaterials;
-    private JButton btnStudentDetails;
-    private JButton btnStudentEligibility;
+    private JButton btnTimeTable;
+    private JButton btnCourseDetails;
+    private JButton btnStudentAttendance;
     private JButton btnStudentResult;
     private JButton btnMedicalRecord;
     private JPanel pnlLecturer;
     private JLabel lblWelcomText;
-    private JButton btnUploadMarks;
     private JList list1;
     private JLabel lblNotices;
 
     public StudentForm() {
         add(pnlLecturer);
         setVisible(true);
-        setTitle("Lecturer");
+        setTitle("Student");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
-        btnManageMaterials.addMouseListener(new MouseAdapter() {
+        btnTimeTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
