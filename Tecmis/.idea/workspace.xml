@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +48,8 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "left",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "right",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
     "last_opened_file_path": "/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/ui",
@@ -56,6 +61,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -64,6 +70,7 @@
       <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui/lecture" />
       <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
       <recent name="$PROJECT_DIR$/src/com/tecmis/util" />
     </key>
