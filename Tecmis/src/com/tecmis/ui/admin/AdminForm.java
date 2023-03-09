@@ -1,4 +1,4 @@
-package com.tecmis.ui;
+package com.tecmis.ui.admin;
 
 import com.tecmis.database.Notices;
 
