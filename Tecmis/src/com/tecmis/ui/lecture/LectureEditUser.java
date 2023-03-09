@@ -22,6 +22,8 @@ public class LectureEditUser extends JFrame{
     private JButton refreshButton;
     private JButton updateButton;
 
+    private String username;
+
     public  LectureEditUser() throws SQLException {
         add(pnlEditLecDetilas);
         setVisible(true);
@@ -32,6 +34,17 @@ public class LectureEditUser extends JFrame{
         setResizable(false);
 
 
+        updateButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    dataLoad();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         refreshButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -45,10 +58,10 @@ public class LectureEditUser extends JFrame{
         });
     }
     static LectureEditUser lecUI;
+
     public static void main(String[] args) throws SQLException {
         lecUI = new LectureEditUser();
         lecUI.dataLoad();
-
     }
     public  void dataLoad() throws SQLException {
         GetUserDetails getuserdetails = new GetUserDetails();
@@ -62,5 +75,17 @@ public class LectureEditUser extends JFrame{
         lecUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
         lecUI.comboPosition.getModel().setSelectedItem(udata.get("Position"));
 
+    }
+
+    public void updateDetails(){
+        HashMap<String, String> lecturerData = new HashMap<String, String>();
+        lecturerData.put("Fname", txtFname.getText());
+        lecturerData.put("Lname", txtLname.getText());
+        lecturerData.put("Mobile", txtMobileNo.getText());
+        lecturerData.put("Address", String.join(", ",txtareaAddress.getText().split("\n")));
+        lecturerData.put("Email", txtEmailAdd.getText());
+        lecturerData.put("DOM", txtDob.getText());
+        lecturerData.put("Gender", comboGender.getModel().getSelectedItem() == "Male" ? "M" : "F");
+        lecturerData.put("Position", comboPosition.getModel().getSelectedItem().toString());
     }
 }
