@@ -4,22 +4,21 @@ import java.sql.*;
 import java.util.*;
 
 
-public class GetUserDetails {
+public class GetUserDetails extends UserLogin{
 
 
-    Database database = new Database();
-    Connection conn = database.getConnection();
+    String username = getUsername();
+
     public  HashMap<String, String> getUserDetails() throws SQLException {
 
 
         Statement stmt = conn.createStatement();
 
-        String query = "SELECT * FROM Lecturer WHERE username = 'lec001'";
+        String query = "SELECT * FROM Lecturer WHERE username = "+username;
         ResultSet rs = stmt.executeQuery(query);
 
         HashMap<String, String> lecturerData = new HashMap<String, String>();
                 if (rs.next()) {
-
             lecturerData.put("Fname", rs.getString("Fname"));
             lecturerData.put("Lname", rs.getString("Lname"));
             lecturerData.put("Mobile", rs.getString("Mobile"));
