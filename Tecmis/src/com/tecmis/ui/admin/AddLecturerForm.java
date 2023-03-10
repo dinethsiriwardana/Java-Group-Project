@@ -2,6 +2,8 @@ package com.tecmis.ui.admin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddLecturerForm extends JFrame {
 
@@ -20,6 +22,7 @@ public class AddLecturerForm extends JFrame {
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
+    private JTable table1;
 
     public AddLecturerForm(){
         add(pnlAdmin);
@@ -30,9 +33,17 @@ public class AddLecturerForm extends JFrame {
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
+        ADDButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
     }
 
     public static void main(String[] args) {
+
         AddLecturerForm addlec=new AddLecturerForm();
     }
 }
