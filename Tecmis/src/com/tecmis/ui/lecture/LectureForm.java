@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LectureForm extends JFrame{
+public class LectureForm extends JFrame  {
 
 
     private JButton btnManageMaterials;

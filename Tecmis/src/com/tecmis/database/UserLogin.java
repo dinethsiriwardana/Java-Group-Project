@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class UserLogin extends Database{
 
-    protected String username;
+    private String username;
 
     public String getUsername() {
         return username;

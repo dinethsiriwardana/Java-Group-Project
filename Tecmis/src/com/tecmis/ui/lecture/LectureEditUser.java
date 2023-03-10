@@ -1,6 +1,6 @@
 package com.tecmis.ui.lecture;
 
-import com.tecmis.database.GetUserDetails;
+import com.tecmis.database.ManageUsers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +22,13 @@ public class LectureEditUser extends JFrame{
     private JButton refreshButton;
     private JButton updateButton;
 
-    private String username;
 
-    public  LectureEditUser() throws SQLException {
+
+
+    private static String username;
+
+    public  LectureEditUser(String username)  throws SQLException {
+        this.username = username;
         add(pnlEditLecDetilas);
         setVisible(true);
         setTitle("Lecturer Details");
@@ -32,40 +36,37 @@ public class LectureEditUser extends JFrame{
         setSize(600,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
+        setLocation(-620,0);
+        //TODO Remove The SetLocations
 
 
         updateButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    dataLoad();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                updateDetails();
             }
         });
         refreshButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
                     dataLoad();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
             }
         });
     }
     static LectureEditUser lecUI;
+    static ManageUsers manageusers = new ManageUsers(username);
 
     public static void main(String[] args) throws SQLException {
-        lecUI = new LectureEditUser();
+        lecUI = new LectureEditUser("lec001");
+
         lecUI.dataLoad();
     }
-    public  void dataLoad() throws SQLException {
-        GetUserDetails getuserdetails = new GetUserDetails();
-        HashMap<String, String> udata = getuserdetails.getUserDetails();
+    public  void dataLoad() {
+
+        
+        HashMap<String, String> udata = manageusers.getUserDetails(username,"Lecturer");
         lecUI.txtFname.setText(udata.get("Fname"));
         lecUI.txtLname.setText(udata.get("Lname"));
         lecUI.txtMobileNo.setText(udata.get("Mobile"));
@@ -87,5 +88,6 @@ public class LectureEditUser extends JFrame{
         lecturerData.put("DOM", txtDob.getText());
         lecturerData.put("Gender", comboGender.getModel().getSelectedItem() == "Male" ? "M" : "F");
         lecturerData.put("Position", comboPosition.getModel().getSelectedItem().toString());
+        manageusers.updateUser(username,"Lecturer",lecturerData);
     }
 }
