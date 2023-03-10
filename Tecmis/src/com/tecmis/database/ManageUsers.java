@@ -1,5 +1,8 @@
 package com.tecmis.database;
 
+import com.tecmis.dto.LecturerData;
+import com.tecmis.dto.User;
+
 import java.sql.*;
 import java.util.HashMap;
 
@@ -9,11 +12,11 @@ public class ManageUsers extends Database implements  ManageUserInterface{
 
 
 public ManageUsers(String username){
-
-
     this.username = username;
 }
+public ManageUsers(){
 
+}
 
     @Override
     public boolean addUser(String accounttype) {
@@ -78,6 +81,14 @@ public ManageUsers(String username){
         return false;
     }
 
+    @Override
+    public boolean addUser(User userDto) {
+        if(userDto.getUserAccountType()=="lecturer"){
+            return ManageLecturer.addLecturer( (LecturerData) userDto);
+
+        }
+        return false;
+    }
 
 
 }

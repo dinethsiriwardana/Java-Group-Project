@@ -134,7 +134,7 @@
                   <text value="ID"/>
                 </properties>
               </component>
-              <component id="b13ef" class="javax.swing.JTextField" binding="textID">
+              <component id="b13ef" class="javax.swing.JTextField" binding="ID">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -232,7 +232,7 @@
                   <text value="Position"/>
                 </properties>
               </component>
-              <component id="b7bfa" class="javax.swing.JTextField" binding="textFirstName">
+              <component id="b7bfa" class="javax.swing.JTextField" binding="FirstName">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -240,7 +240,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="983f5" class="javax.swing.JTextField" binding="textLastName">
+              <component id="983f5" class="javax.swing.JTextField" binding="LastName">
                 <constraints>
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -248,7 +248,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="a11d4" class="javax.swing.JTextField" binding="textMobile">
+              <component id="a11d4" class="javax.swing.JTextField" binding="Mobile">
                 <constraints>
                   <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -256,7 +256,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="b00eb" class="javax.swing.JTextArea" binding="textAddress">
+              <component id="b00eb" class="javax.swing.JTextArea" binding="Address">
                 <constraints>
                   <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
@@ -264,7 +264,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="cb231" class="javax.swing.JTextField" binding="textAge">
+              <component id="cb231" class="javax.swing.JTextField" binding="Age">
                 <constraints>
                   <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -272,7 +272,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="f198d" class="javax.swing.JTextField" binding="textEmail">
+              <component id="f198d" class="javax.swing.JTextField" binding="Email">
                 <constraints>
                   <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -280,7 +280,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="148ea" class="javax.swing.JTextField" binding="textDOB">
+              <component id="148ea" class="javax.swing.JTextField" binding="DOB">
                 <constraints>
                   <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -288,7 +288,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="384e1" class="javax.swing.JComboBox" binding="comboBoxGender">
+              <component id="384e1" class="javax.swing.JComboBox" binding="Gender">
                 <constraints>
                   <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -299,7 +299,7 @@
                   </model>
                 </properties>
               </component>
-              <component id="f5aa6" class="javax.swing.JComboBox" binding="comboBoxPosition">
+              <component id="f5aa6" class="javax.swing.JComboBox" binding="Position">
                 <constraints>
                   <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
