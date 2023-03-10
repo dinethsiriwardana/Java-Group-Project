@@ -1,14 +1,13 @@
 package com.tecmis.database;
 
 import javax.swing.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Notices {
+public class Notices extends Database{
 
 
 
@@ -18,8 +17,7 @@ public class Notices {
         List<String> data = new ArrayList<>();
         try {
 
-            Database database = new Database();
-            Connection conn = database.getConnection();
+
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Notice");
@@ -45,7 +43,7 @@ public class Notices {
 
            jlist = new JList<>(data.toArray(new String[0]));
 
-            database.closeConnection();
+            conn.close();
             return jlist;
 
         } catch (SQLException e) {
