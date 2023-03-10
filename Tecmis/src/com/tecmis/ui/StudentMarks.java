@@ -14,12 +14,17 @@ public class StudentMarks {
     private JTextField textSub1;
     private JTextField textSub2;
     private JTextField textSub3;
-    private JLabel txtSub4;
+    private JLabel lblSub4;
     private JTextField textSub4;
     private JButton calculateButton;
     private JLabel lblGpa;
     private JTextField textGPA;
     private JPanel PnlMrak;
+    private JButton showResultsButton;
+    private JLabel lblSub5;
+    private JTextField textSub5;
+    private JLabel lblSub6;
+    private JTextField textSub6;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("StudentMarks");
@@ -33,6 +38,8 @@ public class StudentMarks {
     calculateButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+
 
         }
     });

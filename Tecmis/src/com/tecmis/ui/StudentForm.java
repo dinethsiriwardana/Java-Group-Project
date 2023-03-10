@@ -15,13 +15,13 @@ public class StudentForm extends JFrame{
     private JButton btnStudentAttendance;
     private JButton btnStudentResult;
     private JButton btnMedicalRecord;
-    private JPanel pnlLecturer;
+    private JPanel pnlStudent;
     private JLabel lblWelcomText;
     private JList list1;
     private JLabel lblNotices;
 
     public StudentForm() {
-        add(pnlLecturer);
+        add(pnlStudent);
         setVisible(true);
         setTitle("Student");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
