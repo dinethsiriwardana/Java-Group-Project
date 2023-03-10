@@ -48,8 +48,8 @@ public class AddLecturerForm extends JFrame {
                 lecturerUser.setAge(Age.getScrollOffset());
                 lecturerUser.setEmail(Email.getText());
                 lecturerUser.setDom(DOB.getText());
-                lecturerUser.setGender(Gender.getModel());
-                lecturerUser.setPosition(Position.getUI());
+                lecturerUser.setGender(Gender.getModel().getSelectedItem().toString());
+                lecturerUser.setPosition(Position.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser=new ManageUsers();
                 boolean isAdded=manageUser.addUser(lecturerUser);

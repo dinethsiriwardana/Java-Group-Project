@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/database/ManageUserInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/database/ManageUsers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/GetUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/dto/LecturerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/dto/LecturerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/admin/AddLecturerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/admin/AddLecturerForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,29 +39,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "left",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "right",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/ui",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;left&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;right&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/ui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
@@ -91,6 +83,7 @@
       <updated>1677823897528</updated>
       <workItem from="1677823898286" duration="2477000" />
       <workItem from="1678197904560" duration="2557000" />
+      <workItem from="1678466656209" duration="498000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 package com.tecmis.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LecturerData  extends  User{
@@ -79,11 +80,21 @@ public class LecturerData  extends  User{
         this.email=email;
     }
 
-    public void setDom(Date dom){
-        this.dom=dom;
+    public void setDom(String dom)  {
+        try {
+            String dateString = dom;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(dateString);
+
+            this.dom = date;
+        }catch (Exception e){
+            System.out.println(e.getMessage().toString());
+
+        }
     }
     public  void setGender(String gender){
-        this.gender=gender;
+
+        this.gender=gender == "Male" ? "M" : "F";
     }
     public void setPosition(String position){
         this.position=position;
