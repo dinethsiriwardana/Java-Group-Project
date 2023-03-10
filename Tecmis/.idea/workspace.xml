@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/assets/icon/icons8-send-letter-40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/assets/icon/icons8-update-left-rotation-40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/database/GetUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tecmis/database/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/ui/LectureForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/GetUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/GetUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

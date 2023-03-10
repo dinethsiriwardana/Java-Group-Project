@@ -4,11 +4,15 @@ import com.tecmis.util.Security;
 
 import java.sql.*;
 
-public class UserLogin {
-    public boolean userLogin(String acctype, String username, String password) throws Exception {
+public class UserLogin extends Database{
 
-        Database database = new Database();
-        Connection conn = database.getConnection();
+    protected String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean userLogin(String acctype, String username, String password) throws Exception {
 
         Security security = new Security();
         String encryptedpwd = security.encryption(password);
@@ -21,7 +25,9 @@ public class UserLogin {
         statement.setString(1, username);
         statement.setString(2, encryptedpwd);
         ResultSet resultSet = statement.executeQuery();
-
+        if (resultSet.next() == true){
+            this.username = username;
+        }
         return resultSet.next();
     }
 }
