@@ -90,6 +90,15 @@ public ManageUsers(){
         return false;
     }
 
+    @Override
+    public boolean updateUser(User userUp) {
+        if(userUp.getUserAccountType()=="lecturer"){
+            return  ManageLecturer.addLecturer((LecturerData) userUp);
+        }
+        return false;
+    }
+
+
 
 }
 

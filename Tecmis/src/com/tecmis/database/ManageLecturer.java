@@ -3,6 +3,7 @@ package com.tecmis.database;
 import com.tecmis.dto.LecturerData;
 import com.tecmis.dto.User;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Statement;
 
@@ -20,7 +21,7 @@ public class ManageLecturer {
 
             if (rowsAffected == 1) {
                 // update successful
-                System.out.println("update successful");
+                System.out.println("Update successfully!! ");
                 return true;
             } else {
                 // update failed
@@ -30,10 +31,29 @@ public class ManageLecturer {
         } catch (Exception e) {
             System.out.println(e);
         }
+
         return  false;
 
+        String query2= "UPDATE Lecturer+ SET ID = ?, Fname = ?, Lname = ?, Mobile = ?, Address = ?,Email = ?,DOM = ?,Gender = ?,Position =?, WHERE ID = ?";
+        System.out.println(query2);
+        try {
+            Connection connection=Database.getDatabaseConnection();
+            Statement stmt = connection.createStatement();
+            int rowsAffected = stmt.executeUpdate(query2);
 
-
-
+            if (rowsAffected == 1) {
+                // update successful
+                System.out.println("Record update successfully!! ");
+                return true;
+            } else {
+                // update failed
+                System.out.println("Record update failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return  false;
     }
+
 }

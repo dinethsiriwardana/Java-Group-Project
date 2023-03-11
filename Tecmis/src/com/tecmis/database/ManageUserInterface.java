@@ -15,5 +15,6 @@ public interface ManageUserInterface {
 
     boolean addUser(User userDto);
 
+    boolean updateUser(User userUp);
 
 }
