@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tecmis/util/mariadb-java-client-3.1.2.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/ManageUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/ManageUsers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -43,21 +53,33 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;left&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;right&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dineth/Documents/Dineth/Programming/Java/Java-Group-Project/Tecmis/src/com/tecmis/assets&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/assets" />
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui/lecture" />
+      <recent name="$PROJECT_DIR$/src/com/tecmis/assets/icon" />
+      <recent name="$PROJECT_DIR$/src/com/tecmis/ui" />
       <recent name="$PROJECT_DIR$/src/com/tecmis/util" />
     </key>
   </component>
@@ -71,6 +93,7 @@
       <updated>1677823897528</updated>
       <workItem from="1677823898286" duration="2477000" />
       <workItem from="1678197904560" duration="2557000" />
+      <workItem from="1678525480000" duration="5575000" />
     </task>
     <servers />
   </component>
