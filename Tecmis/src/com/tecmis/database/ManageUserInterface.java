@@ -1,5 +1,7 @@
 package com.tecmis.database;
 
+import com.tecmis.dto.User;
+
 import java.util.HashMap;
 
 public interface ManageUserInterface {
@@ -10,4 +12,9 @@ public interface ManageUserInterface {
     HashMap<String, String> getUserDetails(String accounttype,String username);
 
     boolean deleteUser(String accounttype);
+
+    boolean addUser(User userDto);
+
+    boolean updateUser(User userUp);
+
 }
