@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LectureForm extends JFrame  {
 
@@ -22,7 +24,12 @@ public class LectureForm extends JFrame  {
     private JLabel lblSetting;
     private JLabel lblNotices;
 
-    public LectureForm() {
+    private String username;
+
+    static LectureForm lecForm;
+
+    public LectureForm(String username) {
+        this.username = username;
         add(pnlLecturer);
         setVisible(true);
         setTitle("Lecturer");
@@ -30,6 +37,12 @@ public class LectureForm extends JFrame  {
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
+        lecForm = this;
+
+
+
+        onLoad();
+
 
 
         btnManageMaterials.addMouseListener(new MouseAdapter() {
@@ -44,16 +57,43 @@ public class LectureForm extends JFrame  {
                 super.mouseClicked(e);
             }
         });
-    }
+        lblSetting.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    LectureEditUser lecedit = new  LectureEditUser(username);
+                    lecedit.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    lecedit.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
+        onLoad();
+    }
 
     public static void main(String[] args) {
-        LectureForm lec = new LectureForm();
-        Notices notices = new Notices();
-        JList<String> jlist = notices.main();
-        lec.list1.setModel(jlist.getModel());
 
     }
+
+ public void onLoad(){
+
+     Notices notices = new Notices();
+     JList<String> jlist = notices.main();
+     lecForm.list1.setModel(jlist.getModel());
+
+ }
 
 
 
