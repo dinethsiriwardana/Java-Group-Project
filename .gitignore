@@ -9,3 +9,5 @@ out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureForm$3$1.class
 out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureForm$3.class
 out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureStudentDetails.class
 out/production/Java-Group-Project/com/tecmis/ui/LoginForm$1$1.class
+*.class
+*.class
