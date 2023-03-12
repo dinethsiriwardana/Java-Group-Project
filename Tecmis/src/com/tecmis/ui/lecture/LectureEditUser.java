@@ -60,7 +60,7 @@ public class LectureEditUser extends JFrame{
         });
     }
 
-    static ManageUsers manageusers = new ManageUsers(username);
+    static ManageUsers manageusers = new ManageUsers();
 
 //    public static void main(String[] args) throws SQLException {
 //        lecUI = new LectureEditUser("lec001");

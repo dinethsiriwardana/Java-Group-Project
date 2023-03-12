@@ -1,5 +1,7 @@
 package com.tecmis.database;
 
+import com.tecmis.dto.LecturerData;
+import com.tecmis.dto.User;
 import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
@@ -10,19 +12,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.HashMap;
 
-public class ManageUsers implements  ManageUserInterface{
+public class ManageUsers implements ManageUserInterface{
 
     private String username;
 
 
-    public ManageUsers(String username){
-        this.username = username;
-    }
 
-    @Override
-    public boolean addUser(String accounttype) {
-        return false;
-    }
+
+
 
     @Override
     public boolean updateUser(String username,String accounttype, HashMap<String, String> userdata) {
@@ -68,7 +65,7 @@ public class ManageUsers implements  ManageUserInterface{
             Database database = new Database();
             Connection conn = database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM Lecturer WHERE username = " + "'"+username + "'";
+            String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
@@ -93,6 +90,18 @@ public class ManageUsers implements  ManageUserInterface{
     }
 
 
+    public boolean addUser(User userDto) {
+        if(userDto.getUserAccountType()=="lecturer"){
+            return ManageLecturer.addLecturer( (LecturerData) userDto);
+        }
+        return false;
+    }
+    public boolean updateUser(User userUp) {
+        if(userUp.getUserAccountType()=="lecturer"){
+            return  ManageLecturer.addLecturer((LecturerData) userUp);
+        }
+        return false;
+    }
 
 }
 
