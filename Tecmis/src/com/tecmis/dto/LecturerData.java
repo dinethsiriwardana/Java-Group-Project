@@ -10,6 +10,8 @@ public class LecturerData  extends  User{
     }
     private String Id;
     private  String firstName;
+    private String username;
+    private  String password;
     private String lastName;
     private int mobile;
     private String  address;
@@ -21,20 +23,26 @@ public class LecturerData  extends  User{
 
     private String position;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public String getId(){
         return Id;
     }
     public String getFirstName(){
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
     public int getMobile(){
         return mobile;
     }
-
     public String getAddress(){
         return address;
     }
@@ -53,8 +61,12 @@ public class LecturerData  extends  User{
     public String getPosition(){
         return position;
     }
-
-
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public void setId(String Id){
         this.Id=Id;
     }
@@ -99,4 +111,6 @@ public class LecturerData  extends  User{
     public void setPosition(String position){
         this.position=position;
     }
+
+
 }

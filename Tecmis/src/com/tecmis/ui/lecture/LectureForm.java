@@ -39,11 +39,7 @@ public class LectureForm extends JFrame  {
         setResizable(false);
         lecForm = this;
 
-
-
         onLoad();
-
-
 
         btnManageMaterials.addMouseListener(new MouseAdapter() {
             @Override
@@ -51,12 +47,7 @@ public class LectureForm extends JFrame  {
                 super.mouseClicked(e);
             }
         });
-        lblSetting.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
+
         lblSetting.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -87,13 +78,12 @@ public class LectureForm extends JFrame  {
 
     }
 
- public void onLoad(){
+     public void onLoad(){
+         Notices notices = new Notices();
+         JList<String> jlist = notices.main();
+         lecForm.list1.setModel(jlist.getModel());
 
-     Notices notices = new Notices();
-     JList<String> jlist = notices.main();
-     lecForm.list1.setModel(jlist.getModel());
-
- }
+     }
 
 
 

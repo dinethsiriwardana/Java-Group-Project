@@ -28,6 +28,8 @@ public class AddLecturerForm extends JFrame {
     private JButton DELETEButton;
     private JButton UPDATEButton;
     private JTable table1;
+    private JTextField txtUsername;
+    private JTextField txtPassword;
 
     public AddLecturerForm() {
         add(pnlAdmin);
@@ -52,6 +54,8 @@ public class AddLecturerForm extends JFrame {
                 lecturerUser.setDom(DOB.getText());
                 lecturerUser.setGender(Gender.getModel().getSelectedItem().toString());
                 lecturerUser.setPosition(Position.getModel().getSelectedItem().toString());
+                lecturerUser.setPassword(txtPassword.getText());
+                lecturerUser.setUsername(txtUsername.getText());
 
 
                 ManageUsers manageUser = new ManageUsers();
@@ -67,6 +71,8 @@ public class AddLecturerForm extends JFrame {
                     DOB.setText("");
                     Gender.setSelectedItem("");
                     Position.setSelectedItem("");
+                    txtPassword.setText("");
+                    txtUsername.setText("");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Please try again later ",
@@ -79,7 +85,7 @@ public class AddLecturerForm extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LecturerData lecturerUsers=new LecturerData();
+                LecturerData lecturerUsers =new LecturerData();
 
                 lecturerUsers.setId(ID.getText());
                 lecturerUsers.setFirstName(FirstName.getText());
@@ -91,29 +97,34 @@ public class AddLecturerForm extends JFrame {
                 lecturerUsers.setDom(DOB.getText());
                 lecturerUsers.setGender(Gender.getModel().getSelectedItem().toString());
                 lecturerUsers.setPosition(Position.getModel().getSelectedItem().toString());
+                lecturerUsers.setPassword(txtPassword.getText());
+                lecturerUsers.setUsername(txtUsername.getText());
 
+                ManageUsers manageUsers=new ManageUsers();
+                boolean isAdded= manageUsers.updateUser(lecturerUsers);
+                if(isAdded){
+
+
+                    ID.setText("");
+                    FirstName.setText("");
+                    LastName.setText("");
+                    Mobile.setText("");
+                    Address.setText("");
+                    Age.setText("");
+                    Email.setText("");
+                    DOB.setText("");
+                    Gender.setSelectedItem("");
+                    Position.setSelectedItem("");
+                    txtPassword.setText("");
+                    txtUsername.setText("");
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Please try again later ",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            ManageUsers manageUsers=new ManageUsers();
-            boolean isAdded= manageUsers.updateUser(lecturerUsers);
-            if(isAdded){
 
-
-                ID.setText("");
-                FirstName.setText("");
-                LastName.setText("");
-                Mobile.setText("");
-                Address.setText("");
-                Age.setText("");
-                Email.setText("");
-                DOB.setText("");
-                Gender.setSelectedItem("");
-                Position.setSelectedItem("");
-
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Please try again later ",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
 
 
         });
