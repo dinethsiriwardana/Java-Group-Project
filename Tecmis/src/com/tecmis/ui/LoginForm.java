@@ -1,11 +1,14 @@
 package com.tecmis.ui;
+
 import com.tecmis.database.UserLogin;
+import com.tecmis.ui.lecture.LectureForm;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LoginForm extends JFrame {
     private JPanel pnlLogin;
@@ -34,9 +37,58 @@ public class LoginForm extends JFrame {
 
             UserLogin login = new UserLogin();
 
+//                Student
+//                Lecturer
+//                Technical Officer
+//                Admin
                 try {
-                    boolean auth = login.userLogin(acctype,username,password);
-                    System.out.println(auth);
+//                    boolean auth = login.userLogin(acctype,username,password);
+//                    boolean auth = login.userLogin("Lecturer","lec001","lec001");
+//                    acctype = "Lecturer";
+//                    System.out.println(auth + acctype);
+//                    if (auth && acctype == "Lecturer"){
+//                        setVisible(false);
+//                        // Create and show the LectureEditUser frame
+//                        LectureForm lectureform = new LectureForm(username);
+//                        lectureform.setVisible(true);
+//                        // When the LectureEditUser frame is closed, show the LectureForm frame again
+//                        lectureform.addWindowListener(new WindowAdapter() {
+//                            @Override
+//                            public void windowClosed(WindowEvent e) {
+//                                super.windowClosed(e);
+//                                setVisible(true);
+//                            }
+//                        });
+//                    }
+
+                    // TODO - Remove this Code after Finished
+
+                    if (acctype == "Lecturer"){
+                        setVisible(false);
+                        // Create and show the LectureEditUser frame
+                        LectureForm lectureform = new LectureForm("lec001");
+                        lectureform.setVisible(true);
+                        // When the LectureEditUser frame is closed, show the LectureForm frame again
+                        lectureform.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                super.windowClosed(e);
+                                setVisible(true);
+                            }
+                        });
+                    } else if (acctype == "Admin") {
+                        LectureForm lectureform = new LectureForm("admin001");
+                        lectureform.setVisible(true);
+                        // When the LectureEditUser frame is closed, show the LectureForm frame again
+                        lectureform.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                super.windowClosed(e);
+                                setVisible(true);
+                            }
+                        });
+
+                    }
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }

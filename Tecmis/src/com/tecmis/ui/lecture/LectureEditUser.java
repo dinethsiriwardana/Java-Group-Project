@@ -23,20 +23,24 @@ public class LectureEditUser extends JFrame{
     private JButton updateButton;
 
 
-
-
     private static String username;
+
+    static LectureEditUser lecUI;
 
     public  LectureEditUser(String username)  throws SQLException {
         this.username = username;
         add(pnlEditLecDetilas);
         setVisible(true);
         setTitle("Lecturer Details");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600,600);
+
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
-        setLocation(-620,0);
+        lecUI = this;
+        dataLoad();
+
+
         //TODO Remove The SetLocations
 
 
@@ -55,17 +59,16 @@ public class LectureEditUser extends JFrame{
             }
         });
     }
-    static LectureEditUser lecUI;
-    static ManageUsers manageusers = new ManageUsers(username);
 
-    public static void main(String[] args) throws SQLException {
-        lecUI = new LectureEditUser("lec001");
+    static ManageUsers manageusers = new ManageUsers();
 
-        lecUI.dataLoad();
-    }
+//    public static void main(String[] args) throws SQLException {
+//        lecUI = new LectureEditUser("lec001");
+//
+//        lecUI.dataLoad();
+//    }
     public  void dataLoad() {
-
-        
+        System.out.println(username);
         HashMap<String, String> udata = manageusers.getUserDetails(username,"Lecturer");
         lecUI.txtFname.setText(udata.get("Fname"));
         lecUI.txtLname.setText(udata.get("Lname"));
@@ -89,5 +92,6 @@ public class LectureEditUser extends JFrame{
         lecturerData.put("Gender", comboGender.getModel().getSelectedItem() == "Male" ? "M" : "F");
         lecturerData.put("Position", comboPosition.getModel().getSelectedItem().toString());
         manageusers.updateUser(username,"Lecturer",lecturerData);
+
     }
 }

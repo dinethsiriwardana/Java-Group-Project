@@ -2,31 +2,32 @@ package com.tecmis.database;
 
 import com.tecmis.dto.LecturerData;
 import com.tecmis.dto.User;
+import com.tecmis.ui.lecture.LectureEditUser;
 
-import java.sql.*;
+import javax.swing.*;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.util.HashMap;
 
-public class ManageUsers extends Database implements  ManageUserInterface{
+public class ManageUsers implements ManageUserInterface{
 
     private String username;
 
 
-public ManageUsers(String username){
-    this.username = username;
-}
-public ManageUsers(){
 
-}
 
-    @Override
-    public boolean addUser(String accounttype) {
-        return false;
-    }
+
 
     @Override
     public boolean updateUser(String username,String accounttype, HashMap<String, String> userdata) {
 
+
         try {
+            Database database = new Database();
+            Connection conn = database.getDatabaseConnection();
             String query = "UPDATE " + accounttype + " SET ";
             for (String key : userdata.keySet()) {
                 query += key + " = '" + userdata.get(key) + "', ";
@@ -36,12 +37,17 @@ public ManageUsers(){
             System.out.println(query);
             Statement stmt = conn.createStatement();
             int rowsAffected = stmt.executeUpdate(query);
+            URL imageUrl = LectureEditUser.class.getResource("/com/tecmis/assets/fac_logo.png");
+            Icon icon = new ImageIcon(imageUrl);
+
             if (rowsAffected == 1) {
                 // update successful
-                System.out.println("update successful");
+                System.out.println("User details updated successfully");
+                JOptionPane.showMessageDialog(null, "User details updated successfully", "Update Details", JOptionPane.ERROR_MESSAGE, icon);
                 return true;
             } else {
                 // update failed
+                JOptionPane.showMessageDialog(null, "User details updated unsuccessfully", "Error", JOptionPane.INFORMATION_MESSAGE, icon);
                 System.out.println("update failed");
                 return false;
             }
@@ -56,8 +62,10 @@ public ManageUsers(){
         HashMap<String, String> userdata = new HashMap<String, String>();
 
         try {
+            Database database = new Database();
+            Connection conn = database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM Lecturer WHERE username = " + "'"+username + "'";
+            String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
@@ -81,24 +89,19 @@ public ManageUsers(){
         return false;
     }
 
-    @Override
+
     public boolean addUser(User userDto) {
         if(userDto.getUserAccountType()=="lecturer"){
             return ManageLecturer.addLecturer( (LecturerData) userDto);
-
         }
         return false;
     }
-
-    @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
             return  ManageLecturer.addLecturer((LecturerData) userUp);
         }
         return false;
     }
-
-
 
 }
 

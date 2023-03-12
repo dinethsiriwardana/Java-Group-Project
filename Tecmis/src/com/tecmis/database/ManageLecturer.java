@@ -34,26 +34,26 @@ public class ManageLecturer {
 
         return  false;
 
-        String query2= "UPDATE Lecturer+ SET ID = ?, Fname = ?, Lname = ?, Mobile = ?, Address = ?,Email = ?,DOM = ?,Gender = ?,Position =?, WHERE ID = ?";
-        System.out.println(query2);
-        try {
-            Connection connection=Database.getDatabaseConnection();
-            Statement stmt = connection.createStatement();
-            int rowsAffected = stmt.executeUpdate(query2);
-
-            if (rowsAffected == 1) {
-                // update successful
-                System.out.println("Record update successfully!! ");
-                return true;
-            } else {
-                // update failed
-                System.out.println("Record update failed");
-                return false;
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return  false;
+//        String query2= "UPDATE Lecturer+ SET ID = ?, Fname = ?, Lname = ?, Mobile = ?, Address = ?,Email = ?,DOM = ?,Gender = ?,Position =?, WHERE ID = ?";
+//        System.out.println(query2);
+//        try {
+//            Connection connection=Database.getDatabaseConnection();
+//            Statement stmt = connection.createStatement();
+//            int rowsAffected = stmt.executeUpdate(query2);
+//
+//            if (rowsAffected == 1) {
+//                // update successful
+//                System.out.println("Record update successfully!! ");
+//                return true;
+//            } else {
+//                // update failed
+//                System.out.println("Record update failed");
+//                return false;
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return  false;
     }
 
 }
