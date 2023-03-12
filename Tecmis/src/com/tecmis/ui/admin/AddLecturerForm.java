@@ -28,8 +28,13 @@ public class AddLecturerForm extends JFrame {
     private JButton DELETEButton;
     private JButton UPDATEButton;
     private JTable table1;
+<<<<<<< Updated upstream
     private JTextField txtUsername;
     private JTextField txtPassword;
+=======
+    private JTextField textUsername;
+    private JTextField textPassword;
+>>>>>>> Stashed changes
 
     public AddLecturerForm() {
         add(pnlAdmin);
@@ -82,6 +87,7 @@ public class AddLecturerForm extends JFrame {
         });
 
 
+<<<<<<< Updated upstream
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,6 +134,9 @@ public class AddLecturerForm extends JFrame {
 
 
         });
+=======
+
+>>>>>>> Stashed changes
     }
 
     public static void main(String[] args) {
