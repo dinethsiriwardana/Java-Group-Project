@@ -34,7 +34,7 @@ public class ManageLecturer {
 
         return  false;
 
-<<<<<<< Updated upstream
+
 //        String query2= "UPDATE Lecturer+ SET ID = ?, Fname = ?, Lname = ?, Mobile = ?, Address = ?,Email = ?,DOM = ?,Gender = ?,Position =?, WHERE ID = ?";
 //        System.out.println(query2);
 //        try {
@@ -55,9 +55,9 @@ public class ManageLecturer {
 //            System.out.println(e);
 //        }
 //        return  false;
-=======
 
->>>>>>> Stashed changes
+
+
     }
 
 }
