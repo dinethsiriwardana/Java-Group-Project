@@ -17,4 +17,6 @@ public interface ManageUserInterface {
 
     boolean updateUser(User userUp);
 
+    boolean deleteUser(User userDel);
+
 }
