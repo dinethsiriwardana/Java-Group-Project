@@ -96,9 +96,19 @@ public class ManageUsers implements ManageUserInterface{
         }
         return false;
     }
+
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
             return  ManageLecturer.updateLecturer((LecturerData) userUp);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(User userDel) {
+
+        if(userDel.getUserAccountType()=="lecturer"){
+            return  ManageLecturer.deleteLecturer((LecturerData) userDel);
         }
         return false;
     }
