@@ -76,50 +76,58 @@ public class AddLecturerForm extends JFrame {
                     txtPassword.setText("");
                     txtUsername.setText("");
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please try again later ",
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Failed to add user ",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        UPDATEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LecturerData lecturerUser = new LecturerData();
+                lecturerUser.setId(txtID.getText());
+                lecturerUser.setFirstName(txtFirstName.getText());
+                lecturerUser.setLastName(txtLastName.getText());
+                lecturerUser.setMobile(txtMobile.getText());
+                lecturerUser.setAddress(txtAddress.getText());
+                lecturerUser.setAge(parseInt(txtAge.getText()));
+                lecturerUser.setEmail(txtEmail.getText());
+                lecturerUser.setDom(txtDOB.getText());
+                lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
+                lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
+                lecturerUser.setPassword(txtPassword.getText());
+                lecturerUser.setUsername(txtUsername.getText());
+
+                ManageUsers manageUser = new ManageUsers();
+                boolean isUpdated = manageUser.updateUser(lecturerUser);
+                if (isUpdated) {
+                    txtID.setText("");
+                    txtFirstName.setText("");
+                    txtLastName.setText("");
+                    txtMobile.setText("");
+                    txtAddress.setText("");
+                    txtAge.setText("");
+                    txtEmail.setText("");
+                    txtDOB.setText("");
+                    txtGender.setSelectedItem("");
+                    txtPosition.setSelectedItem("");
+                    txtPassword.setText("");
+                    txtUsername.setText("");
+                    JOptionPane.showMessageDialog(null, "User updated successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Failed to update user",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
 
-        UPDATEButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LecturerData lecturerUsers=new LecturerData();
-                lecturerUsers.setId(txtID.getText());
-                lecturerUsers.setFirstName(txtFirstName.getText());
-                lecturerUsers.setLastName(txtLastName.getText());
-                lecturerUsers.setMobile(txtMobile.getText());
-                lecturerUsers.setAddress(txtAddress.getText());
-                lecturerUsers.setAge(parseInt(txtAge.getText()));
-                lecturerUsers.setEmail(txtEmail.getText());
-                lecturerUsers.setDom(txtDOB.getText());
-                lecturerUsers.setGender(txtGender.getModel().getSelectedItem().toString());
-                lecturerUsers.setPosition(txtPosition.getModel().getSelectedItem().toString());
-                lecturerUsers.setPassword(txtPassword.getText());
-                lecturerUsers.setUsername(txtUsername.getText());  }
-          ManageUsers manageUser = new ManageUsers();
-            boolean isAdded = manageUser.updateUser(lecturerUsers);
-               if(isAdded) {
-                txtID.setText("");
-                txtFirstName.setText("");
-                txtLastName.setText("");
-                txtMobile.setText("");
-                txtAddress.setText("");
-                txtAge.setText("");
-                txtEmail.setText("");
-                txtDOB.setText("");
-                txtGender.setSelectedItem("");
-                txtPosition.setSelectedItem("");
-                txtPassword.setText("");
-                txtUsername.setText("");
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Please try again later ",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
-            } });
     }
 
     public static void main(String[] args) {
