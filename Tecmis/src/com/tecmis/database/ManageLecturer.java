@@ -8,14 +8,14 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 public class ManageLecturer {
-    public static boolean addLecturer(LecturerData lecdata){
-        String query= "Insert INTO Lecturer " +
+    public static boolean addLecturer(LecturerData lecdata) {
+        String query = "Insert INTO Lecturer " +
                 "(ID,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
-                "VALUES ( ' "+lecdata.getId()+ " ', ' "+lecdata.getFirstName()+" ', ' "+lecdata.getLastName()+" ', ' "+lecdata.getMobile()+" ', ' "+lecdata.getAddress()+" ',' "+lecdata.getAge()+" ',' "+lecdata.getEmail()+" ',' "+lecdata.getDom()+" ',' "+lecdata.getGender()+" ',' "+lecdata.getPosition()+" ')";
+                "VALUES ( ' " + lecdata.getId() + " ', ' " + lecdata.getFirstName() + " ', ' " + lecdata.getLastName() + " ', ' " + lecdata.getMobile() + " ', ' " + lecdata.getAddress() + " ',' " + lecdata.getAge() + " ',' " + lecdata.getEmail() + " ',' " + lecdata.getDom() + " ',' " + lecdata.getGender() + " ',' " + lecdata.getPosition() + " ')";
 
         System.out.println(query);
         try {
-            Connection connection=Database.getDatabaseConnection();
+            Connection connection = Database.getDatabaseConnection();
             Statement stmt = connection.createStatement();
             int rowsAffected = stmt.executeUpdate(query);
 
@@ -32,31 +32,34 @@ public class ManageLecturer {
             System.out.println(e);
         }
 
+        return false;
+
+    }
+
+    public static boolean updateLecturer(LecturerData lecdata){
+
+        String query="Update Lecturer "+ "SET ( ' " + lecdata.getId() + " ', ' " + lecdata.getFirstName() + " ', ' " + lecdata.getLastName() + " ', ' " + lecdata.getMobile() + " ', ' " + lecdata.getAddress() + " ',' " + lecdata.getAge() + " ',' " + lecdata.getEmail() + " ',' " + lecdata.getDom() + " ',' " + lecdata.getGender() + " ',' " + lecdata.getPosition() + " ')"+
+                "Where ('"+lecdata.getId()+" ')";
+
+        System.out.println(query);
+        try {
+            Connection connection=Database.getDatabaseConnection();
+            Statement stmt = connection.createStatement();
+            int rowsAffected = stmt.executeUpdate(query);
+
+            if (rowsAffected == 1) {
+                // update successful
+                System.out.println("Record update successfully!! ");
+                return true;
+            } else {
+                // update failed
+                System.out.println("Record update failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return  false;
-
-
-//        String query2= "UPDATE Lecturer+ SET ID = ?, Fname = ?, Lname = ?, Mobile = ?, Address = ?,Email = ?,DOM = ?,Gender = ?,Position =?, WHERE ID = ?";
-//        System.out.println(query2);
-//        try {
-//            Connection connection=Database.getDatabaseConnection();
-//            Statement stmt = connection.createStatement();
-//            int rowsAffected = stmt.executeUpdate(query2);
-//
-//            if (rowsAffected == 1) {
-//                // update successful
-//                System.out.println("Record update successfully!! ");
-//                return true;
-//            } else {
-//                // update failed
-//                System.out.println("Record update failed");
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        return  false;
-
-
 
     }
 

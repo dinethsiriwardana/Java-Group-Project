@@ -13,7 +13,7 @@ public class LecturerData  extends  User{
     private String username;
     private  String password;
     private String lastName;
-    private int mobile;
+    private String  mobile;
     private String  address;
     private int age;
     private String email;
@@ -40,7 +40,7 @@ public class LecturerData  extends  User{
     public String getLastName() {
         return lastName;
     }
-    public int getMobile(){
+    public String getMobile(){
         return mobile;
     }
     public String getAddress(){
@@ -77,7 +77,7 @@ public class LecturerData  extends  User{
     public void setFirstName(String firstName){
         this.firstName=firstName;
     }
-    public void setMobile(int mobile){
+    public void setMobile(String mobile){
         this.mobile=mobile;
     }
 

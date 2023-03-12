@@ -14,27 +14,24 @@ public class AddLecturerForm extends JFrame {
 
 
     private JPanel pnlAdmin;
-    private JTextField ID;
-    private JTextField FirstName;
-    private JTextField LastName;
-    private JTextField Mobile;
-    private JTextArea Address;
-    private JTextField Age;
-    private JTextField Email;
-    private JTextField DOB;
-    private JComboBox Gender;
-    private JComboBox Position;
+    private JTextField txtID;
+    private JTextField txtFirstName;
+    private JTextField txtLastName;
+    private JTextField txtMobile;
+    private JTextArea txtAddress;
+    private JTextField txtAge;
+    private JTextField txtEmail;
+    private JTextField txtDOB;
+    private JComboBox txtGender;
+    private JComboBox txtPosition;
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
     private JTable table1;
-<<<<<<< Updated upstream
+
     private JTextField txtUsername;
     private JTextField txtPassword;
-=======
-    private JTextField textUsername;
-    private JTextField textPassword;
->>>>>>> Stashed changes
+
 
     public AddLecturerForm() {
         add(pnlAdmin);
@@ -49,16 +46,16 @@ public class AddLecturerForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LecturerData lecturerUser = new LecturerData();
-                lecturerUser.setId(ID.getText());
-                lecturerUser.setFirstName(FirstName.getText());
-                lecturerUser.setLastName(LastName.getText());
-                lecturerUser.setMobile(Mobile.getScrollOffset());
-                lecturerUser.setAddress(Address.getText());
-                lecturerUser.setAge(parseInt(Age.getText()));
-                lecturerUser.setEmail(Email.getText());
-                lecturerUser.setDom(DOB.getText());
-                lecturerUser.setGender(Gender.getModel().getSelectedItem().toString());
-                lecturerUser.setPosition(Position.getModel().getSelectedItem().toString());
+                lecturerUser.setId(txtID.getText());
+                lecturerUser.setFirstName(txtFirstName.getText());
+                lecturerUser.setLastName(txtLastName.getText());
+                lecturerUser.setMobile(txtMobile.getText());
+                lecturerUser.setAddress(txtAddress.getText());
+                lecturerUser.setAge(parseInt(txtAge.getText()));
+                lecturerUser.setEmail(txtEmail.getText());
+                lecturerUser.setDom(txtDOB.getText());
+                lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
+                lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
                 lecturerUser.setPassword(txtPassword.getText());
                 lecturerUser.setUsername(txtUsername.getText());
 
@@ -66,16 +63,16 @@ public class AddLecturerForm extends JFrame {
                 ManageUsers manageUser = new ManageUsers();
                 boolean isAdded = manageUser.addUser(lecturerUser);
                 if (isAdded) {
-                    ID.setText("");
-                    FirstName.setText("");
-                    LastName.setText("");
-                    Mobile.setText("");
-                    Address.setText("");
-                    Age.setText("");
-                    Email.setText("");
-                    DOB.setText("");
-                    Gender.setSelectedItem("");
-                    Position.setSelectedItem("");
+                    txtID.setText("");
+                    txtFirstName.setText("");
+                    txtLastName.setText("");
+                    txtMobile.setText("");
+                    txtAddress.setText("");
+                    txtAge.setText("");
+                    txtEmail.setText("");
+                    txtDOB.setText("");
+                    txtGender.setSelectedItem("");
+                    txtPosition.setSelectedItem("");
                     txtPassword.setText("");
                     txtUsername.setText("");
 
@@ -87,56 +84,42 @@ public class AddLecturerForm extends JFrame {
         });
 
 
-<<<<<<< Updated upstream
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LecturerData lecturerUsers =new LecturerData();
-
-                lecturerUsers.setId(ID.getText());
-                lecturerUsers.setFirstName(FirstName.getText());
-                lecturerUsers.setLastName(LastName.getText());
-                lecturerUsers.setMobile(Mobile.getScrollOffset());
-                lecturerUsers.setAddress(Address.getText());
-                lecturerUsers.setAge(parseInt(Age.getText()));
-                lecturerUsers.setEmail(Email.getText());
-                lecturerUsers.setDom(DOB.getText());
-                lecturerUsers.setGender(Gender.getModel().getSelectedItem().toString());
-                lecturerUsers.setPosition(Position.getModel().getSelectedItem().toString());
+                LecturerData lecturerUsers=new LecturerData();
+                lecturerUsers.setId(txtID.getText());
+                lecturerUsers.setFirstName(txtFirstName.getText());
+                lecturerUsers.setLastName(txtLastName.getText());
+                lecturerUsers.setMobile(txtMobile.getText());
+                lecturerUsers.setAddress(txtAddress.getText());
+                lecturerUsers.setAge(parseInt(txtAge.getText()));
+                lecturerUsers.setEmail(txtEmail.getText());
+                lecturerUsers.setDom(txtDOB.getText());
+                lecturerUsers.setGender(txtGender.getModel().getSelectedItem().toString());
+                lecturerUsers.setPosition(txtPosition.getModel().getSelectedItem().toString());
                 lecturerUsers.setPassword(txtPassword.getText());
-                lecturerUsers.setUsername(txtUsername.getText());
+                lecturerUsers.setUsername(txtUsername.getText());  }
+          ManageUsers manageUser = new ManageUsers();
+            boolean isAdded = manageUser.updateUser(lecturerUsers);
+               if(isAdded) {
+                txtID.setText("");
+                txtFirstName.setText("");
+                txtLastName.setText("");
+                txtMobile.setText("");
+                txtAddress.setText("");
+                txtAge.setText("");
+                txtEmail.setText("");
+                txtDOB.setText("");
+                txtGender.setSelectedItem("");
+                txtPosition.setSelectedItem("");
+                txtPassword.setText("");
+                txtUsername.setText("");
 
-                ManageUsers manageUsers=new ManageUsers();
-                boolean isAdded= manageUsers.updateUser(lecturerUsers);
-                if(isAdded){
-
-
-                    ID.setText("");
-                    FirstName.setText("");
-                    LastName.setText("");
-                    Mobile.setText("");
-                    Address.setText("");
-                    Age.setText("");
-                    Email.setText("");
-                    DOB.setText("");
-                    Gender.setSelectedItem("");
-                    Position.setSelectedItem("");
-                    txtPassword.setText("");
-                    txtUsername.setText("");
-
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Please try again later ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
-
-
-        });
-=======
-
->>>>>>> Stashed changes
+            } else {
+                JOptionPane.showMessageDialog(null, "Please try again later ",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+            } });
     }
 
     public static void main(String[] args) {
@@ -144,3 +127,10 @@ public class AddLecturerForm extends JFrame {
         AddLecturerForm addlec=new AddLecturerForm();
     }
 }
+
+
+
+
+
+
+
