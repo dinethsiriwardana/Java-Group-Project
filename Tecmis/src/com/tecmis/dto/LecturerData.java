@@ -113,4 +113,9 @@ public class LecturerData  extends  User{
     }
 
 
+    public void getFromHash(){
+
+    }
+
+
 }
