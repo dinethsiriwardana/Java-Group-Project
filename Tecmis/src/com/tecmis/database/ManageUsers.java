@@ -2,6 +2,7 @@ package com.tecmis.database;
 
 import com.tecmis.dto.LecturerData;
 import com.tecmis.dto.StudentData;
+import com.tecmis.dto.TechnicalOfficerData;
 import com.tecmis.dto.User;
 import com.tecmis.ui.lecture.LectureEditUser;
 
@@ -16,10 +17,6 @@ import java.util.HashMap;
 public class ManageUsers implements ManageUserInterface{
 
     private String username;
-
-
-
-
 
 
     @Override
@@ -136,6 +133,32 @@ public class ManageUsers implements ManageUserInterface{
     public boolean delStu(User userDel) {
         if(userDel.getUserAccountType()=="student"){
             return ManageStudent.deleteStudent( (StudentData) userDel);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean addTo(User userDto) {
+        if(userDto.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.addTechnicalOfficer( (TechnicalOfficerData) userDto);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean upTo(User userUp) {
+        if(userUp.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.updateTechnicalOfficer( (TechnicalOfficerData) userUp);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delTo(User userDel) {
+        if(userDel.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.deleteTechnicalOfficer( (TechnicalOfficerData) userDel);
         }
 
         return false;

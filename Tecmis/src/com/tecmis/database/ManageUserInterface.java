@@ -23,4 +23,8 @@ public interface ManageUserInterface {
 
     boolean delStu(User userDel);
 
+    boolean addTo(User userDto);
+    boolean upTo(User userUp);
+    boolean delTo(User userDel);
+
 }
