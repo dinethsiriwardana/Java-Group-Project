@@ -3,7 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/miglayout-swing.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/miglayout-core.jar!/" />
-      <root url="jar://$USER_HOME$/Downloads/mariadb-java-client-3.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Tecmis/src/com/tecmis/util/mariadb-java-client-3.1.2.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/lib/miglayout-swing-javadoc.jar!/" />
