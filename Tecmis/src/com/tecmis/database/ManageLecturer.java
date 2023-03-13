@@ -11,7 +11,17 @@ public class ManageLecturer {
     public static boolean addLecturer(LecturerData lecdata) {
         String query = "Insert INTO Lecturer " +
                 "(ID,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
-                "VALUES ( ' " + lecdata.getId() + " ', ' " + lecdata.getFirstName() + " ', ' " + lecdata.getLastName() + " ', ' " + lecdata.getMobile() + " ', ' " + lecdata.getAddress() + " ',' " + lecdata.getAge() + " ',' " + lecdata.getEmail() + " ',' " + lecdata.getDom() + " ',' " + lecdata.getGender() + " ',' " + lecdata.getPosition() + " ')";
+                "VALUES ( ' " +
+                lecdata.getId() + " ', ' " +
+                lecdata.getFirstName() + " ', ' " +
+                lecdata.getLastName() + " ', ' " +
+                lecdata.getMobile() + " ', ' " +
+                lecdata.getAddress() + " ',' " +
+                lecdata.getAge() + " ',' " +
+                lecdata.getEmail() + " ',' " +
+                lecdata.getDom() + " ',' " +
+                lecdata.getGender() + " ',' " +
+                lecdata.getPosition() + " ')";
 
         System.out.println(query);
         try {
@@ -38,7 +48,17 @@ public class ManageLecturer {
 
     public static boolean updateLecturer(LecturerData lecdata){
 
-        String query = "UPDATE Lecturer SET id='" + lecdata.getId() + "', firstName='" + lecdata.getFirstName() + "', lastName='" + lecdata.getLastName() + "', mobile='" + lecdata.getMobile() + "', address='" + lecdata.getAddress() + "', age='" + lecdata.getAge() + "', email='" + lecdata.getEmail() + "', dom='" + lecdata.getDom() + "', gender='" + lecdata.getGender() + "', position='" + lecdata.getPosition() +
+        String query = "UPDATE Lecturer SET id='" +
+                lecdata.getId() + "', firstName='" +
+                lecdata.getFirstName() + "', lastName='" +
+                lecdata.getLastName() + "', mobile='" +
+                lecdata.getMobile() + "', address='" +
+                lecdata.getAddress() + "', age='" +
+                lecdata.getAge() + "', email='" +
+                lecdata.getEmail() + "', dom='" +
+                lecdata.getDom() + "', gender='" +
+                lecdata.getGender() + "', position='" +
+                lecdata.getPosition() +
                 "' WHERE id='" + lecdata.getId() + "'";
 
         System.out.println(query);

@@ -41,7 +41,6 @@ public class LectureEditUser extends JFrame{
         dataLoad();
 
 
-        //TODO Remove The SetLocations
 
 
         updateButton.addMouseListener(new MouseAdapter() {

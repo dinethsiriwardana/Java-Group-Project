@@ -26,9 +26,9 @@ public class LectureStudentDetails extends JFrame{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1200,600);
 
-//        setPreferredSize(new Dimension(420,400));
+
         setResizable(false);
-//        lecUI = this;
+
         try {
             dataLoad();
         } catch (Exception e) {
@@ -36,9 +36,7 @@ public class LectureStudentDetails extends JFrame{
         }
     }
 
-    public static void main(String[] args) {
-        LectureStudentDetails lecsd = new LectureStudentDetails();
-    }
+
 
     void dataLoad() throws Exception {
         Database database = new Database();
