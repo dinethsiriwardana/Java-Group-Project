@@ -1,26 +1,42 @@
 package com.tecmis.dto;
 
-public class StudentData {
+import java.util.Date;
 
-    private String username;
-    private String password;
-    private String ID;
-    private String Fname;
-    private String Lname;
-    private String Mobile;
-    private String Address;
-    private String Age;
-    private String Email;
-    private String DOM;
-    private String Gender;
-    private String Level;
+public class StudentData extends User{
 
-    public String getUsername() {
-        return username;
+    public  StudentData(){
+        this.userAccountType="student";
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    private String Id;
+    private String userName;
+    private String password;
+
+    private String firstName;
+    private String lastName;
+    private String mobile;
+    private String address;
+    private String age;
+    private String email;
+    private String dom;
+    private String gender;
+
+    private  String level;
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -31,84 +47,75 @@ public class StudentData {
         this.password = password;
     }
 
-    public String getID() {
-        return ID;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getFname() {
-        return Fname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setFname(String Fname) {
-        this.Fname = Fname;
-    }
-
-    public String getLname() {
-        return Lname;
-    }
-
-    public void setLname(String Lname) {
-        this.Lname = Lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getMobile() {
-        return Mobile;
+        return mobile;
     }
 
-    public void setMobile(String Mobile) {
-        this.Mobile = Mobile;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getAge() {
-        return Age;
+        return age;
     }
 
-    public void setAge(String Age) {
-        this.Age = Age;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDOM() {
-        return DOM;
+    public String getDom() {
+        return dom;
     }
 
-    public void setDOM(String DOM) {
-        this.DOM = DOM;
+    public void setDom(String dom) {
+        this.dom = dom;
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public void setGender(String gender) {
+        this.gender = gender == "Male" ? "M": "F";
     }
 
     public String getLevel() {
-        return Level;
+        return level;
     }
 
-    public void setLevel(String Level) {
-        this.Level = Level;
+    public void setLevel(String level) {
+        this.level = level;
     }
-
 }

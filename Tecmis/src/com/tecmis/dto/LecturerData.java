@@ -6,6 +6,7 @@ import java.util.Date;
 public class LecturerData  extends  User{
 
     public LecturerData(){
+
         this.userAccountType="lecturer";
     }
     private String Id;
@@ -15,9 +16,10 @@ public class LecturerData  extends  User{
     private String lastName;
     private String  mobile;
     private String  address;
-    private int age;
+    private String age;
     private String email;
-    private Date dom;
+
+    private String dom;
 
     private String gender;
 
@@ -46,13 +48,13 @@ public class LecturerData  extends  User{
     public String getAddress(){
         return address;
     }
-    public int getAge(){
+    public String getAge(){
         return age;
     }
     public  String getEmail(){
         return email;
     }
-    public Date getDom(){
+    public String getDom(){
         return dom;
     }
     public String getGender(){
@@ -84,7 +86,7 @@ public class LecturerData  extends  User{
     public void setAddress(String address){
         this.address=address;
     }
-    public  void setAge(int age){
+    public  void setAge(String age){
         this.age=age;
     }
 
@@ -92,17 +94,8 @@ public class LecturerData  extends  User{
         this.email=email;
     }
 
-    public void setDom(String dom)  {
-        try {
-            String dateString = dom;
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = format.parse(dateString);
-
-            this.dom = date;
-        }catch (Exception e){
-            System.out.println(e.getMessage().toString());
-
-        }
+    public void setDom(String dom) {
+        this.dom = dom;
     }
     public  void setGender(String gender){
 

@@ -1,30 +1,21 @@
 package com.tecmis.database;
 
-import com.tecmis.dto.LecturerData;
+
+import com.tecmis.dto.StudentData;
 import com.tecmis.dto.User;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class ManageLecturer {
-    public static boolean addLecturer(LecturerData lecdata) {
-        String query = "Insert INTO Lecturer " +
+public class ManageStudent {
 
-                "(ID,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
-                "VALUES ( ' " +
-                lecdata.getId() + " ', ' " +
-                lecdata.getFirstName() + " ', ' " +
-                lecdata.getLastName() + " ', ' " +
-                lecdata.getMobile() + " ', ' " +
-                lecdata.getAddress() + " ',' " +
-                lecdata.getAge() + " ',' " +
-                lecdata.getEmail() + " ',' " +
-                lecdata.getDom() + " ',' " +
-                lecdata.getGender() + " ',' " +
-                lecdata.getPosition() + " ')";
-
-
+    public static boolean addStudent(StudentData studata ){
+        String query = "INSERT INTO Student " +
+                       "(ID, username, password, Fname, Lname, Mobile, Address, Age, Email, DOM, Gender,Level) " +
+                       "VALUES ('" + studata.getId() + "', '" + studata.getUserName() + "', '" + studata.getPassword() + "', '" +
+                        studata.getFirstName() + "', '" + studata.getLastName() + "', '" + studata.getMobile() + "', '" +
+                        studata.getAddress() + "', '" + studata.getAge() + "', '" + studata.getEmail() + "', '" +
+                        studata.getDom() + "', '" + studata.getGender() + "','" +studata.getLevel()+ "')";
 
         System.out.println(query);
         try {
@@ -34,11 +25,11 @@ public class ManageLecturer {
 
             if (rowsAffected == 1) {
                 // update successful
-                System.out.println("Update successfully!! ");
+                System.out.println("user add successfully!! ");
                 return true;
             } else {
                 // update failed
-                System.out.println("update failed");
+                System.out.println("user add  failed");
                 return false;
             }
         } catch (Exception e) {
@@ -48,22 +39,13 @@ public class ManageLecturer {
         return false;
 
     }
+    public  static boolean updateStudent(StudentData studata){
+        String query = "UPDATE Student SET ID='" + studata.getId() + "', username='" + studata.getUserName() + "', " +
+                       "password='" + studata.getPassword() + "', Fname='" + studata.getFirstName() + "', Lname='" + studata.getLastName() + "', " +
+                       "Mobile='" + studata.getMobile() + "', Address='" + studata.getAddress() + "', Age='" + studata.getAge() + "', Email='" +
+                        studata.getEmail() + "', DOM='" + studata.getDom() + "', Gender='" + studata.getGender() + "', Level='" + studata.getLevel() + "'" +
+                        " WHERE ID='" + studata.getId() + "'";
 
-    public static boolean updateLecturer(LecturerData lecdata){
-
-
-        String query = "UPDATE Lecturer SET id='" +
-                lecdata.getId() + "', firstName='" +
-                lecdata.getFirstName() + "', lastName='" +
-                lecdata.getLastName() + "', mobile='" +
-                lecdata.getMobile() + "', address='" +
-                lecdata.getAddress() + "', age='" +
-                lecdata.getAge() + "', email='" +
-                lecdata.getEmail() + "', dom='" +
-                lecdata.getDom() + "', gender='" +
-                lecdata.getGender() + "', position='" +
-                lecdata.getPosition() +
-                "' WHERE id='" + lecdata.getId() + "'";
 
 
         System.out.println(query);
@@ -86,9 +68,10 @@ public class ManageLecturer {
         }
         return  false;
 
+
     }
-    public static boolean deleteLecturer(LecturerData lecdata){
-        String query = "DELETE FROM Lecturer WHERE ID='" + lecdata.getId() + "'";
+    public  static  boolean deleteStudent(StudentData studata){
+        String query = "DELETE FROM Student WHERE ID='" + studata.getId() + "'";
 
         System.out.println(query);
         try {
@@ -112,4 +95,5 @@ public class ManageLecturer {
 
     }
 
-}
+    }
+
