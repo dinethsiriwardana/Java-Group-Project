@@ -93,7 +93,7 @@ public class ManageUsers implements ManageUserInterface{
     @Override
     public boolean addUser(User userDto) {
         if(userDto.getUserAccountType()=="lecturer"){
-            return ManageLecturer.addLecturer( (LecturerData) userDto);
+            return ManageLecturer.addLecturer((LecturerData) userDto);
         }
         return false;
     }

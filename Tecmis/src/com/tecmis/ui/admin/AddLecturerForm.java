@@ -40,7 +40,7 @@ public class AddLecturerForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
-        setResizable(false);
+
 
         ADDButton.addActionListener(new ActionListener() {
             @Override
