@@ -11,26 +11,9 @@ import java.util.HashMap;
 public class ManageLecturer {
     public static boolean addLecturer(LecturerData lecdata) {
         String query = "Insert INTO Lecturer " +
-<<<<<<< Updated upstream
-
-                "(ID,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
-                "VALUES ( ' " +
-                lecdata.getId() + " ', ' " +
-                lecdata.getFirstName() + " ', ' " +
-                lecdata.getLastName() + " ', ' " +
-                lecdata.getMobile() + " ', ' " +
-                lecdata.getAddress() + " ',' " +
-                lecdata.getAge() + " ',' " +
-                lecdata.getEmail() + " ',' " +
-                lecdata.getDom() + " ',' " +
-                lecdata.getGender() + " ',' " +
-                lecdata.getPosition() + " ')";
-
-
-=======
                        "(ID,username,password,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
                        "VALUES ( '" + lecdata.getId() + "', '"+lecdata.getUsername()+ "','"+lecdata.getPassword()+ "','" + lecdata.getFirstName() + "', '" + lecdata.getLastName() + "', '" + lecdata.getMobile() + "', '" + lecdata.getAddress() + "','" + lecdata.getAge() + "','" + lecdata.getEmail() + "','" + lecdata.getDom() + "','" + lecdata.getGender() + "','" + lecdata.getPosition() + "')";
->>>>>>> Stashed changes
+>
 
         System.out.println(query);
         try {
@@ -58,26 +41,12 @@ public class ManageLecturer {
 
     public static boolean updateLecturer(LecturerData lecdata){
 
-<<<<<<< Updated upstream
-
-        String query = "UPDATE Lecturer SET id='" +
-                lecdata.getId() + "', firstName='" +
-                lecdata.getFirstName() + "', lastName='" +
-                lecdata.getLastName() + "', mobile='" +
-                lecdata.getMobile() + "', address='" +
-                lecdata.getAddress() + "', age='" +
-                lecdata.getAge() + "', email='" +
-                lecdata.getEmail() + "', dom='" +
-                lecdata.getDom() + "', gender='" +
-                lecdata.getGender() + "', position='" +
-                lecdata.getPosition() +
-                "' WHERE id='" + lecdata.getId() + "'";
-=======
+<
         String query = "UPDATE Lecturer SET ID='"+ lecdata.getId() +"', username='"+ lecdata.getUsername() +"', password='"+ lecdata.getPassword() +"',"+
                 " Fname='"+ lecdata.getFirstName() +"', Lname='"+ lecdata.getLastName() +"', Mobile='"+ lecdata.getMobile() +"', Address='"+ lecdata.getAddress() +"', "+
                 "Age='"+ lecdata.getAge() +"', Email='"+ lecdata.getEmail() +"', DOM='"+ lecdata.getDom() +"', Gender='" + lecdata.getGender() +"', Position='"+ lecdata.getPosition() +
                 "' WHERE ID='"+ lecdata.getId() +"'";
->>>>>>> Stashed changes
+>
 
 
         System.out.println(query);
