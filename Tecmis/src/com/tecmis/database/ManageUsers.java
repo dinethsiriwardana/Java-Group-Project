@@ -1,6 +1,7 @@
 package com.tecmis.database;
 
 import com.tecmis.dto.LecturerData;
+import com.tecmis.dto.StudentData;
 import com.tecmis.dto.User;
 import com.tecmis.ui.lecture.LectureEditUser;
 
@@ -89,14 +90,14 @@ public class ManageUsers implements ManageUserInterface{
         return false;
     }
 
-
+    @Override
     public boolean addUser(User userDto) {
         if(userDto.getUserAccountType()=="lecturer"){
             return ManageLecturer.addLecturer( (LecturerData) userDto);
         }
         return false;
     }
-
+    @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
             return  ManageLecturer.updateLecturer((LecturerData) userUp);
@@ -112,6 +113,34 @@ public class ManageUsers implements ManageUserInterface{
         }
         return false;
     }
+
+    @Override
+    public boolean addStu(User userAdd) {
+        if(userAdd.getUserAccountType()=="student"){
+            return ManageStudent.addStudent( (StudentData) userAdd);
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean upStu(User userUp) {
+        if(userUp.getUserAccountType()=="student"){
+            return ManageStudent.updateStudent( (StudentData) userUp);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delStu(User userDel) {
+        if(userDel.getUserAccountType()=="student"){
+            return ManageStudent.deleteStudent( (StudentData) userDel);
+        }
+
+        return false;
+    }
+
 
 }
 
