@@ -1,9 +1,6 @@
 package com.tecmis.database;
 
-import com.tecmis.dto.LecturerData;
-import com.tecmis.dto.StudentData;
-import com.tecmis.dto.TechnicalOfficerData;
-import com.tecmis.dto.User;
+import com.tecmis.dto.*;
 import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
@@ -159,6 +156,31 @@ public class ManageUsers implements ManageUserInterface{
     public boolean delTo(User userDel) {
         if(userDel.getUserAccountType()=="technical officer"){
             return ManageTechnicalOfficer.deleteTechnicalOfficer( (TechnicalOfficerData) userDel);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean addAdm(User userAdd) {
+        if(userAdd.getUserAccountType()=="admin"){
+            return ManageAdmin.addAdmin((AdminData) userAdd);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean upAdm(User userUp) {
+        if(userUp.getUserAccountType()=="admin"){
+            return ManageAdmin.updateAdmin((AdminData) userUp);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delAdm(User userDel) {
+        if(userDel.getUserAccountType()=="admin"){
+            return ManageAdmin.deleteAdmin((AdminData) userDel);
         }
 
         return false;

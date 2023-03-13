@@ -108,8 +108,8 @@ public class AddLecturerForm extends JFrame {
 
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isDelected = manageUser.deleteUser(lecturerUser);
-                if (isDelected) {
+                boolean isDeleted = manageUser.deleteUser(lecturerUser);
+                if (isDeleted) {
                     txtID.setText("");
                     txtPassword.setText("");
                     txtUsername.setText("");

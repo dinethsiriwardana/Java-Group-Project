@@ -40,7 +40,7 @@ public class ManageTechnicalOfficer extends User {
 
     }
     public static boolean updateTechnicalOfficer(TechnicalOfficerData tecdata){
-        String query = "UPDATE Student SET ID='" + tecdata.getId() + "', username='" + tecdata.getUserName() + "', " +
+        String query = "UPDATE TechnicalOfficer SET ID='" + tecdata.getId() + "', username='" + tecdata.getUserName() + "', " +
                 "password='" + tecdata.getPassword() + "', Fname='" + tecdata.getFirstName() + "', Lname='" + tecdata.getLastName() + "', " +
                 "Mobile='" + tecdata.getMobile() + "', Address='" + tecdata.getAddress() + "', Age='" + tecdata.getAge() + "', Email='" +
                 tecdata.getEmail() + "', DOM='" + tecdata.getDom() + "', Gender='" + tecdata.getGender() + "' " +

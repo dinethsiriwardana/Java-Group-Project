@@ -1,19 +1,19 @@
 package com.tecmis.database;
 
-import com.tecmis.dto.LecturerData;
-import com.tecmis.dto.User;
+import com.tecmis.dto.AdminData;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.HashMap;
 
-public class ManageLecturer {
-    public static boolean addLecturer(LecturerData lecdata) {
-        String query = "Insert INTO Lecturer " +
-                       "(ID,username,password,Fname,Lname,Mobile,Address,Age,Email,DOM,Gender,Position) " +
-                       "VALUES ( '" + lecdata.getId() + "', '"+lecdata.getUsername()+ "','"+lecdata.getPassword()+ "','" + lecdata.getFirstName() + "', '" + lecdata.getLastName() + "', '" + lecdata.getMobile() + "', '" + lecdata.getAddress() + "','" + lecdata.getAge() + "','" + lecdata.getEmail() + "','" + lecdata.getDom() + "','" + lecdata.getGender() + "','" + lecdata.getPosition() + "')";
+public class ManageAdmin {
 
+    public static boolean addAdmin(AdminData addata) {
+        String query = "INSERT INTO Admin" +
+                "(ID, username, password, Fname, Lname, Mobile, Address, Age, Email, DOM, Gender,Admin_role) " +
+                "VALUES ('" + addata.getID() + "', '" + addata.getUsername() + "', '" + addata.getPassword() + "', '" +
+                addata.getFname() + "', '" + addata.getLname() + "', '" + addata.getMobile() + "', '" +
+                addata.getAddress() + "', '" + addata.getAge() + "', '" + addata.getEmail() + "', '" +
+                addata.getDOM() + "', '" + addata.getGender() + "','" + addata.getAdmin_role() + "')";
 
         System.out.println(query);
         try {
@@ -27,7 +27,7 @@ public class ManageLecturer {
                 return true;
             } else {
                 // update failed
-                System.out.println("user add failed");
+                System.out.println("user add  failed");
                 return false;
             }
         } catch (Exception e) {
@@ -36,18 +36,19 @@ public class ManageLecturer {
 
         return false;
 
+
     }
 
-
-    public static boolean updateLecturer(LecturerData lecdata){
-        String query = "UPDATE Lecturer SET ID='"+ lecdata.getId() +"', username='"+ lecdata.getUsername() +"', password='"+ lecdata.getPassword() +"',"+
-                       " Fname='"+ lecdata.getFirstName() +"', Lname='"+ lecdata.getLastName() +"', Mobile='"+ lecdata.getMobile() +"', Address='"+ lecdata.getAddress() +"', "+
-                       "Age='"+ lecdata.getAge() +"', Email='"+ lecdata.getEmail() +"', DOM='"+ lecdata.getDom() +"', Gender='" + lecdata.getGender() +"', Position='"+ lecdata.getPosition() +
-                       "' WHERE ID='"+ lecdata.getId() +"'";
+    public static boolean updateAdmin(AdminData addata) {
+        String query = "UPDATE Admin SET ID='" + addata.getID() + "', username='" + addata.getUsername() + "', " +
+                "password='" + addata.getPassword() + "', Fname='" + addata.getFname() + "', Lname='" + addata.getLname() + "', " +
+                "Mobile='" + addata.getMobile() + "', Address='" + addata.getAddress() + "', Age='" + addata.getAge() + "', Email='" +
+                addata.getEmail() + "', DOM='" + addata.getDOM() + "', Gender='" + addata.getGender() + "', Admin_role='" + addata.getAdmin_role() + "'" +
+                " WHERE ID='" + addata.getID() + "'";
 
         System.out.println(query);
         try {
-            Connection connection=Database.getDatabaseConnection();
+            Connection connection = Database.getDatabaseConnection();
             Statement stmt = connection.createStatement();
             int rowsAffected = stmt.executeUpdate(query);
 
@@ -63,12 +64,11 @@ public class ManageLecturer {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return  false;
+        return false;
 
     }
-
-    public static boolean deleteLecturer(LecturerData lecdata){
-        String query = "DELETE FROM Lecturer WHERE ID='"+lecdata.getId()+"'";
+    public static boolean deleteAdmin(AdminData addata){
+        String query = "DELETE FROM Admin WHERE ID='" + addata.getID() + "'";
 
         System.out.println(query);
         try {
@@ -93,3 +93,6 @@ public class ManageLecturer {
     }
 
 }
+
+
+

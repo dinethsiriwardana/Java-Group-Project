@@ -2,7 +2,11 @@ package com.tecmis.dto;
 
 import java.util.Date;
 
-public class AdminData {
+public class AdminData extends  User{
+
+    public  AdminData(){
+        this.userAccountType="admin";
+    }
     private String ID;
     private String username;
     private String password;
