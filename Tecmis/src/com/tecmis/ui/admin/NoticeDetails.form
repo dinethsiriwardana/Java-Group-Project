@@ -150,7 +150,7 @@
                           <text value="Notice_Id"/>
                         </properties>
                       </component>
-                      <component id="ed57b" class="javax.swing.JTextField" binding="textNoticeId">
+                      <component id="ed57b" class="javax.swing.JTextField" binding="txtNoticeId">
                         <constraints>
                           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -188,7 +188,7 @@
                           <text value="Notice_Des"/>
                         </properties>
                       </component>
-                      <component id="f13c0" class="javax.swing.JTextField" binding="textDate">
+                      <component id="f13c0" class="javax.swing.JTextField" binding="txtDate">
                         <constraints>
                           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -196,7 +196,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="714ff" class="javax.swing.JTextField" binding="textTitle">
+                      <component id="714ff" class="javax.swing.JTextField" binding="txtTitle">
                         <constraints>
                           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -204,7 +204,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="e6078" class="javax.swing.JTextField" binding="textNoticeDes">
+                      <component id="e6078" class="javax.swing.JTextField" binding="txtNoticeDes">
                         <constraints>
                           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -227,14 +227,14 @@
                       <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </hspacer>
-                  <component id="2381a" class="javax.swing.JButton" binding="createButton" default-binding="true">
+                  <component id="2381a" class="javax.swing.JButton" binding="addButton">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <font style="1"/>
                       <icon value="com/tecmis/assets/icon/icons8-add-24.png"/>
-                      <text value="Create "/>
+                      <text value="Add"/>
                     </properties>
                   </component>
                   <component id="c52ac" class="javax.swing.JButton" binding="deleteButton" default-binding="true">

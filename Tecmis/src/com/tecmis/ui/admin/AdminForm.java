@@ -19,7 +19,6 @@ public class AdminForm extends JFrame{
     private JPanel pnlAdmin;
     private JLabel lblWelcomText;
     private JButton btnAddAdmin;
-    private JList list1;
     private JButton btnCourseDetails;
     private JButton timeTableButton;
     private JLabel lblNotices;
@@ -27,29 +26,21 @@ public class AdminForm extends JFrame{
     private String username;
     static AdminForm adminForm;
 
-    public AdminForm(String username) {
+    public AdminForm() {
 
         add(pnlAdmin);
         setVisible(true);
         setTitle("Admin");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,1500);
+        setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
-        setResizable(false);
-        btnNoticeDetails.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        adminForm = this;
+        setResizable(true);
+
     }
 
 
     public static void main(String[] args) {
-        Notices notices = new Notices();
-        JList<String> jlist = notices.main();
-        adminForm.list1.setModel(jlist.getModel());
+        AdminForm adminForm=new AdminForm();
 
     }
 
