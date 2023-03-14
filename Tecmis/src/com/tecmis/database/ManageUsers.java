@@ -94,7 +94,7 @@ public class ManageUsers implements ManageUserInterface{
     @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
-            return  ManageLecturer.updateLecturer((LecturerData) userUp);
+            return ManageLecturer.updateLecturer((LecturerData) userUp);
         }
         return false;
     }

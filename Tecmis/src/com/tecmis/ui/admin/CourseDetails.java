@@ -1,18 +1,21 @@
 package com.tecmis.ui.admin;
 
-import javax.imageio.stream.ImageInputStream;
+import com.tecmis.database.Course;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CourseDetails extends JFrame {
 
-    private JTextField textID;
-    private JTextField textCourseName;
-    private JTextField textCredit;
+    private JTextField txtID;
+    private JTextField txtCourseName;
+    private JTextField txtCredit;
     private JTextField textCourseDepID;
-    private JTable table1;
+    private JTable JTable;
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
@@ -20,26 +23,94 @@ public class CourseDetails extends JFrame {
     private JTextField texCourseLecID;
 
 
-    public CourseDetails(){
+    public CourseDetails() {
         add(panelCourse);
         setVisible(true);
-        setTitle("Course Details...");
-        setSize(1000,600);
-        setPreferredSize(new Dimension(220,400));
-        setResizable(false);
+        setTitle("Course Details!!!");
+        setSize(1000, 600);
+        setPreferredSize(new Dimension(220, 400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Course course = new Course();
+                course.setCourseId(txtID.getText());
+                course.setCourseName(txtCourseName.getText());
+                course.setCredit(Integer.parseInt(txtCredit.getText()));
+
+                try {
+                    Course.addCourse(course);
+                    txtID.setText("");
+                    txtCourseName.setText("");
+                    txtCredit.setText("");
+                    JOptionPane.showMessageDialog(null, "Course added successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Failed to add course",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
 
             }
         });
+
+
+        UPDATEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Course course = new Course();
+                course.setCourseId(txtID.getText());
+                course.setCourseName(txtCourseName.getText());
+                if (!txtCredit.getText().isEmpty()) {
+                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                }
+
+                try {
+                    Course.updateCourse(course);
+                    txtID.setText("");
+                    txtCourseName.setText("");
+                    txtCredit.setText("");
+                    JOptionPane.showMessageDialog(null, "Course update successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Failed to update course",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        DELETEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Course course = new Course();
+                course.setCourseId(txtID.getText());
+                course.setCourseName(txtCourseName.getText());
+                if (!txtCredit.getText().isEmpty()) {
+                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                }
+
+                try {
+                    Course.deleteCourse(course);
+                    txtID.setText("");
+                    txtCourseName.setText("");
+                    txtCredit.setText("");
+                    JOptionPane.showMessageDialog(null, "Course delete successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Failed to delete course",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
     }
 
-    public static void main(String[] args) {
-        CourseDetails coursedetail=new CourseDetails();
+            public static void main(String[] args) {
+                CourseDetails coursedeatil = new CourseDetails();
+
+
+
+        }
+
+
     }
 
-}
