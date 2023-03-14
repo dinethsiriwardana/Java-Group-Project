@@ -1,0 +1,1 @@
+INSERT INTO u812963415_javag2.Timetable (Time_Tab_ID, T_Dep_ID, T_Course_ID, Day, Hours, Location, A_ID, T_Student_ID, Type) VALUES ('T0001', 'depICT', 'ICT2133', 'Monday', 3, 'ICT_NewLab 10', null, null, null);

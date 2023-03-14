@@ -22,8 +22,6 @@ public class LectureForm extends JFrame  {
     private JLabel lblSetting;
     private JLabel lblNotices;
 
-
-
     private String username;
 
     static LectureForm lecForm;

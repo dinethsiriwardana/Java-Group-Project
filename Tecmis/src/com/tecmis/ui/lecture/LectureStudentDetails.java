@@ -14,6 +14,7 @@ import java.sql.*;
 public class LectureStudentDetails extends JFrame{
     private JTable table1;
     private JPanel pnlLecStudentDetails;
+    private JScrollPane scrPane;
 
     private static String username;
     LectureStudentDetails lecsd;
@@ -27,7 +28,7 @@ public class LectureStudentDetails extends JFrame{
         setSize(1200,600);
 
 
-        setResizable(false);
+//        setResizable(false);
 
         try {
             dataLoad();
@@ -55,11 +56,11 @@ public class LectureStudentDetails extends JFrame{
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
 
-
-
-
         while (rs.next()) {
+
+
             Object[] row = new Object[columnCount];
+
             for (int i = 1; i <= columnCount; i++) {
 
                 row[i - 1] = rs.getObject(i);
@@ -82,6 +83,10 @@ public class LectureStudentDetails extends JFrame{
         columnModel.getColumn(8).setPreferredWidth(10); // Gender
         columnModel.getColumn(9).setPreferredWidth(10); // Level
 
+    }
+
+    public static void main(String[] args) {
+        LectureStudentDetails lectureStudentDetails = new LectureStudentDetails();
     }
 }
 

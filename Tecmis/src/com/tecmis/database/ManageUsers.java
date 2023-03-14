@@ -21,8 +21,8 @@ public class ManageUsers implements ManageUserInterface{
 
 
         try {
-            Database database = new Database();
-            Connection conn = database.getDatabaseConnection();
+
+            Connection conn = Database.getDatabaseConnection();
             String query = "UPDATE " + accounttype + " SET ";
             for (String key : userdata.keySet()) {
                 query += key + " = '" + userdata.get(key) + "', ";
@@ -57,8 +57,8 @@ public class ManageUsers implements ManageUserInterface{
         HashMap<String, String> userdata = new HashMap<String, String>();
 
         try {
-            Database database = new Database();
-            Connection conn = database.getDatabaseConnection();
+
+            Connection conn = Database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
             ResultSet rs = stmt.executeQuery(query);
