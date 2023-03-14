@@ -1,7 +1,7 @@
 package com.tecmis.dto;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class LecturerData  extends  User{
 
@@ -102,6 +102,7 @@ public class LecturerData  extends  User{
         this.gender=gender == "Male" ? "M" : "F";
     }
     public void setPosition(String position){
+
         this.position=position;
     }
 

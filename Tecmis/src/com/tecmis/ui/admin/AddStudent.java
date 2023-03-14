@@ -37,7 +37,7 @@ public class AddStudent extends JFrame{
     setTitle("Student Details!!!");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setPreferredSize(new Dimension(220,400));
-    setResizable(false);
+    setResizable(true);
 
     addButton.addActionListener(new ActionListener() {
         @Override
@@ -149,8 +149,8 @@ public class AddStudent extends JFrame{
                 studentUser.setLevel(txtLevel.getText());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isDelected = manageUser.delStu(studentUser);
-                if (isDelected) {
+                boolean isDeleted = manageUser.delStu(studentUser);
+                if (isDeleted) {
                     txtID.setText("");
                     txtUserName.setText("");
                     txtPassword.setText("");
@@ -163,7 +163,7 @@ public class AddStudent extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
-                    JOptionPane.showMessageDialog(null, "User delected successfully",
+                    JOptionPane.showMessageDialog(null, "User delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else

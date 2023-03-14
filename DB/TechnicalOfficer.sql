@@ -1,0 +1,1 @@
+INSERT INTO u812963415_javag2.TechnicalOfficer (ID, username, password, Fname, Lname, Mobile, Address, Age, Email, DOM, Gender, T_Dep_ID) VALUES ('TO/001', '', '', 'sadun', '', '', '', 0, '', '0000-00-00', 'M', null);

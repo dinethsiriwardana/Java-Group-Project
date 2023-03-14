@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
+import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +32,7 @@ public class AddLecturerForm extends JFrame {
 
     private JTextField txtUsername;
     private JTextField txtPassword;
+    private JButton Searchbtn;
 
 
     public AddLecturerForm() {
@@ -106,8 +108,8 @@ public class AddLecturerForm extends JFrame {
 
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isDelected = manageUser.deleteUser(lecturerUser);
-                if (isDelected) {
+                boolean isDeleted = manageUser.deleteUser(lecturerUser);
+                if (isDeleted) {
                     txtID.setText("");
                     txtPassword.setText("");
                     txtUsername.setText("");
@@ -134,6 +136,7 @@ public class AddLecturerForm extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 LecturerData lecturerUser=new LecturerData();
                 lecturerUser.setId(txtID.getText());
                 lecturerUser.setPassword(txtPassword.getText());
