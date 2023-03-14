@@ -19,8 +19,6 @@ public class Attendance {
         model = new DefaultTableModel(columnNames, 0);
     }
 
-
-
     public void addDataToModel(ResultSet rs) throws SQLException {
         while (rs.next()) {
             Object[] row = new Object[4];
@@ -29,7 +27,6 @@ public class Attendance {
             row[1] = rs.getDate("date");
             row[2] = rs.getString("attend");
             row[3] = rs.getString("exDetails") ;
-//            System.out.println(row[0] +""+ row[1] +""+ row[2] +""+ row[3]);
 
             this.model.addRow(row);
 
