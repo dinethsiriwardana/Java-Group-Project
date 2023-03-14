@@ -38,13 +38,7 @@ public class LectureForm extends JFrame  {
         setResizable(false);
         lecForm = this;
 
-
-
-
                 onLoad();
-
-
-
 
         btnManageMaterials.addMouseListener(new MouseAdapter() {
             @Override

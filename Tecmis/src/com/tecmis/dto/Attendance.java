@@ -12,14 +12,11 @@ public class Attendance {
 
     DefaultTableModel model;
 
-    public Attendance() {
-        // Initialize the model object
-        String[] columnNames = {"SID", "Date", "Attendance", "Extra Details"};
-
+    public Attendance(String[] columnNames) {
         model = new DefaultTableModel(columnNames, 0);
     }
 
-    public void addDataToModel(ResultSet rs) throws SQLException {
+    public void addbulkDataToModel(ResultSet rs) throws SQLException {
         while (rs.next()) {
             Object[] row = new Object[4];
 
@@ -32,6 +29,28 @@ public class Attendance {
 
         }
     }
+    public void addSummeryDataToModel(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            Object[] row = new Object[2];
+
+            row[0] = rs.getString("SID");
+            row[1] = rs.getInt("total_count");
+            this.model.addRow(row);
+
+        }
+    }
+    public void addSubjectDataToModel(String subname) throws SQLException {
+
+            Object[] row = new Object[4];
+
+            row[0] = subname;
+            row[1] = ("======");
+
+
+            this.model.addRow(row);
+
+
+    }
 
     public DefaultTableModel getModel(){
         return model;
@@ -39,6 +58,11 @@ public class Attendance {
     public void setSid(String sid) {
         this.sid = sid;
     }
+    public String getSid() {
+        return sid;
+    }
+
+
 
     public String getDate() {
         return date;

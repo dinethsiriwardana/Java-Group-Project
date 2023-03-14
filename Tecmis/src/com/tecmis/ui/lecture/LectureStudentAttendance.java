@@ -1,24 +1,22 @@
 package com.tecmis.ui.lecture;
 
-import com.tecmis.database.Database;
 import com.tecmis.database.GetAttendance;
-import com.tecmis.dto.Attendance;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import java.awt.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LectureStudentAttendance extends JFrame{
     private JPanel pnlLSA;
-    private JComboBox comboBox1;
-    private JTextField textField1;
+    private JComboBox comboType;
+    private JTextField txtSearch;
     private JTable table1;
     private JScrollPane scrPane;
+    private JLabel lblSearchbtn;
+    private JComboBox comboSubject;
+    private JCheckBox ChkbSummery;
+    static LectureStudentAttendance  lecSA;
 
     public LectureStudentAttendance(){
 
@@ -29,24 +27,36 @@ public class LectureStudentAttendance extends JFrame{
         setSize(750,900);
 
 
-//        setPreferredSize(new Dimension(220,400));
-//        setResizable(false);
+        lblSearchbtn.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+
+                GetAttendance getattendance = new GetAttendance();
+                System.out.println("Getting Data");
+                try {
+
+                    String filter =  comboType.getModel().getSelectedItem().toString();
+                    String search = txtSearch.getText();
+                    String subject = comboSubject.getModel().getSelectedItem().toString();
+                    boolean issummery = ChkbSummery.isSelected();
+                    System.out.println(issummery);
+                    DefaultTableModel model = getattendance.getAttendance(filter,search,subject,issummery);
+                    lecSA.table1.setModel(model);
+
+                }catch (Exception exception) {
+                    System.out.println(exception.getMessage());
+                }
+                System.out.println("Getting Data Done");
+
+            }
+        });
     }
 
     public static void main(String[] args) throws Exception {
-        LectureStudentAttendance  lecSA = new LectureStudentAttendance();
-        GetAttendance getattendance = new GetAttendance();
-        DefaultTableModel model = getattendance.getAttendance();
-        TableColumnModel columnModel =  lecSA.table1.getColumnModel();
-        String[] columnNames = {"SID", "Date", "Attendance", "Extra Details"};
-
-//        model = new DefaultTableModel(columnNames, 0);
-        lecSA.table1.setModel(model);
-
-
-
-
-
+        lecSA = new LectureStudentAttendance();
     }
 
 }
