@@ -7,6 +7,8 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
     private JPanel PanalTechnicalOfficer;
     private JTextField textField1;
     private JButton seachButton;
+    private JButton addButton;
+    private JButton updateButton;
 
     public TechnicalOfficerAttendanceForm(){
         add(PanalTechnicalOfficer);
