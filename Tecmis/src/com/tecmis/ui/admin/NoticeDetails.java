@@ -1,9 +1,9 @@
 package com.tecmis.ui.admin;
 
+import com.tecmis.database.Course;
 import com.tecmis.database.NoticeDetailsAdmin;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,12 +19,13 @@ public class NoticeDetails extends JFrame {
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
+    private JButton searchButton;
 
 
     public NoticeDetails(){
         add(pnlNotice);
         setVisible(true);
-        setTitle("Notice Details!!!");
+        setTitle("Admin !!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
@@ -104,8 +105,33 @@ public class NoticeDetails extends JFrame {
                 }
             }
         });
-    }
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+                noticeDetail.setNoticeID(txtNoticeId.getText());
+                noticeDetail.setDate(txtDate.getText());
+                noticeDetail.setTitle(txtTitle.getText());
+                noticeDetail.setNoticeDes(txtNoticeDes.getText());
+
+                try {
+                    NoticeDetailsAdmin.searchNotice(noticeDetail);
+                    txtNoticeId.setText("");
+                    txtDate.setText("");
+                    txtTitle.setText("");
+                    txtNoticeDes.setText("");
+                    JOptionPane.showMessageDialog(null, "Notice search successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Failed to search Notice",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+
+        });
+    }
 
     public static void main(String[] args) {
         NoticeDetails noticedeatils=new NoticeDetails();

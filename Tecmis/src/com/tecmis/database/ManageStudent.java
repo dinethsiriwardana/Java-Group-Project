@@ -5,6 +5,8 @@ import com.tecmis.dto.StudentData;
 import com.tecmis.dto.User;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ManageStudent {
@@ -94,6 +96,31 @@ public class ManageStudent {
         return  false;
 
     }
+    public static boolean searchStudent(StudentData studata){
+        String query = "SELECT * FROM Student WHERE ID='" + studata.getId() + "'";
+        System.out.println(query);
+        try {
+            Connection connection = Database.getDatabaseConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                // record found
+                System.out.println("Record found");
+                return true;
+            } else {
+                // record not found
+                System.out.println("Record not found");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error searching student record: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     }
 

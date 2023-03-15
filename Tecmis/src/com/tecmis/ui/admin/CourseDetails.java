@@ -2,11 +2,9 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.Course;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CourseDetails extends JFrame {
@@ -21,12 +19,13 @@ public class CourseDetails extends JFrame {
     private JButton UPDATEButton;
     private JPanel panelCourse;
     private JTextField texCourseLecID;
+    private JButton searchButton;
 
 
     public CourseDetails() {
         add(panelCourse);
         setVisible(true);
-        setTitle("Course Details!!!");
+        setTitle("Admin !!!");
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -102,6 +101,30 @@ public class CourseDetails extends JFrame {
             }
         });
 
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Course course=new Course();
+                course.setCourseId(txtID.getText());
+                course.setCourseName(txtCourseName.getText());
+                if (!txtCredit.getText().isEmpty()) {
+                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                }
+
+                try {
+                    Course.searchCourse(course);
+                    txtID.setText("");
+                    txtCourseName.setText("");
+                    txtCredit.setText("");
+                    JOptionPane.showMessageDialog(null, "Course search successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Failed to search course",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
     }
 
             public static void main(String[] args) {

@@ -5,16 +5,15 @@ import java.awt.*;
 
 public class Timetable extends JFrame {
     private JPanel pnlUser;
-    private JTextField textTime_ID;
-    private JTextField textDay;
-    private JTextField textHours;
-    private JTextField textLocation;
+    private JTextField txtTime_ID;
     private JTable table1;
-    private JButton createButton;
+    private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
     private JPanel pnlTimetable;
-    private JComboBox comboBoxType;
+    private JComboBox txtLevel;
+    private JButton downloadButton;
+    private JComboBox txtDepartment;
 
     public Timetable(){
         add(pnlTimetable);
@@ -23,7 +22,7 @@ public class Timetable extends JFrame {
         setTitle("Timetable!!!");
         setPreferredSize(new Dimension(220,400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+
 
     }
 

@@ -2,6 +2,7 @@ package com.tecmis.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NoticeDetailsAdmin {
@@ -89,4 +90,27 @@ public class NoticeDetailsAdmin {
             System.out.println(e);
         }
     }
+    public static void searchNotice(NoticeDetailsAdmin noticedetail) throws  SQLException{
+        try {
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notice WHERE Notice_Id=?");
+            stmt.setString(1, noticedetail.getNoticeID());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // record found
+                System.out.println("Record found");
+            } else {
+                // record not found
+                System.out.println("Record not found");
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Error searching notice record: " + e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
  }

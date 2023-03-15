@@ -85,6 +85,30 @@ public  class Course {
         }
 
     }
+    public static void searchCourse(Course course) throws SQLException {
+        try {
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE course_id=?");
+            stmt.setString(1, course.getCourseId());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // record found
+                System.out.println("Record found");
+            }
+            else {
+                // record not found
+                System.out.println("Record not found");
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Error searching course record: " + e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }
