@@ -17,4 +17,19 @@ public interface ManageUserInterface {
 
     boolean updateUser(User userUp);
 
+    boolean deleteUser(User userDel);
+    boolean addStu(User userAdd);
+    boolean upStu(User userUp );
+
+    boolean delStu(User userDel);
+
+    boolean addTo(User userDto);
+    boolean upTo(User userUp);
+    boolean delTo(User userDel);
+    boolean addAdm(User userAdd);
+
+    boolean upAdm(User userUp);
+
+    boolean delAdm(User userDel);
+
 }

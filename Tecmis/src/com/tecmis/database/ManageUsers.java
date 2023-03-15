@@ -1,7 +1,6 @@
 package com.tecmis.database;
 
-import com.tecmis.dto.LecturerData;
-import com.tecmis.dto.User;
+import com.tecmis.dto.*;
 import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
@@ -17,17 +16,13 @@ public class ManageUsers implements ManageUserInterface{
     private String username;
 
 
-
-
-
-
     @Override
     public boolean updateUser(String username,String accounttype, HashMap<String, String> userdata) {
 
 
         try {
-            Database database = new Database();
-            Connection conn = database.getDatabaseConnection();
+
+            Connection conn = Database.getDatabaseConnection();
             String query = "UPDATE " + accounttype + " SET ";
             for (String key : userdata.keySet()) {
                 query += key + " = '" + userdata.get(key) + "', ";
@@ -62,8 +57,8 @@ public class ManageUsers implements ManageUserInterface{
         HashMap<String, String> userdata = new HashMap<String, String>();
 
         try {
-            Database database = new Database();
-            Connection conn = database.getDatabaseConnection();
+
+            Connection conn = Database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
             ResultSet rs = stmt.executeQuery(query);
@@ -89,19 +84,108 @@ public class ManageUsers implements ManageUserInterface{
         return false;
     }
 
-
+    @Override
     public boolean addUser(User userDto) {
         if(userDto.getUserAccountType()=="lecturer"){
-            return ManageLecturer.addLecturer( (LecturerData) userDto);
+            return ManageLecturer.addLecturer((LecturerData) userDto);
         }
         return false;
     }
+    @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
-            return  ManageLecturer.addLecturer((LecturerData) userUp);
+            return  ManageLecturer.updateLecturer((LecturerData) userUp);
         }
         return false;
     }
+
+    @Override
+    public boolean deleteUser(User userDel) {
+
+        if(userDel.getUserAccountType()=="lecturer"){
+            return  ManageLecturer.deleteLecturer((LecturerData) userDel);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addStu(User userAdd) {
+        if(userAdd.getUserAccountType()=="student"){
+            return ManageStudent.addStudent( (StudentData) userAdd);
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean upStu(User userUp) {
+        if(userUp.getUserAccountType()=="student"){
+            return ManageStudent.updateStudent( (StudentData) userUp);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delStu(User userDel) {
+        if(userDel.getUserAccountType()=="student"){
+            return ManageStudent.deleteStudent( (StudentData) userDel);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean addTo(User userDto) {
+        if(userDto.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.addTechnicalOfficer( (TechnicalOfficerData) userDto);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean upTo(User userUp) {
+        if(userUp.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.updateTechnicalOfficer( (TechnicalOfficerData) userUp);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delTo(User userDel) {
+        if(userDel.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.deleteTechnicalOfficer( (TechnicalOfficerData) userDel);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean addAdm(User userAdd) {
+        if(userAdd.getUserAccountType()=="admin"){
+            return ManageAdmin.addAdmin((AdminData) userAdd);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean upAdm(User userUp) {
+        if(userUp.getUserAccountType()=="admin"){
+            return ManageAdmin.updateAdmin((AdminData) userUp);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delAdm(User userDel) {
+        if(userDel.getUserAccountType()=="admin"){
+            return ManageAdmin.deleteAdmin((AdminData) userDel);
+        }
+
+        return false;
+    }
+
 
 }
 
