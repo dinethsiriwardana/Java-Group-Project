@@ -1,11 +1,17 @@
 
-
+/Tecmis/out/
+.DS_Store
 Tecmis/.DS_Store
-demo/.DS_Store
+Tecmis/src/com/.DS_Store
+Tecmis/src/com/tecmis/ui/.DS_Store
 Tecmis/.DS_Store
 Tecmis/src/.DS_Store
-.DS_Store
-.DS_Store
-Tecmis/.DS_Store
-out/.DS_Store
-
+out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureForm$3$1.class
+out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureForm$3.class
+out/production/Java-Group-Project/com/tecmis/ui/lecture/LectureStudentDetails.class
+out/production/Java-Group-Project/com/tecmis/ui/LoginForm$1$1.class
+*.class
+*.class
+out
+Tecmis/out/production/Tecmis/com/intellij/uiDesigner/core/AbstractLayout.class
+/out/

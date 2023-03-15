@@ -6,6 +6,9 @@ public class Database {
 
     public static Connection conn;
 
+    public static void main(String[] args) throws Exception {
+        getDatabaseConnection();
+    }
 
 
     public static Connection getDatabaseConnection() throws Exception{
