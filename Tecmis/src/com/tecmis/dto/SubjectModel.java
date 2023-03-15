@@ -32,9 +32,12 @@ public class SubjectModel {
     }
 
     public String getSingleSubjectNameMap(String key){
+
         return subjectnamemap.get(key);
+        // return ICT01_t_attendance
     }
     public String getSingleSubjectCodeMap(String key){
+        // return ICT01 Theory
         return subjectcodemap.get(key);
     }
 

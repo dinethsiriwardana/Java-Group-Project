@@ -25,6 +25,8 @@ public class LectureStudentAttendance extends JFrame{
         setTitle("Lecturer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(750,900);
+        setResizable(false);
+
 
 
         lblSearchbtn.addMouseListener(new MouseAdapter() {
@@ -41,9 +43,8 @@ public class LectureStudentAttendance extends JFrame{
                     String filter =  comboType.getModel().getSelectedItem().toString();
                     String search = txtSearch.getText();
                     String subject = comboSubject.getModel().getSelectedItem().toString();
-                    boolean issummery = ChkbSummery.isSelected();
-                    System.out.println(issummery);
-                    DefaultTableModel model = getattendance.getAttendance(filter,search,subject,issummery);
+
+                    DefaultTableModel model = getattendance.getAttendance(filter,search,subject);
                     lecSA.table1.setModel(model);
 
                 }catch (Exception exception) {
@@ -55,8 +56,6 @@ public class LectureStudentAttendance extends JFrame{
         });
     }
 
-    public static void main(String[] args) throws Exception {
-        lecSA = new LectureStudentAttendance();
-    }
+
 
 }
