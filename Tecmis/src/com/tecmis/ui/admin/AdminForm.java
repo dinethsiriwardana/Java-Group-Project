@@ -1,6 +1,7 @@
 package com.tecmis.ui.admin;
 
 import com.tecmis.database.Notices;
+import com.tecmis.ui.lecture.LectureForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,11 @@ public class AdminForm extends JFrame{
     private JButton timeTableButton;
     private JLabel lblNotices;
 
-    public AdminForm() {
+    private String username;
+    static AdminForm adminForm;
+
+    public AdminForm(String username) {
+
         add(pnlAdmin);
         setVisible(true);
         setTitle("Admin");
@@ -31,21 +36,20 @@ public class AdminForm extends JFrame{
         setSize(1000,1500);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
-
         btnNoticeDetails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
             }
         });
+        adminForm = this;
     }
 
 
     public static void main(String[] args) {
-        AdminForm admin = new AdminForm();
         Notices notices = new Notices();
         JList<String> jlist = notices.main();
-        admin.list1.setModel(jlist.getModel());
+        adminForm.list1.setModel(jlist.getModel());
 
     }
 

@@ -4,10 +4,8 @@ import com.tecmis.database.Notices;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
+import java.net.URL;
 
 public class LectureForm extends JFrame  {
 
@@ -27,6 +25,7 @@ public class LectureForm extends JFrame  {
     private String username;
 
     static LectureForm lecForm;
+    JProgressBar progressBar;
 
     public LectureForm(String username) {
         this.username = username;
@@ -39,11 +38,7 @@ public class LectureForm extends JFrame  {
         setResizable(false);
         lecForm = this;
 
-
-
-        onLoad();
-
-
+                onLoad();
 
         btnManageMaterials.addMouseListener(new MouseAdapter() {
             @Override
@@ -51,12 +46,7 @@ public class LectureForm extends JFrame  {
                 super.mouseClicked(e);
             }
         });
-        lblSetting.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
+
         lblSetting.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -80,20 +70,70 @@ public class LectureForm extends JFrame  {
             }
         });
 
-        onLoad();
+
+        btnStudentDetails.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    LectureStudentDetails lefcstudentdetails = new  LectureStudentDetails();
+                    lefcstudentdetails.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    lefcstudentdetails.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        btnMedicalRecord.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    LectureStudentAttendance lectureStudentAttendance = new  LectureStudentAttendance();
+                    lectureStudentAttendance.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    lectureStudentAttendance.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
 
     }
 
- public void onLoad(){
+     public void onLoad(){
 
-     Notices notices = new Notices();
-     JList<String> jlist = notices.main();
-     lecForm.list1.setModel(jlist.getModel());
 
- }
+         Notices notices = new Notices();
+
+         JList<String> jlist = notices.main();
+         lecForm.list1.setModel(jlist.getModel());
+
+
+
+
+     }
 
 
 
