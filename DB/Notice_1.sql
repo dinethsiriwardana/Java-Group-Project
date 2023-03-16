@@ -1,0 +1,2 @@
+INSERT INTO u812963415_javag2.Notice (Notice_Id, Date, Title, Notice_Des, T_ID, A_ID, Lecture_ID) VALUES ('N0001', '2023-03-04', 'Mid Exam', 'Mid exam will be held on 20th March 2022', null, null, null);
+INSERT INTO u812963415_javag2.Notice (Notice_Id, Date, Title, Notice_Des, T_ID, A_ID, Lecture_ID) VALUES ('N0002', '2023-03-10', 'End Exam Time Table', 'All the  time table are tecmis', null, null, null);
