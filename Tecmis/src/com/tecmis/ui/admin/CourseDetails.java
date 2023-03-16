@@ -12,13 +12,13 @@ public class CourseDetails extends JFrame {
     private JTextField txtID;
     private JTextField txtCourseName;
     private JTextField txtCredit;
-    private JTextField textCourseDepID;
+    private JTextField txtCourseDepID;
     private JTable JTable;
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
     private JPanel panelCourse;
-    private JTextField texCourseLecID;
+    private JTextField txtCourseLecID;
     private JButton searchButton;
 
 
@@ -36,12 +36,16 @@ public class CourseDetails extends JFrame {
                 course.setCourseId(txtID.getText());
                 course.setCourseName(txtCourseName.getText());
                 course.setCredit(Integer.parseInt(txtCredit.getText()));
+                course.setDepID(txtCourseDepID.getText());
+                course.setLecID(txtCourseLecID.getText());
 
                 try {
                     Course.addCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
+                    txtCourseDepID.setText("");
+                    txtCourseLecID.setText("");
                     JOptionPane.showMessageDialog(null, "Course added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
@@ -63,11 +67,16 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     course.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
+                course.setDepID(txtCourseDepID.getText());
+                course.setLecID(txtCourseLecID.getText());
                 try {
                     boolean updated = Course.updateCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
+                    txtCourseDepID.setText("");
+                    txtCourseLecID.setText("");
+
                     if (updated) {
                         JOptionPane.showMessageDialog(null, "Course update successful",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -93,12 +102,16 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     course.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
+                course.setDepID(txtCourseDepID.getText());
+                course.setLecID(txtCourseLecID.getText());
 
                 try {
                     boolean deleted = Course.deleteCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
+                    txtCourseDepID.setText("");
+                    txtCourseLecID.setText("");
                     if (deleted) {
                         JOptionPane.showMessageDialog(null, "Course delete successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -122,12 +135,16 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     course.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
+                course.setDepID(txtCourseDepID.getText());
+                course.setLecID(txtCourseLecID.getText());
 
                 try {
                     boolean searched = Course.searchCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
+                    txtCourseDepID.setText("");
+                    txtCourseDepID.setText("");
                     if (searched) {
                         JOptionPane.showMessageDialog(null, "Course search successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);

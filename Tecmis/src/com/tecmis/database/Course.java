@@ -8,6 +8,24 @@ public  class Course {
 
     private String courseName;
     private int credit;
+    private String depID;
+    private String lecID;
+
+    public String getDepID() {
+        return depID;
+    }
+
+    public void setDepID(String depID) {
+        this.depID = depID;
+    }
+
+    public String getLecID() {
+        return lecID;
+    }
+
+    public void setLecID(String lecID) {
+        this.lecID = lecID;
+    }
 
     public String getCourseId() {
         return courseId;
@@ -38,10 +56,12 @@ public  class Course {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Course (course_id, course_name, credit) VALUES (?, ?, ?)");
+                    "INSERT INTO Course (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id) VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, course.getCourseId());
             stmt.setString(2, course.getCourseName());
             stmt.setInt(3, course.getCredit());
+            stmt.setString(4,course.getDepID());
+            stmt.setString(5,course.getLecID());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -56,10 +76,12 @@ public  class Course {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "UPDATE Course SET course_name=?, credit=? WHERE course_id=?");
+                    "UPDATE Course SET Course_Name=?, Credit=?, Dep_Id=?, Lec_Id=?  WHERE Course_Id=?");
             stmt.setString(1, course.getCourseName());
             stmt.setInt(2, course.getCredit());
-            stmt.setString(3, course.getCourseId());
+            stmt.setString(3,course.getDepID());
+            stmt.setString(4, course.getLecID());
+            stmt.setString(5, course.getCourseId());
             int rowsUpdated = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -85,7 +107,7 @@ public  class Course {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "DELETE FROM Course WHERE course_id=?");
+                    "DELETE FROM Course WHERE Course_Id=?");
             stmt.setString(1, course.getCourseId());
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -109,7 +131,7 @@ public  class Course {
         boolean searched=false;
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE course_id=?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE Course_Id=?");
             stmt.setString(1, course.getCourseId());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
