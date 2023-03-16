@@ -63,17 +63,24 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     course.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-
                 try {
-                    Course.updateCourse(course);
+                    boolean updated = Course.updateCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
-                    JOptionPane.showMessageDialog(null, "Course update successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException ex) {
+                    if (updated) {
+                        JOptionPane.showMessageDialog(null, "Course update successful",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+
+                        JOptionPane.showMessageDialog(null, "Failed to update course: Course not found",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch (SQLException ex){
                     JOptionPane.showMessageDialog(null, "Failed to update course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+
                 }
             }
         });
@@ -88,12 +95,17 @@ public class CourseDetails extends JFrame {
                 }
 
                 try {
-                    Course.deleteCourse(course);
+                    boolean deleted = Course.deleteCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
-                    JOptionPane.showMessageDialog(null, "Course delete successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if (deleted) {
+                        JOptionPane.showMessageDialog(null, "Course delete successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to delete course: Course not found",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Failed to delete course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -112,13 +124,19 @@ public class CourseDetails extends JFrame {
                 }
 
                 try {
-                    Course.searchCourse(course);
+                    boolean searched = Course.searchCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
-                    JOptionPane.showMessageDialog(null, "Course search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException ex) {
+                    if (searched) {
+                        JOptionPane.showMessageDialog(null, "Course search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Failed to search course: course not found",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch (SQLException ex){
                     JOptionPane.showMessageDialog(null, "Failed to search course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }

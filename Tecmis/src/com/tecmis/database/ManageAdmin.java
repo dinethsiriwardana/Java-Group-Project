@@ -25,11 +25,11 @@ public class ManageAdmin {
 
             if (rowsAffected == 1) {
                 // update successful
-                System.out.println("user add successfully!! ");
+                System.out.println("Record add successfully!! ");
                 return true;
             } else {
                 // update failed
-                System.out.println("user add  failed");
+                System.out.println("Record add  failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class ManageAdmin {
                 return true;
             } else {
                 // update failed
-                System.out.println("Record update failed");
+                System.out.println("Record update failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class ManageAdmin {
                 return true;
             } else {
                 // update failed
-                System.out.println("Record delete failed");
+                System.out.println("Record delete failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -103,11 +103,11 @@ public class ManageAdmin {
 
             if (rs.next()) {
                 // record found
-                System.out.println("Record found");
+                System.out.println("Record found!!");
                 return true;
             } else {
                 // record not found
-                System.out.println("Record not found");
+                System.out.println("Record not found!!!");
                 return false;
             }
         } catch (SQLException e) {

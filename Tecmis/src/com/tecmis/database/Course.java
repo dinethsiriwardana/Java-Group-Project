@@ -51,41 +51,62 @@ public  class Course {
         }
     }
 
-    public static void updateCourse(Course course) throws SQLException {
-
+    public static boolean updateCourse(Course course) throws SQLException {
+       boolean updated=false;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "UPDATE from Course SET  course_name=?, credit=? WHERE course_id=?");
-            stmt.setString(1, course.getCourseId());
-            stmt.setString(2, course.getCourseName());
-            stmt.setInt(3, course.getCredit());
-            stmt.executeUpdate();
+                    "UPDATE Course SET course_name=?, credit=? WHERE course_id=?");
+            stmt.setString(1, course.getCourseName());
+            stmt.setInt(2, course.getCredit());
+            stmt.setString(3, course.getCourseId());
+            int rowsUpdated = stmt.executeUpdate();
             stmt.close();
             conn.close();
+
+            if (rowsUpdated > 0) {
+                updated=true;
+                System.out.println("Course Update successful!!");
+            } else {
+                System.out.println("Course not found!!");
+            }
 
         } catch (Exception e) {
             System.out.println(e);
         }
+        return  updated;
     }
 
-    public static void deleteCourse(Course course) throws SQLException {
+
+
+
+    public static boolean deleteCourse(Course course) throws SQLException {
+        boolean deleted = false;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
                     "DELETE FROM Course WHERE course_id=?");
             stmt.setString(1, course.getCourseId());
-            stmt.setString(2, course.getCourseName());
-            stmt.setInt(3, course.getCredit());
-            stmt.executeUpdate();
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                // record found and
+                deleted = true;
+                System.out.println("Record deleted successfully!!");
+            } else {
+                // record not found
+                System.out.println("Record not found!!");
+            }
             stmt.close();
             conn.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        return deleted;
     }
-    public static void searchCourse(Course course) throws SQLException {
+
+
+    public static boolean searchCourse(Course course) throws SQLException {
+        boolean searched=false;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE course_id=?");
@@ -93,20 +114,20 @@ public  class Course {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 // record found
-                System.out.println("Record found");
+                searched=true;
+                System.out.println("Record found!!");
             }
             else {
                 // record not found
-                System.out.println("Record not found");
+                System.out.println("Record not found!!");
             }
             stmt.close();
             conn.close();
-        } catch (SQLException e) {
-            System.out.println("Error searching course record: " + e.getMessage());
-            throw e;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return searched;
     }
 
 

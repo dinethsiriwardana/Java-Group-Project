@@ -29,7 +29,7 @@ public class AdminForm extends  JFrame
         setSize(1000,600);
 
         setPreferredSize(new Dimension(220, 400));
-        
+
     }
 
     public static void main(String[] args) {
