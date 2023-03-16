@@ -2,7 +2,6 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
-import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +31,7 @@ public class AddLecturerForm extends JFrame {
 
     private JTextField txtUsername;
     private JTextField txtPassword;
-    private JButton Searchbtn;
+    private JButton SEARCHButton;
 
 
     public AddLecturerForm() {
@@ -77,12 +76,12 @@ public class AddLecturerForm extends JFrame {
                     txtPosition.setSelectedItem("");
                     txtPassword.setText("");
                     txtUsername.setText("");
-                    JOptionPane.showMessageDialog(null, "User added successfully",
+                    JOptionPane.showMessageDialog(null, "Lecturer added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to add user ",
+                    JOptionPane.showMessageDialog(null, "Failed to add Lecturer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -123,11 +122,11 @@ public class AddLecturerForm extends JFrame {
                     txtGender.setSelectedItem("");
                     txtPosition.setSelectedItem("");
 
-                    JOptionPane.showMessageDialog(null, "User deleted successfully",
+                    JOptionPane.showMessageDialog(null, "Lecturer deleted successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to delete user",
+                    JOptionPane.showMessageDialog(null, "Failed to delete Lecturer",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -136,27 +135,25 @@ public class AddLecturerForm extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                LecturerData lecturerUser=new LecturerData();
+                LecturerData lecturerUser = new LecturerData();
                 lecturerUser.setId(txtID.getText());
-                lecturerUser.setPassword(txtPassword.getText());
-                lecturerUser.setUsername(txtUsername.getText());
                 lecturerUser.setFirstName(txtFirstName.getText());
                 lecturerUser.setLastName(txtLastName.getText());
                 lecturerUser.setMobile(txtMobile.getText());
                 lecturerUser.setAddress(txtAddress.getText());
-                lecturerUser.setAge(txtAge.getText());
+                lecturerUser.setAge((txtAge.getText()));
                 lecturerUser.setEmail(txtEmail.getText());
                 lecturerUser.setDom(txtDOB.getText());
                 lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
+                lecturerUser.setPassword(txtPassword.getText());
+                lecturerUser.setUsername(txtUsername.getText());
+
 
                 ManageUsers manageUser = new ManageUsers();
                 boolean isUpdated = manageUser.updateUser(lecturerUser);
                 if (isUpdated) {
                     txtID.setText("");
-                    txtPassword.setText("");
-                    txtUsername.setText("");
                     txtFirstName.setText("");
                     txtLastName.setText("");
                     txtMobile.setText("");
@@ -166,14 +163,60 @@ public class AddLecturerForm extends JFrame {
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtPosition.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "User update successfully",
+                    txtPassword.setText("");
+                    txtUsername.setText("");
+                    JOptionPane.showMessageDialog(null, "Lecturer update successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to update user ",
+                    JOptionPane.showMessageDialog(null, "Failed to update Lecturer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+
+            }
+        });
+        SEARCHButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LecturerData lecturerUser = new LecturerData();
+                lecturerUser.setId(txtID.getText());
+                lecturerUser.setFirstName(txtFirstName.getText());
+                lecturerUser.setLastName(txtLastName.getText());
+                lecturerUser.setMobile(txtMobile.getText());
+                lecturerUser.setAddress(txtAddress.getText());
+                lecturerUser.setAge((txtAge.getText()));
+                lecturerUser.setEmail(txtEmail.getText());
+                lecturerUser.setDom(txtDOB.getText());
+                lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
+                lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
+                lecturerUser.setPassword(txtPassword.getText());
+                lecturerUser.setUsername(txtUsername.getText());
+
+                ManageUsers manageUser = new ManageUsers();
+                boolean isSearched = manageUser.serchUser(lecturerUser);
+                if (isSearched) {
+                    txtID.setText("");
+                    txtFirstName.setText("");
+                    txtLastName.setText("");
+                    txtMobile.setText("");
+                    txtAddress.setText("");
+                    txtAge.setText("");
+                    txtEmail.setText("");
+                    txtDOB.setText("");
+                    txtGender.setSelectedItem("");
+                    txtPosition.setSelectedItem("");
+                    txtPassword.setText("");
+                    txtUsername.setText("");
+                    JOptionPane.showMessageDialog(null, "Lecturer search successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Failed to search Lecturer ",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         });
     }

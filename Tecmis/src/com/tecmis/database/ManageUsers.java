@@ -94,8 +94,17 @@ public class ManageUsers implements ManageUserInterface{
     @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
-            return  ManageLecturer.updateLecturer((LecturerData) userUp);
+            return ManageLecturer.updateLecturer((LecturerData) userUp);
         }
+        return false;
+    }
+
+    @Override
+    public boolean serchUser(User userSea) {
+        if(userSea.getUserAccountType()=="lecturer"){
+            return ManageLecturer.searchLecturer((LecturerData) userSea);
+        }
+
         return false;
     }
 
@@ -123,6 +132,14 @@ public class ManageUsers implements ManageUserInterface{
             return ManageStudent.updateStudent( (StudentData) userUp);
         }
 
+        return false;
+    }
+
+    @Override
+    public boolean serchStu(User userSea) {
+        if(userSea.getUserAccountType()=="student"){
+            return ManageStudent.searchStudent( (StudentData) userSea);
+        }
         return false;
     }
 
@@ -162,6 +179,15 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
+    public boolean serchTo(User userSea) {
+        if(userSea.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.searchTechnicalOfficer( (TechnicalOfficerData) userSea);
+        }
+
+        return false;
+    }
+
+    @Override
     public boolean addAdm(User userAdd) {
         if(userAdd.getUserAccountType()=="admin"){
             return ManageAdmin.addAdmin((AdminData) userAdd);
@@ -183,6 +209,14 @@ public class ManageUsers implements ManageUserInterface{
             return ManageAdmin.deleteAdmin((AdminData) userDel);
         }
 
+        return false;
+    }
+
+    @Override
+    public boolean searchAdm(User userSea) {
+        if(userSea.getUserAccountType()=="admin"){
+            return ManageAdmin.searchAdmin((AdminData) userSea);
+        }
         return false;
     }
 

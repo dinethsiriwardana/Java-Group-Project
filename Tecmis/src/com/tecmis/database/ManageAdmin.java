@@ -3,6 +3,8 @@ package com.tecmis.database;
 import com.tecmis.dto.AdminData;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ManageAdmin {
@@ -23,11 +25,11 @@ public class ManageAdmin {
 
             if (rowsAffected == 1) {
                 // update successful
-                System.out.println("user add successfully!! ");
+                System.out.println("Record add successfully!! ");
                 return true;
             } else {
                 // update failed
-                System.out.println("user add  failed");
+                System.out.println("Record add  failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -58,7 +60,7 @@ public class ManageAdmin {
                 return true;
             } else {
                 // update failed
-                System.out.println("Record update failed");
+                System.out.println("Record update failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -82,7 +84,7 @@ public class ManageAdmin {
                 return true;
             } else {
                 // update failed
-                System.out.println("Record delete failed");
+                System.out.println("Record delete failed!!");
                 return false;
             }
         } catch (Exception e) {
@@ -91,6 +93,31 @@ public class ManageAdmin {
         return  false;
 
     }
+    public static boolean searchAdmin(AdminData addata) {
+        String query = "SELECT * FROM Admin WHERE ID='" + addata.getID() + "'";
+        System.out.println(query);
+        try {
+            Connection connection = Database.getDatabaseConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                // record found
+                System.out.println("Record found!!");
+                return true;
+            } else {
+                // record not found
+                System.out.println("Record not found!!!");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error searching admin record: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
 
