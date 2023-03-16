@@ -20,6 +20,9 @@ public class NoticeDetails extends JFrame {
     private JButton deleteButton;
     private JButton updateButton;
     private JButton searchButton;
+    private JTextField txtToId;
+    private JTextField txtAdminId;
+    private JTextField txtLecId;
 
 
     public NoticeDetails(){
@@ -40,18 +43,32 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
                 noticeDetail.setNoticeDes(txtNoticeDes.getText());
+                noticeDetail.setToID(txtToId.getText());
+                noticeDetail.setAdminID(txtAdminId.getText());
+                noticeDetail.setLecturerID(txtLecId.getText());
 
                 try{
-                    NoticeDetailsAdmin.addNotice(noticeDetail);
+
+                    boolean added=NoticeDetailsAdmin.addNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtNoticeDes.setText("");
-                    JOptionPane.showMessageDialog(null, "Notice added successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                    txtToId.setText("");
+                    txtAdminId.setText("");
+                    txtLecId.setText("");
+
+                    if(added) {
+                        JOptionPane.showMessageDialog(null, "Notice added successfully!!",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Failed to add notice: please try again!!1",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
 
                 }catch(SQLException ex ){
-                    JOptionPane.showMessageDialog(null, "Failed to add Notice",
+                    JOptionPane.showMessageDialog(null, "Failed to add Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -65,18 +82,30 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
                 noticeDetail.setNoticeDes(txtNoticeDes.getText());
+                noticeDetail.setToID(txtToId.getText());
+                noticeDetail.setAdminID(txtAdminId.getText());
+                noticeDetail.setLecturerID(txtLecId.getText());
 
                 try {
-                    NoticeDetailsAdmin.updateNotice(noticeDetail);
+                    boolean updated=NoticeDetailsAdmin.updateNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtNoticeDes.setText("");
-                    JOptionPane.showMessageDialog(null, "Notice update successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                    txtToId.setText("");
+                    txtAdminId.setText("");
+                    txtLecId.setText("");
 
+                    if(updated) {
+                        JOptionPane.showMessageDialog(null, "Notice update successfully!!",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Failed to update notice: notice not found",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Failed to update Notice",
+                    JOptionPane.showMessageDialog(null, "Failed to update Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -89,18 +118,30 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
                 noticeDetail.setNoticeDes(txtNoticeDes.getText());
+                noticeDetail.setToID(txtToId.getText());
+                noticeDetail.setAdminID(txtAdminId.getText());
+                noticeDetail.setLecturerID(txtLecId.getText());
 
                 try {
-                    NoticeDetailsAdmin.deleteNotice(noticeDetail);
+                    boolean deleted=NoticeDetailsAdmin.deleteNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtNoticeDes.setText("");
-                    JOptionPane.showMessageDialog(null, "Notice delete successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                    txtToId.setText("");
+                    txtAdminId.setText("");
+                    txtLecId.setText("");
 
+                    if(deleted) {
+                        JOptionPane.showMessageDialog(null, "Notice delete successfully!!",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Failed to delete notice: notice not found!!",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Failed to delete Notice",
+                    JOptionPane.showMessageDialog(null, "Failed to delete Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -114,17 +155,30 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
                 noticeDetail.setNoticeDes(txtNoticeDes.getText());
+                noticeDetail.setToID(txtToId.getText());
+                noticeDetail.setAdminID(txtAdminId.getText());
+                noticeDetail.setLecturerID(txtLecId.getText());
 
                 try {
-                    NoticeDetailsAdmin.searchNotice(noticeDetail);
+                    boolean searched=NoticeDetailsAdmin.searchNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtNoticeDes.setText("");
-                    JOptionPane.showMessageDialog(null, "Notice search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                    txtToId.setText("");
+                    txtAdminId.setText("");
+                    txtLecId.setText("");
+                    if(searched) {
+                        JOptionPane.showMessageDialog(null, "Notice search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Failed to search notice: notice not found!!",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Failed to search Notice",
+                    JOptionPane.showMessageDialog(null, "Failed to search Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
