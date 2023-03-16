@@ -38,13 +38,7 @@ public class LectureForm extends JFrame  {
         setResizable(false);
         lecForm = this;
 
-
-
-
                 onLoad();
-
-
-
 
         btnManageMaterials.addMouseListener(new MouseAdapter() {
             @Override
@@ -100,6 +94,28 @@ public class LectureForm extends JFrame  {
             }
         });
 
+        btnMedicalRecord.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    LectureStudentAttendance lectureStudentAttendance = new  LectureStudentAttendance();
+                    lectureStudentAttendance.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    lectureStudentAttendance.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {

@@ -12,33 +12,60 @@ public class Attendance {
 
     DefaultTableModel model;
 
-    public Attendance() {
-        // Initialize the model object
-        String[] columnNames = {"SID", "Date", "Attendance", "Extra Details"};
-
+    public Attendance(String[] columnNames) {
         model = new DefaultTableModel(columnNames, 0);
     }
 
-    public void addDataToModel(ResultSet rs) throws SQLException {
+    public void addbulkDataToModel(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            Object[] row = new Object[4];
-
-            row[0] = rs.getString("SID");
-            row[1] = rs.getDate("date");
-            row[2] = rs.getString("attend");
-            row[3] = rs.getString("exDetails") ;
+            Object[] row = new Object[5];
+            row[0] = "";
+            row[1] = rs.getString("SID");
+            row[2] = rs.getDate("date");
+            row[3] = rs.getString("attend");
+            row[4] = rs.getString("exDetails");
 
             this.model.addRow(row);
 
         }
     }
 
-    public DefaultTableModel getModel(){
+    public void addSummeryDataToModel(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            Object[] row = new Object[3];
+            row[0] = "";
+            row[1] = rs.getString("SID");
+            row[2] = rs.getInt("total_count");
+            this.model.addRow(row);
+
+        }
+    }
+
+    public void addSubjectDataToModel(String subname) throws SQLException {
+
+        Object[] row = new Object[1];
+        row[0] = "";
+        this.model.addRow(row);
+        row[0] = "<html><b><br><h3>" + subname + "</h3><br></b><html>";
+        this.model.addRow(row);
+        row[0] = "";
+        this.model.addRow(row);
+
+
+    }
+
+    public DefaultTableModel getModel() {
         return model;
     }
+
     public void setSid(String sid) {
         this.sid = sid;
     }
+
+    public String getSid() {
+        return sid;
+    }
+
 
     public String getDate() {
         return date;
