@@ -1,10 +1,13 @@
 package com.tecmis.database;
 
 import com.tecmis.dto.LecturerData;
+import com.tecmis.dto.StudentData;
 import com.tecmis.dto.User;
 
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
@@ -91,5 +94,28 @@ public class ManageLecturer {
         return  false;
 
     }
+    public static boolean searchLecturer(LecturerData lecdata) {
+        String query = "SELECT * FROM Lecturer WHERE ID='" + lecdata.getId() + "'";
+        System.out.println(query);
+        try {
+            Connection connection = Database.getDatabaseConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
 
+            if (rs.next()) {
+                // record found
+                System.out.println("Record found");
+                return true;
+            } else {
+                // record not found
+                System.out.println("Record not found");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error searching search record: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
