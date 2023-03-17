@@ -27,8 +27,8 @@ public class LectureForm extends JFrame  {
     static LectureForm lecForm;
     JProgressBar progressBar;
 
-    public LectureForm(String username) {
-        this.username = username;
+    public LectureForm() {
+//        this.username = username;
         add(pnlLecturer);
         setVisible(true);
         setTitle("Lecturer");
@@ -36,6 +36,7 @@ public class LectureForm extends JFrame  {
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
+
         lecForm = this;
 
         onLoad();
@@ -54,7 +55,7 @@ public class LectureForm extends JFrame  {
                 try {
                     setVisible(false);
                     // Create and show the LectureEditUser frame
-                    LectureEditUser lecedit = new  LectureEditUser(username);
+                    LectureEditUser lecedit = new  LectureEditUser();
                     lecedit.setVisible(true);
                     // When the LectureEditUser frame is closed, show the LectureForm frame again
                     lecedit.addWindowListener(new WindowAdapter() {
@@ -119,16 +120,24 @@ public class LectureForm extends JFrame  {
     }
 
     public static void main(String[] args) {
-
+        SwingUtilities.invokeLater(() -> {
+            LectureForm lecForm = new LectureForm();
+            lecForm.pack();
+            lecForm.setVisible(true);
+        });
     }
 
      public void onLoad(){
 
 
-         Notices notices = new Notices();
-
-         JList<String> jlist = notices.main();
-         lecForm.list1.setModel(jlist.getModel());
+         SwingUtilities.invokeLater(() -> {
+             Notices notices = new Notices();
+             JList<String> jlist = notices.main();
+             list1.setModel(jlist.getModel());
+             pnlLecturer.remove(progressBar);
+             pnlLecturer.revalidate();
+             pnlLecturer.repaint();
+         });
 
 
 

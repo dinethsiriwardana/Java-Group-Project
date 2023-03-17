@@ -1,6 +1,8 @@
 package com.tecmis.ui;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.UserLogin;
+import com.tecmis.dto.User;
 import com.tecmis.ui.lecture.LectureForm;
 
 import javax.swing.*;
@@ -64,9 +66,12 @@ public class LoginForm extends JFrame {
                     // TODO - Remove this Code after Finished
 
                     if (acctype == "Lecturer"){
+
+                        Auth auth = Auth.getInstance();
+                        auth.setUsername("lec001");
                         setVisible(false);
                         // Create and show the LectureEditUser frame
-                        LectureForm lectureform = new LectureForm("lec001");
+                        LectureForm lectureform = new LectureForm();
                         lectureform.setVisible(true);
                         // When the LectureEditUser frame is closed, show the LectureForm frame again
                         lectureform.addWindowListener(new WindowAdapter() {
@@ -77,16 +82,16 @@ public class LoginForm extends JFrame {
                             }
                         });
                     } else if (acctype == "Admin") {
-                        LectureForm lectureform = new LectureForm("admin001");
-                        lectureform.setVisible(true);
-                        // When the LectureEditUser frame is closed, show the LectureForm frame again
-                        lectureform.addWindowListener(new WindowAdapter() {
-                            @Override
-                            public void windowClosed(WindowEvent e) {
-                                super.windowClosed(e);
-                                setVisible(true);
-                            }
-                        });
+//                        LectureForm lectureform = new LectureForm("admin001");
+//                        lectureform.setVisible(true);
+//                        // When the LectureEditUser frame is closed, show the LectureForm frame again
+//                        lectureform.addWindowListener(new WindowAdapter() {
+//                            @Override
+//                            public void windowClosed(WindowEvent e) {
+//                                super.windowClosed(e);
+//                                setVisible(true);
+//                            }
+//                        });
 
                     }
                 } catch (Exception ex) {
