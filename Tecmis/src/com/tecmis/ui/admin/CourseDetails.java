@@ -21,6 +21,9 @@ public class CourseDetails extends JFrame {
     private JTextField txtCourseLecID;
     private JButton searchButton;
 
+    private JComboBox txtQuiz;
+    private JComboBox txtAsses;
+
 
     public CourseDetails() throws Exception {
         add(panelCourse);
@@ -35,12 +38,14 @@ public class CourseDetails extends JFrame {
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Course course = new Course();
                 course.setCourseId(txtID.getText());
                 course.setCourseName(txtCourseName.getText());
                 course.setCredit(Integer.parseInt(txtCredit.getText()));
                 course.setDepID(txtCourseDepID.getText());
                 course.setLecID(txtCourseLecID.getText());
+                course.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
+                course.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
                     boolean added = Course.addCourse(course);
@@ -49,6 +54,8 @@ public class CourseDetails extends JFrame {
                     txtCredit.setText("");
                     txtCourseDepID.setText("");
                     txtCourseLecID.setText("");
+                    txtQuiz.setSelectedItem("");
+                    txtAsses.setSelectedItem("");
 
                     if (added) {
                         JOptionPane.showMessageDialog(null, "Course added successfully",
