@@ -80,7 +80,7 @@ public  class Course {
 
     }
 
-    public static void addCourse(Course course) throws SQLException {
+    public static boolean addCourse(Course course) throws SQLException {
 
         try {
             Connection conn = Database.getDatabaseConnection();
@@ -94,9 +94,11 @@ public  class Course {
             stmt.executeUpdate();
             stmt.close();
             conn.close();
+            return true;
 
         } catch (Exception e) {
             System.out.println(e);
+            return false;
         }
     }
 
