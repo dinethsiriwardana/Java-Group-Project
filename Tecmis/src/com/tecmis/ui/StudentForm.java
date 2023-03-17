@@ -45,7 +45,7 @@ public class StudentForm extends JFrame{
         studentForm.list1.setModel(jlist.getModel());
 
     }
-
-
+//
+//
 
 }

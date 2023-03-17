@@ -1,6 +1,8 @@
 package com.tecmis.ui.lecture;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.ManageUsers;
+import com.tecmis.dto.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +29,11 @@ public class LectureEditUser extends JFrame{
 
     static LectureEditUser lecUI;
 
-    public  LectureEditUser(String username)  throws SQLException {
-        this.username = username;
+    public  LectureEditUser()  throws SQLException {
+
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+
         add(pnlEditLecDetilas);
         setVisible(true);
         setTitle("Lecturer Details");

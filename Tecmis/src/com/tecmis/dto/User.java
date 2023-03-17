@@ -1,6 +1,8 @@
 package com.tecmis.dto;
 
 public class User {
+
+
     public String getUserAccountType() {
         return userAccountType;
     }
