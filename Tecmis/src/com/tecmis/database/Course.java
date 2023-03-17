@@ -11,6 +11,9 @@ public  class Course {
     private String depID;
     private String lecID;
 
+    private static final String[] course_table_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID"};
+
+
     public String getDepID() {
         return depID;
     }
@@ -51,8 +54,34 @@ public  class Course {
         this.credit = credit;
     }
 
+    public static DefaultTableModel showCourses() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_table_columns) + " FROM Course");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(course_table_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+
+
+    }
+
     public static boolean addCourse(Course course) throws SQLException {
-        boolean added = false;
+
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
@@ -62,26 +91,16 @@ public  class Course {
             stmt.setInt(3, course.getCredit());
             stmt.setString(4,course.getDepID());
             stmt.setString(5,course.getLecID());
-            int rowsAdded = stmt.executeUpdate();
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
+            return true;
 
-            if (rowsAdded > 0) {
-                added = true;
-                System.out.println("Course update successful!!");
-            } else {
-                System.out.println("No rows were added to the Course table.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error adding course: " + e.getMessage());
-            throw e;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+            return false;
         }
-        return added;
     }
-
 
     public static boolean updateCourse(Course course) throws SQLException {
        boolean updated=false;
