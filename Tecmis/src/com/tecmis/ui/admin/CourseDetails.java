@@ -13,7 +13,7 @@ public class CourseDetails extends JFrame {
     private JTextField txtCourseName;
     private JTextField txtCredit;
     private JTextField txtCourseDepID;
-    private JTable JTable;
+    private JTable courseTable;
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
@@ -22,17 +22,20 @@ public class CourseDetails extends JFrame {
     private JButton searchButton;
 
 
-    public CourseDetails() {
+    public CourseDetails() throws Exception {
         add(panelCourse);
         setVisible(true);
         setTitle("Admin !!!");
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Course course = new Course();
+        courseTable.setModel(course.showCourses());
+
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course course = new Course();
+
                 course.setCourseId(txtID.getText());
                 course.setCourseName(txtCourseName.getText());
                 course.setCredit(Integer.parseInt(txtCredit.getText()));
@@ -171,7 +174,7 @@ public class CourseDetails extends JFrame {
         });
     }
 
-            public static void main(String[] args) {
+            public static void main(String[] args) throws Exception {
                 CourseDetails coursedeatil = new CourseDetails();
 
 
