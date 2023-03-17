@@ -11,6 +11,9 @@ public  class Course {
     private String depID;
     private String lecID;
 
+    private static final String[] course_table_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID"};
+
+
     public String getDepID() {
         return depID;
     }
@@ -49,6 +52,32 @@ public  class Course {
 
     public void setCredit(int credit) {
         this.credit = credit;
+    }
+
+    public static DefaultTableModel showCourses() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_table_columns) + " FROM Course");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(course_table_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+
+
     }
 
     public static void addCourse(Course course) throws SQLException {
