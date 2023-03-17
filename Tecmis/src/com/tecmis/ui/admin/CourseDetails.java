@@ -40,15 +40,24 @@ public class CourseDetails extends JFrame {
                 course.setLecID(txtCourseLecID.getText());
 
                 try {
-                    Course.addCourse(course);
+                    boolean added = Course.addCourse(course);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
                     txtCourseDepID.setText("");
                     txtCourseLecID.setText("");
-                    JOptionPane.showMessageDialog(null, "Course added successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException ex) {
+
+                    if (added) {
+                        JOptionPane.showMessageDialog(null, "Course added successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to added course:course not found",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }
+                catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Failed to add course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }

@@ -51,8 +51,8 @@ public  class Course {
         this.credit = credit;
     }
 
-    public static void addCourse(Course course) throws SQLException {
-
+    public static boolean addCourse(Course course) throws SQLException {
+        boolean added = false;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
@@ -62,14 +62,26 @@ public  class Course {
             stmt.setInt(3, course.getCredit());
             stmt.setString(4,course.getDepID());
             stmt.setString(5,course.getLecID());
-            stmt.executeUpdate();
+            int rowsAdded = stmt.executeUpdate();
             stmt.close();
             conn.close();
 
+            if (rowsAdded > 0) {
+                added = true;
+                System.out.println("Course update successful!!");
+            } else {
+                System.out.println("No rows were added to the Course table.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error adding course: " + e.getMessage());
+            throw e;
         } catch (Exception e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
+        return added;
     }
+
 
     public static boolean updateCourse(Course course) throws SQLException {
        boolean updated=false;
