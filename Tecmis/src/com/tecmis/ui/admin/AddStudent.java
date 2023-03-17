@@ -21,7 +21,6 @@ public class AddStudent extends JFrame{
     private JTextField txtEmail;
     private JTextField txtDOB;
     private JComboBox txtGender;
-    private JTable table1;
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
@@ -30,6 +29,8 @@ public class AddStudent extends JFrame{
     private JTextField txtPassword;
     private JTextField txtLevel;
     private JButton searchButton;
+    private JComboBox txtDepartment;
+    private JTable table1;
 
     public AddStudent(){
     add(pnlStudent);
@@ -56,6 +57,7 @@ public class AddStudent extends JFrame{
             studentUser.setDom(txtDOB.getText());
             studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
             studentUser.setLevel(txtLevel.getText());
+            studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
 
 
@@ -74,6 +76,7 @@ public class AddStudent extends JFrame{
                 txtDOB.setText("");
                 txtGender.setSelectedItem("");
                 txtLevel.setText("");
+                txtDepartment.setSelectedItem("");
                 JOptionPane.showMessageDialog(null, "Student added successfully",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -103,6 +106,7 @@ public class AddStudent extends JFrame{
                 studentUser.setDom(txtDOB.getText());
                 studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 studentUser.setLevel(txtLevel.getText());
+                studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
 
 
@@ -121,6 +125,7 @@ public class AddStudent extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
+                    txtDepartment.setSelectedItem("");
                     JOptionPane.showMessageDialog(null, "Student updated successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -148,6 +153,7 @@ public class AddStudent extends JFrame{
                 studentUser.setDom(txtDOB.getText());
                 studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 studentUser.setLevel(txtLevel.getText());
+                studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
                 boolean isDeleted = manageUser.delStu(studentUser);
@@ -164,6 +170,7 @@ public class AddStudent extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
+                    txtDepartment.setSelectedItem("");
                     JOptionPane.showMessageDialog(null, "Student delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -190,6 +197,7 @@ public class AddStudent extends JFrame{
                 studentUser.setDom(txtDOB.getText());
                 studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 studentUser.setLevel(txtLevel.getText());
+                studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
                 boolean isSearched = manageUser.serchStu(studentUser);
@@ -206,6 +214,7 @@ public class AddStudent extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
+                    txtDepartment.setSelectedItem("");
                     JOptionPane.showMessageDialog(null, "Student search successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }

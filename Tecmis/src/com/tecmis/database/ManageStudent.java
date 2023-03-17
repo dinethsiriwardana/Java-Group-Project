@@ -13,11 +13,11 @@ public class ManageStudent {
 
     public static boolean addStudent(StudentData studata ){
         String query = "INSERT INTO Student " +
-                       "(ID, username, password, Fname, Lname, Mobile, Address, Age, Email, DOM, Gender,Level) " +
+                       "(ID, username, password, Fname, Lname, Mobile, Address, Age, Email, DOM, Gender,Level,Department) " +
                        "VALUES ('" + studata.getId() + "', '" + studata.getUserName() + "', '" + studata.getPassword() + "', '" +
                         studata.getFirstName() + "', '" + studata.getLastName() + "', '" + studata.getMobile() + "', '" +
                         studata.getAddress() + "', '" + studata.getAge() + "', '" + studata.getEmail() + "', '" +
-                        studata.getDom() + "', '" + studata.getGender() + "','" +studata.getLevel()+ "')";
+                        studata.getDom() + "', '" + studata.getGender() + "','" +studata.getLevel()+ "',' " +studata.getDepartment()+ " ')";
 
         System.out.println(query);
         try {
@@ -45,7 +45,7 @@ public class ManageStudent {
         String query = "UPDATE Student SET ID='" + studata.getId() + "', username='" + studata.getUserName() + "', " +
                        "password='" + studata.getPassword() + "', Fname='" + studata.getFirstName() + "', Lname='" + studata.getLastName() + "', " +
                        "Mobile='" + studata.getMobile() + "', Address='" + studata.getAddress() + "', Age='" + studata.getAge() + "', Email='" +
-                        studata.getEmail() + "', DOM='" + studata.getDom() + "', Gender='" + studata.getGender() + "', Level='" + studata.getLevel() + "'" +
+                        studata.getEmail() + "', DOM='" + studata.getDom() + "', Gender='" + studata.getGender() + "', Level='" + studata.getLevel() + "',Department= '" +studata.getDepartment()+ "' "+
                         " WHERE ID='" + studata.getId() + "'";
 
 

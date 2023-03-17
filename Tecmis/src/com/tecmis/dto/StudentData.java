@@ -22,6 +22,15 @@ public class StudentData extends User{
     private String gender;
 
     private  String level;
+    private String department;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public String getId() {
         return Id;
