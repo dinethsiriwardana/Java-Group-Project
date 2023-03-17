@@ -208,6 +208,16 @@
                           </model>
                         </properties>
                       </component>
+                      <component id="6d334" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font style="1"/>
+                          <foreground color="-53151"/>
+                          <text value="PDF"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                   <hspacer id="e5919">
@@ -245,7 +255,7 @@
                       <text value="Update "/>
                     </properties>
                   </component>
-                  <component id="91b1c" class="javax.swing.JButton" binding="downloadButton" default-binding="true">
+                  <component id="91b1c" class="javax.swing.JButton" binding="uploadButton" default-binding="true">
                     <constraints>
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
