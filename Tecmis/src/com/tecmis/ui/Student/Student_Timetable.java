@@ -17,10 +17,10 @@ public class Student_Timetable {
     downloadButton1.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Retrieve the PDF file from the database using appropriate database APIs
+
             byte[] pdfData = retrievePdfFromDatabase("pdf1");
 
-            // Save the PDF file to local machine using appropriate file I/O APIs
+
             savePdfToFile(pdfData, "pdf1.pdf");
         }
     });
@@ -28,10 +28,10 @@ public class Student_Timetable {
     downloadButton2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Retrieve the PDF file from the database using appropriate database APIs
+
             byte[] pdfData = retrievePdfFromDatabase("pdf2");
 
-            // Save the PDF file to local machine using appropriate file I/O APIs
+
             savePdfToFile(pdfData, "pdf2.pdf");
         }
     });
@@ -39,10 +39,10 @@ public class Student_Timetable {
     downloadButton3.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Retrieve the PDF file from the database using appropriate database APIs
+
             byte[] pdfData = retrievePdfFromDatabase("pdf3");
 
-            // Save the PDF file to local machine using appropriate file I/O APIs
+
             savePdfToFile(pdfData, "pdf3.pdf");
         }
     });
@@ -50,10 +50,10 @@ public class Student_Timetable {
     downloadButton4.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Retrieve the PDF file from the database using appropriate database APIs
+
             byte[] pdfData = retrievePdfFromDatabase("pdf4");
 
-            // Save the PDF file to local machine using appropriate file I/O APIs
+
             savePdfToFile(pdfData, "pdf4.pdf");
         }
     });
