@@ -1,0 +1,1 @@
+INSERT INTO u812963415_javag2.Attendance (Atd_ID, A_Std_ID, A_Course_ID, Date, Type, Status, T_ID, Lecture_ID) VALUES ('A0001', 'TG/2020/004', 'ICT2133', '2023-03-01', 'Theory', 'Present', null, null);
