@@ -109,7 +109,7 @@ public class ManageSubject {
                 assessmentfullmarks = assessmentfullmarks + sortedquiz[i];
             }
         }else {
-            throw new IllegalArgumentException("The number of insert quizzes taken is not equal to the total number of quizzes.");
+            throw new IllegalArgumentException("The number of insert quizzes taken is not equal to the total number of Assessment.");
         }
 
         return assessmentfullmarks;

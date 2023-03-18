@@ -1,4 +1,4 @@
-package com.tecmis.ui;
+package com.tecmis.ui.TechnicalOfficer;
 
 import com.tecmis.database.Notices;
 
