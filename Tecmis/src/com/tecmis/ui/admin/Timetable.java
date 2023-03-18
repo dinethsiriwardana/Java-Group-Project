@@ -44,6 +44,12 @@ public class Timetable extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageTimetable managetable = new ManageTimetable();
+                JFileChooser fileChooser=new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    txtPDF.setText(selectedFile.getAbsolutePath());
+                }
                 managetable.setId(txtTime_ID.getText());
                 managetable.setDepartmentName(txtDepartment.getSelectedItem().toString());
                 managetable.setLevel(txtLevel.getSelectedItem().toString());

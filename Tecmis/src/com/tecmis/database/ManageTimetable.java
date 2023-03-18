@@ -77,7 +77,7 @@ public class ManageTimetable {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Timetable (TimetableID, DepartmentName, Level, PDF) VALUES (?, ?, ?, ?)");
+                    "INSERT INTO Timetable (Timetable_ID, DepartmentName, Level, PDF) VALUES (?, ?, ?, ?)");
             stmt.setString(1, managetable.getId());
             stmt.setString(2, managetable.getDepartmentName());
             stmt.setString(3, managetable.getLevel());
