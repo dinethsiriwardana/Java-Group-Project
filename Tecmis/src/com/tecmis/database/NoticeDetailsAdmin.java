@@ -100,14 +100,12 @@ public class NoticeDetailsAdmin {
 
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des,TO_ID, Admin_ID,Lecture_ID) VALUES (?, ?, ?, ?,?,?,?)");
+                    "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des) VALUES (?, ?, ?, ?)");
             stmt.setString(1, noticedetail.getNoticeID());
             stmt.setString(2, noticedetail.getDate());
             stmt.setString(3,noticedetail.getTitle());
             stmt.setString(4,noticedetail.getNoticeDes());
-            stmt.setString(5,noticedetail.getToID());
-            stmt.setString(6,noticedetail.getAdminID());
-            stmt.setString(7,noticedetail.getLecturerID());
+
             int rowsAdded = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -127,14 +125,11 @@ public class NoticeDetailsAdmin {
         boolean updated = false;
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?, Notice_Des=?, TO_ID=?, Admin_ID=?, Lecture_ID=? WHERE Notice_Id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?, Notice_Des=? WHERE Notice_Id=?");
             stmt.setString(1, noticedetail.getDate());
             stmt.setString(2, noticedetail.getTitle());
             stmt.setString(3, noticedetail.getNoticeDes());
-            stmt.setString(4, noticedetail.getToID());
-            stmt.setString(5, noticedetail.getAdminID());
-            stmt.setString(6, noticedetail.getLecturerID());
-            stmt.setString(7, noticedetail.getNoticeID());
+            stmt.setString(4, noticedetail.getNoticeID());
             int rowsUpdated = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -159,9 +154,7 @@ public class NoticeDetailsAdmin {
             stmt.setString(2,noticedetail.getDate());
             stmt.setString(3,noticedetail.getTitle());
             stmt.setString(4,noticedetail.getNoticeDes());
-            stmt.setString(5,noticedetail.getToID());
-            stmt.setString(6,noticedetail.getAdminID());
-            stmt.setString(7,noticedetail.getLecturerID());
+
             int rowsDeleted=stmt.executeUpdate();
             stmt.close();
             conn.close();

@@ -1,25 +1,22 @@
 package com.tecmis.database;
 
-import com.tecmis.database.Database;
-
-import javax.swing.*;
 import java.sql.*;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ManageTimetable {
     private String id;
     private String departmentName;
     private String level;
-    private byte pdf;
+    private byte[] pdf;
 
-    public byte getPdf() {
+    public byte []getPdf() {
         return pdf;
     }
 
-    public void setPdf(byte pdf) {
+    public void setPdf(byte[] pdf) {
         this.pdf = pdf;
     }
+
 
     public String getId() {
         return id;
@@ -81,7 +78,7 @@ public class ManageTimetable {
             stmt.setString(1, managetable.getId());
             stmt.setString(2, managetable.getDepartmentName());
             stmt.setString(3, managetable.getLevel());
-            stmt.setByte(4, managetable.getPdf());
+            stmt.setBytes(4, managetable.getPdf());
             stmt.executeUpdate(); // execute the update statement to insert the data
             conn.close();
             stmt.close();
@@ -89,4 +86,24 @@ public class ManageTimetable {
             System.out.println(e);
         }
     }
+    public static void deleteTimetable(ManageTimetable managetable) throws SQLException{
+        try{
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Timetable WHERE Timetable_ID=?");
+            stmt.setString(1, managetable.getId());
+            int rowsDeleted = stmt.executeUpdate(); // execute the statement and get the number of rows deleted
+            conn.close();
+            stmt.close();
+
+            if (rowsDeleted == 0) {
+                throw new SQLException("No rows deleted. Timetable with ID " + managetable.getId() + " not found.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    
+
 }
+

@@ -57,8 +57,9 @@ public class Timetable extends JFrame {
                 // read the selected file and set the bytes to the PDF property of the managetable object
                 try {
                     File pdfFile = new File(txtPDF.getText());
-                    byte[] pdfData= Files.readAllBytes(pdfFile.toPath());
-                    managetable.setPdf(pdfData[0]);
+                    byte [] pdfData= Files.readAllBytes(pdfFile.toPath());
+                    managetable.setPdf(pdfData);
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to read PDF file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -91,6 +92,28 @@ public class Timetable extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int selectedRow = timeTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Please select a timetable to delete", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                ManageTimetable managetable = new ManageTimetable();
+                managetable.setId((String) timeTable.getValueAt(selectedRow, 0)); // assumes the first column is the ID column
+
+                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this timetable?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+                if (confirmResult == JOptionPane.YES_OPTION) {
+                    try {
+                        ManageTimetable.deleteTimetable(managetable);
+                        timeTable.setModel(managetable.showTimetable());
+                        JOptionPane.showMessageDialog(null, "Timetable deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Failed to delete timetable: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
 
             }
         });
