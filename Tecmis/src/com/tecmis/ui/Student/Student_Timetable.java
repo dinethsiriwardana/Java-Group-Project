@@ -18,10 +18,10 @@ public class Student_Timetable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            byte[] pdfData = retrievePdfFromDatabase("pdf1");
+            byte[] pdfData = retrievePdfFromDatabase("Level1");
 
 
-            savePdfToFile(pdfData, "pdf1.pdf");
+            savePdfToFile(pdfData, "Level1.pdf");
         }
     });
 
@@ -29,10 +29,10 @@ public class Student_Timetable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            byte[] pdfData = retrievePdfFromDatabase("pdf2");
+            byte[] pdfData = retrievePdfFromDatabase("Level2");
 
 
-            savePdfToFile(pdfData, "pdf2.pdf");
+            savePdfToFile(pdfData, "Level2.pdf");
         }
     });
 
@@ -40,10 +40,10 @@ public class Student_Timetable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            byte[] pdfData = retrievePdfFromDatabase("pdf3");
+            byte[] pdfData = retrievePdfFromDatabase("Level3");
 
 
-            savePdfToFile(pdfData, "pdf3.pdf");
+            savePdfToFile(pdfData, "Level3.pdf");
         }
     });
 
@@ -51,10 +51,10 @@ public class Student_Timetable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            byte[] pdfData = retrievePdfFromDatabase("pdf4");
+            byte[] pdfData = retrievePdfFromDatabase("Level4");
 
 
-            savePdfToFile(pdfData, "pdf4.pdf");
+            savePdfToFile(pdfData, "Level4.pdf");
         }
     });
 
