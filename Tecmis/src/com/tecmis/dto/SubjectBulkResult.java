@@ -1,9 +1,7 @@
 package com.tecmis.dto;
 
 import javax.swing.table.DefaultTableModel;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class SubjectBulkResult {
     DefaultTableModel model;
@@ -19,13 +17,17 @@ public class SubjectBulkResult {
         for(int i = 0; i < values.length;i++){
             row[i] = values[i];
         }
-//        System.out.println(Arrays.toString(row));
         this.model.addRow(row);
 
 
     }
-
     public DefaultTableModel getModel() {
         return model;
+    }
+
+
+
+    public static void main(String[] args) {
+
     }
 }
