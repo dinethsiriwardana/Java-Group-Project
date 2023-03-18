@@ -1,54 +1,109 @@
 package com.tecmis.ui.admin;
 
-import com.tecmis.database.Notices;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class AdminForm extends JFrame{
+public class AdminForm extends  JFrame
 
-
-    private JButton btnAddUser;
-    private JButton btnAddLecturer;
-    private JButton btnNoticeDetails;
-    private JButton btnAddTechnicalOfficer;
-    private JButton btnAddStudent;
+{
     private JPanel pnlAdmin;
+    private JButton addAdminButton;
+    private JButton manageCourseButton;
+    private JButton addLecturerButton;
+    private JButton manageNoticeButton;
+    private JButton addTechnicalOfficerButton;
+    private JButton manageTimetableButton;
+    private JButton addStudentButton;
     private JLabel lblWelcomText;
-    private JButton btnAddAdmin;
-    private JList list1;
-    private JButton btnCourseDetails;
-    private JButton timeTableButton;
-    private JLabel lblNotices;
+    private JLabel lblSetting;
 
-    public AdminForm() {
+    public  AdminForm() {
         add(pnlAdmin);
-        setVisible(true);
-        setTitle("Admin");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,1500);
-        setPreferredSize(new Dimension(220,400));
-        setResizable(false);
 
-        btnNoticeDetails.addMouseListener(new MouseAdapter() {
+        setVisible(true);
+
+        setTitle("Admin Form!!!");
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        setSize(1000,600);
+
+        setPreferredSize(new Dimension(220, 400));
+
+        addAdminButton.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AddAdmin object=new AddAdmin();
+                object.setVisible(true);
+
+            }
+        });
+        addLecturerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AddLecturerForm object=new AddLecturerForm();
+                object.setVisible(true);
+            }
+        });
+        addTechnicalOfficerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AddTechnicalOfficer object=new AddTechnicalOfficer();
+                object.setVisible(true);
+            }
+        });
+        addStudentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AddStudent object=new AddStudent();
+                object.setVisible(true);
+
+            }
+        });
+        manageCourseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                CourseDetails object= null;
+                try {
+                    object = new CourseDetails();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                object.setVisible(true);
+            }
+        });
+        manageNoticeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                NoticeDetails object= null;
+                try {
+                    object = new NoticeDetails();
+                } catch (Exception ex) {
+                    setVisible(true);
+
+                }
+
+            }
+        });
+        manageTimetableButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Timetable object=new Timetable();
+                object.setVisible(true);
             }
         });
     }
 
-
     public static void main(String[] args) {
-        AdminForm admin = new AdminForm();
-        Notices notices = new Notices();
-        JList<String> jlist = notices.main();
-        admin.list1.setModel(jlist.getModel());
-
+        AdminForm adminForm=new AdminForm();
     }
-
-
-
 }
