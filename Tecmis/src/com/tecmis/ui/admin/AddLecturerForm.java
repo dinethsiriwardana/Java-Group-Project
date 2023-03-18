@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
+import com.tecmis.dto.TechnicalOfficerData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,11 +28,11 @@ public class AddLecturerForm extends JFrame {
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
-    private JTable table1;
 
     private JTextField txtUsername;
     private JTextField txtPassword;
     private JButton SEARCHButton;
+    private JTable lecturerTable;
 
 
     public AddLecturerForm() {
@@ -41,6 +42,12 @@ public class AddLecturerForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
+        LecturerData lecturerUser=new LecturerData();
+        try {
+            lecturerTable.setModel(lecturerUser.showLecturer());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         ADDButton.addActionListener(new ActionListener() {

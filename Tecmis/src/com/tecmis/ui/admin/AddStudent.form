@@ -378,7 +378,7 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <component id="58225" class="javax.swing.JTable" binding="table1" default-binding="true">
+                          <component id="58225" class="javax.swing.JTable" binding="studentTable">
                             <constraints/>
                             <properties/>
                           </component>

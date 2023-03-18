@@ -1,6 +1,5 @@
 package com.tecmis.ui.admin;
 
-import com.tecmis.database.Course;
 import com.tecmis.database.NoticeDetailsAdmin;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public class NoticeDetails extends JFrame {
     private JTextField txtDate;
     private JTextField txtTitle;
     private JTextField txtNoticeDes;
-    private JTable table1;
+    private JTable noticeTable;
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
@@ -25,15 +24,16 @@ public class NoticeDetails extends JFrame {
     private JTextField txtLecId;
 
 
-    public NoticeDetails(){
+    public NoticeDetails() throws Exception {
         add(pnlNotice);
         setVisible(true);
         setTitle("Admin !!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
-        setResizable(false);
-
+        setResizable(true);
+        NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+        noticeTable.setModel(noticeDetail.showNotice());
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -187,7 +187,7 @@ public class NoticeDetails extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         NoticeDetails noticedeatils=new NoticeDetails();
     }
 }

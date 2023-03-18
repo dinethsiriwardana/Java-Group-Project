@@ -30,7 +30,8 @@ public class AddStudent extends JFrame{
     private JTextField txtLevel;
     private JButton searchButton;
     private JComboBox txtDepartment;
-    private JTable table1;
+    private JTable studentTable;
+
 
     public AddStudent(){
     add(pnlStudent);
@@ -40,8 +41,15 @@ public class AddStudent extends JFrame{
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setPreferredSize(new Dimension(220,400));
     setResizable(true);
+    StudentData studentUser=new StudentData();
 
-    addButton.addActionListener(new ActionListener() {
+        try {
+            studentTable.setModel(studentUser.showStudent());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        addButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             StudentData studentUser=new StudentData();

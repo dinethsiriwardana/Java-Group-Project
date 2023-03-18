@@ -4,10 +4,9 @@ package com.tecmis.database;
 import com.tecmis.dto.StudentData;
 import com.tecmis.dto.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
+
 
 public class ManageStudent {
 

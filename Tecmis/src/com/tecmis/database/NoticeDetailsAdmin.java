@@ -1,9 +1,7 @@
 package com.tecmis.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 public class NoticeDetailsAdmin {
     private String noticeID;
@@ -68,6 +66,33 @@ public class NoticeDetailsAdmin {
 
     public void setNoticeDes(String noticeDes) {
         this.noticeDes = noticeDes;
+    }
+    private static final String[] notice_columns = {"Notice_ID", "Date", "Title", "Notice_Des"};
+
+    public static DefaultTableModel showNotice() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", notice_columns) + " FROM Notice");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(notice_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+
+
     }
     public static boolean addNotice(NoticeDetailsAdmin noticedetail) throws SQLException {
         boolean added=false;

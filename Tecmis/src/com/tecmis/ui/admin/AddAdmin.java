@@ -19,7 +19,6 @@ public class AddAdmin  extends JFrame{
     private JTextField txtEmail;
     private JTextField txtDOB;
     private JComboBox txtGender;
-    private JTable table1;
     private JTextField txtUsername;
     private JTextField txtPassword;
     private JTextField txtID;
@@ -28,6 +27,7 @@ public class AddAdmin  extends JFrame{
     private JButton UPDATEButton;
     private JTextField txtAdminRole;
     private JButton SEARCHButton;
+    private JTable adminTable;
 
     public  AddAdmin(){
         add(pnlAdmin);
@@ -37,6 +37,13 @@ public class AddAdmin  extends JFrame{
         setSize(1000,1500);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
+
+        AdminData adminUser=new AdminData();
+        try {
+            adminTable.setModel(adminUser.showAdmin());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
