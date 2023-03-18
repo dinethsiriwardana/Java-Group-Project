@@ -1,11 +1,16 @@
-package com.tecmis.ui;
+package com.tecmis.ui.Student;
 
 import com.tecmis.database.Notices;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 
 public class StudentForm extends JFrame{
 
@@ -45,6 +50,9 @@ public class StudentForm extends JFrame{
         studentForm.list1.setModel(jlist.getModel());
 
     }
+
+
+
 
 
 
