@@ -1,9 +1,7 @@
 package com.tecmis.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 public class NoticeDetailsAdmin {
     private String noticeID;
@@ -69,20 +67,45 @@ public class NoticeDetailsAdmin {
     public void setNoticeDes(String noticeDes) {
         this.noticeDes = noticeDes;
     }
+    private static final String[] notice_columns = {"Notice_ID", "Date", "Title", "Notice_Des"};
+
+    public static DefaultTableModel showNotice() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", notice_columns) + " FROM Notice");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(notice_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+
+
+    }
     public static boolean addNotice(NoticeDetailsAdmin noticedetail) throws SQLException {
         boolean added=false;
         try {
 
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des,TO_ID, Admin_ID,Lecture_ID) VALUES (?, ?, ?, ?,?,?,?)");
+                    "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des) VALUES (?, ?, ?, ?)");
             stmt.setString(1, noticedetail.getNoticeID());
             stmt.setString(2, noticedetail.getDate());
             stmt.setString(3,noticedetail.getTitle());
             stmt.setString(4,noticedetail.getNoticeDes());
-            stmt.setString(5,noticedetail.getToID());
-            stmt.setString(6,noticedetail.getAdminID());
-            stmt.setString(7,noticedetail.getLecturerID());
+
             int rowsAdded = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -102,14 +125,11 @@ public class NoticeDetailsAdmin {
         boolean updated = false;
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?, Notice_Des=?, TO_ID=?, Admin_ID=?, Lecture_ID=? WHERE Notice_Id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?, Notice_Des=? WHERE Notice_Id=?");
             stmt.setString(1, noticedetail.getDate());
             stmt.setString(2, noticedetail.getTitle());
             stmt.setString(3, noticedetail.getNoticeDes());
-            stmt.setString(4, noticedetail.getToID());
-            stmt.setString(5, noticedetail.getAdminID());
-            stmt.setString(6, noticedetail.getLecturerID());
-            stmt.setString(7, noticedetail.getNoticeID());
+            stmt.setString(4, noticedetail.getNoticeID());
             int rowsUpdated = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -134,9 +154,7 @@ public class NoticeDetailsAdmin {
             stmt.setString(2,noticedetail.getDate());
             stmt.setString(3,noticedetail.getTitle());
             stmt.setString(4,noticedetail.getNoticeDes());
-            stmt.setString(5,noticedetail.getToID());
-            stmt.setString(6,noticedetail.getAdminID());
-            stmt.setString(7,noticedetail.getLecturerID());
+
             int rowsDeleted=stmt.executeUpdate();
             stmt.close();
             conn.close();

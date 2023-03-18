@@ -1,5 +1,12 @@
 package com.tecmis.dto;
 
+import com.tecmis.database.Database;
+
+import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
 
@@ -110,6 +117,30 @@ public class LecturerData  extends  User{
     public void getFromHash(){
 
     }
+    private static final String[] lecturer_table_columns = {"ID", "username", "password", "Fname", "Lname", "Mobile", "Address", "Age", "Email", "DOM", "Gender", "Position"};
 
+    public static DefaultTableModel showLecturer() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", lecturer_table_columns) + " FROM Lecturer");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(lecturer_table_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+    }
 
 }
