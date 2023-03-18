@@ -1,3 +1,5 @@
+package com.tecmis.ui.TechnicalOfficer;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,6 +62,7 @@ public class TechnicalOfficerForm extends JFrame {
 
         String sql = "UPDATE users SET name=?, email=?, phone=?, password=?, department=?, address=? WHERE id=?";
         try{
+            Database database = new Database()
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, name);
