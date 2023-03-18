@@ -62,6 +62,5 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
     }
 
     public static void main(String[] args) {
-        TechnicalOfficerAttendanceForm techOfficerAttendance = new TechnicalOfficerAttendanceForm();
     }
 }

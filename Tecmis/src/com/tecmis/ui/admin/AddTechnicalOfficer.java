@@ -19,7 +19,6 @@ public class AddTechnicalOfficer extends JFrame{
     private JTextField txtEmail;
     private JTextField txtDOB;
     private JComboBox txtGender;
-    private JTable table1;
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
@@ -27,6 +26,7 @@ public class AddTechnicalOfficer extends JFrame{
     private JTextField txtUserName;
     private JTextField txtPassword;
     private JButton searchButton;
+    private JTable toTable;
 
 
     public AddTechnicalOfficer(){
@@ -37,7 +37,12 @@ public class AddTechnicalOfficer extends JFrame{
         setPreferredSize(new Dimension(220,400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(true);
-
+        TechnicalOfficerData toUser=new TechnicalOfficerData();
+        try {
+            toTable.setModel(toUser.showTechnicalOfficer());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         addButton.addActionListener(new ActionListener() {
             @Override
