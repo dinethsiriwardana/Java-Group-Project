@@ -1,4 +1,4 @@
-package com.tecmis.ui;
+package com.tecmis.ui.TechnicalOfficer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

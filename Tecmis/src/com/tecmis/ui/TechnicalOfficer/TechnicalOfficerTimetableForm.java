@@ -1,10 +1,12 @@
 package com.tecmis.ui.TechnicalOfficer;
 
+import com.tecmis.database.Database;
+
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 
-public class TechnicalOfficerAttendanceForm extends JFrame {
+public class TechnicalOfficerTimetableForm extends JFrame {
     private JPanel PanalTechnicalOfficer;
     private JTextField textField1;
     private JButton searchButton;
@@ -12,7 +14,7 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
     private JButton updateButton;
     private JTextArea textArea1;
 
-    public TechnicalOfficerAttendanceForm(){
+    public TechnicalOfficerTimetableForm(){
         add(PanalTechnicalOfficer);
         setVisible(true);
         setTitle("Technical Officer Attendance Form");
@@ -29,15 +31,10 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
             }
 
             try {
-                // Establish database connection
-               // String dbUrl = "jdbc:mysql://localhost:3306/mydb";
-                String dbUsername = "u812963415_javag2";
-                String dbPassword = "qEc:0f=5";
-                Connection connection = DriverManager.getConnection(dbUsername, dbPassword);
+                Connection conn = Database.getDatabaseConnection();
 
-                // Execute SQL query to retrieve attendance data for the student id
                 String query = "SELECT * FROM attendance WHERE student_id=?";
-                PreparedStatement statement = connection.prepareStatement(query);
+                PreparedStatement statement = conn.prepareStatement(query);
                 statement.setString(1, studentId);
                 ResultSet resultSet = statement.executeQuery();
 
@@ -53,15 +50,17 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
                 // Close database connection
                 resultSet.close();
                 statement.close();
-                connection.close();
+                conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Failed to retrieve attendance data from the database");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
             }
         });
     }
 
     public static void main(String[] args) {
-        TechnicalOfficerAttendanceForm techOfficerAttendance = new TechnicalOfficerAttendanceForm();
+
     }
 }

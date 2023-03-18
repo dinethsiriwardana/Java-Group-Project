@@ -62,9 +62,9 @@ public class TechnicalOfficerForm extends JFrame {
 
         String sql = "UPDATE users SET name=?, email=?, phone=?, password=?, department=?, address=? WHERE id=?";
         try{
-            Database database = new Database()
+
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement statement = conn.prepareStatement(sql)) {
+            PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, email);
             statement.setString(3, phone);
@@ -76,6 +76,8 @@ public class TechnicalOfficerForm extends JFrame {
             JOptionPane.showMessageDialog(this, "User details updated successfully!");
         } catch (SQLException ex) {
             System.out.println("Error updating user details: " + ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
