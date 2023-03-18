@@ -1,14 +1,22 @@
 package com.tecmis.database;
-import java.io.*;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ManageTimetable {
     private String id;
     private String departmentName;
     private String level;
-    private byte pdf;
+    private byte[] pdf;
+
+    public byte []getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(byte[] pdf) {
+        this.pdf = pdf;
+    }
+
 
     public String getId() {
         return id;
@@ -34,44 +42,68 @@ public class ManageTimetable {
         this.level = level;
     }
 
-    public static void addTimetable() {
-        // Create a file chooser dialog
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Timetable File");
+    private static final String[] time_table_columns = {"Timetable_ID", "DepartmentName", "Level", "PDF"};
 
-        // Show the dialog and wait for the user to select a file
-        int result = fileChooser.showOpenDialog(new JFrame());
-        if (result == JFileChooser.APPROVE_OPTION) {
-            // Get the selected file
-            File selectedFile = fileChooser.getSelectedFile();
+    public static DefaultTableModel showTimetable() throws Exception {
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
 
-            // Create a new file to save the timetable in the project directory
-            String fileName = selectedFile.getName();
-            File timetableFile = new File(fileName);
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", time_table_columns) + " FROM Timetable");
 
-            // Copy the selected file to the new file
-            try (InputStream in = new FileInputStream(selectedFile);
-                 OutputStream out = new FileOutputStream(timetableFile)) {
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
-                }
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Error saving timetable file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(time_table_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
             }
+            model.addRow(row);
+        }
 
-            // Read the timetable data from the file and add it to the timetable table
-            try (BufferedReader reader = new BufferedReader(new FileReader(timetableFile))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    // Parse the line and add it to the timetable table
-                    // ...
-                }
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Error reading timetable file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        conn.close();
+        stmt.close();
+        rs.close();
+
+        return model;
+    }
+
+    public static void addTimetable(ManageTimetable managetable) throws SQLException {
+        try {
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO Timetable (Timetable_ID, DepartmentName, Level, PDF) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, managetable.getId());
+            stmt.setString(2, managetable.getDepartmentName());
+            stmt.setString(3, managetable.getLevel());
+            stmt.setBytes(4, managetable.getPdf());
+            stmt.executeUpdate(); // execute the update statement to insert the data
+            conn.close();
+            stmt.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
+    public static void deleteTimetable(ManageTimetable managetable) throws SQLException{
+        try{
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Timetable WHERE Timetable_ID=?");
+            stmt.setString(1, managetable.getId());
+            int rowsDeleted = stmt.executeUpdate(); // execute the statement and get the number of rows deleted
+            conn.close();
+            stmt.close();
+
+            if (rowsDeleted == 0) {
+                throw new SQLException("No rows deleted. Timetable with ID " + managetable.getId() + " not found.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    
+
 }
+

@@ -10,8 +10,26 @@ public  class Course {
     private int credit;
     private String depID;
     private String lecID;
+    private String quiz;
+    private String asses;
 
-    private static final String[] course_table_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID"};
+    public String getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(String quiz) {
+        this.quiz = quiz;
+    }
+
+    public String getAsses() {
+        return asses;
+    }
+
+    public void setAsses(String asses) {
+        this.asses = asses;
+    }
+
+    private static final String[] courses_test_table_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID","No_of_Quiz","No_of_Assessments"};
 
 
     public String getDepID() {
@@ -60,12 +78,12 @@ public  class Course {
         Connection conn = Database.getDatabaseConnection();
         Statement stmt = conn.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_table_columns) + " FROM Course");
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", courses_test_table_columns) + " FROM Courses_test");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount = metaData.getColumnCount();
 
-        DefaultTableModel model = new DefaultTableModel(course_table_columns, 0);
+        DefaultTableModel model = new DefaultTableModel(courses_test_table_columns, 0);
 
         while (rs.next()) {
             Object[] row = new Object[columnCount];
@@ -81,25 +99,33 @@ public  class Course {
     }
 
     public static boolean addCourse(Course course) throws SQLException {
-
+        boolean added=false;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Course (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id) VALUES (?, ?, ?, ?, ?)");
+                    "INSERT INTO Courses_test (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id, No_of_Quiz,No_of_Assessments) VALUES (?, ?, ?, ?, ?,?,?)");
             stmt.setString(1, course.getCourseId());
             stmt.setString(2, course.getCourseName());
             stmt.setInt(3, course.getCredit());
             stmt.setString(4,course.getDepID());
             stmt.setString(5,course.getLecID());
-            stmt.executeUpdate();
+            stmt.setString(6,course.getQuiz());
+            stmt.setString(7,course.getAsses());
+            int rowsAdded=stmt.executeUpdate();
             stmt.close();
             conn.close();
-            return true;
+            if (rowsAdded > 0) {
+                added=true;
+                System.out.println("Course add successful!!");
+            } else {
+                System.out.println("Course not add!!");
+            }
 
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }
+        return added;
     }
 
     public static boolean updateCourse(Course course) throws SQLException {
@@ -107,12 +133,15 @@ public  class Course {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "UPDATE Course SET Course_Name=?, Credit=?, Dep_Id=?, Lec_Id=?  WHERE Course_Id=?");
+                    "UPDATE Courses_test SET Course_Name=?, Credit=?, Dep_Id=?, Lec_Id=?, No_of_Quiz=?,No_of_Assessments=? WHERE Course_Id=?");
             stmt.setString(1, course.getCourseName());
             stmt.setInt(2, course.getCredit());
             stmt.setString(3,course.getDepID());
-            stmt.setString(4, course.getLecID());
-            stmt.setString(5, course.getCourseId());
+            stmt.setString(4,course.getLecID());
+            stmt.setString(5,course.getQuiz());
+            stmt.setString(6,course.getAsses());
+            stmt.setString(7,course.getCourseId());
+
             int rowsUpdated = stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -121,7 +150,7 @@ public  class Course {
                 updated=true;
                 System.out.println("Course Update successful!!");
             } else {
-                System.out.println("Course not found!!");
+                System.out.println("Course not update!!");
             }
 
         } catch (Exception e) {
@@ -138,7 +167,7 @@ public  class Course {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "DELETE FROM Course WHERE Course_Id=?");
+                    "DELETE FROM Courses_test WHERE Course_Id=?");
             stmt.setString(1, course.getCourseId());
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -162,7 +191,7 @@ public  class Course {
         boolean searched=false;
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE Course_Id=?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Courses_test WHERE Course_Id=?");
             stmt.setString(1, course.getCourseId());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

@@ -1,6 +1,5 @@
 package com.tecmis.ui.admin;
 
-import com.tecmis.database.Course;
 import com.tecmis.database.NoticeDetailsAdmin;
 
 import javax.swing.*;
@@ -14,26 +13,25 @@ public class NoticeDetails extends JFrame {
     private JTextField txtNoticeId;
     private JTextField txtDate;
     private JTextField txtTitle;
-    private JTextField txtNoticeDes;
-    private JTable table1;
+
+    private JTable noticeTable;
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
     private JButton searchButton;
-    private JTextField txtToId;
-    private JTextField txtAdminId;
-    private JTextField txtLecId;
+    private JTextArea txtDes;
 
 
-    public NoticeDetails(){
+    public NoticeDetails() throws Exception {
         add(pnlNotice);
         setVisible(true);
         setTitle("Admin !!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
-        setResizable(false);
-
+        setResizable(true);
+        NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+        noticeTable.setModel(noticeDetail.showNotice());
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -42,10 +40,8 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
-                noticeDetail.setNoticeDes(txtNoticeDes.getText());
-                noticeDetail.setToID(txtToId.getText());
-                noticeDetail.setAdminID(txtAdminId.getText());
-                noticeDetail.setLecturerID(txtLecId.getText());
+                noticeDetail.setNoticeDes(txtDes.getText());
+
 
                 try{
 
@@ -53,10 +49,8 @@ public class NoticeDetails extends JFrame {
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
-                    txtNoticeDes.setText("");
-                    txtToId.setText("");
-                    txtAdminId.setText("");
-                    txtLecId.setText("");
+                    txtDes.setText("");
+
 
                     if(added) {
                         JOptionPane.showMessageDialog(null, "Notice added successfully!!",
@@ -81,20 +75,16 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
-                noticeDetail.setNoticeDes(txtNoticeDes.getText());
-                noticeDetail.setToID(txtToId.getText());
-                noticeDetail.setAdminID(txtAdminId.getText());
-                noticeDetail.setLecturerID(txtLecId.getText());
+                noticeDetail.setNoticeDes(txtDes.getText());
+
 
                 try {
                     boolean updated=NoticeDetailsAdmin.updateNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
-                    txtNoticeDes.setText("");
-                    txtToId.setText("");
-                    txtAdminId.setText("");
-                    txtLecId.setText("");
+                    txtDes.setText("");
+
 
                     if(updated) {
                         JOptionPane.showMessageDialog(null, "Notice update successfully!!",
@@ -117,20 +107,15 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
-                noticeDetail.setNoticeDes(txtNoticeDes.getText());
-                noticeDetail.setToID(txtToId.getText());
-                noticeDetail.setAdminID(txtAdminId.getText());
-                noticeDetail.setLecturerID(txtLecId.getText());
+                noticeDetail.setNoticeDes(txtDes.getText());
+
 
                 try {
                     boolean deleted=NoticeDetailsAdmin.deleteNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
-                    txtNoticeDes.setText("");
-                    txtToId.setText("");
-                    txtAdminId.setText("");
-                    txtLecId.setText("");
+                    txtDes.setText("");
 
                     if(deleted) {
                         JOptionPane.showMessageDialog(null, "Notice delete successfully!!",
@@ -154,20 +139,16 @@ public class NoticeDetails extends JFrame {
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
-                noticeDetail.setNoticeDes(txtNoticeDes.getText());
-                noticeDetail.setToID(txtToId.getText());
-                noticeDetail.setAdminID(txtAdminId.getText());
-                noticeDetail.setLecturerID(txtLecId.getText());
+                noticeDetail.setNoticeDes(txtDes.getText());
+
 
                 try {
                     boolean searched=NoticeDetailsAdmin.searchNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
-                    txtNoticeDes.setText("");
-                    txtToId.setText("");
-                    txtAdminId.setText("");
-                    txtLecId.setText("");
+                    txtDes.setText("");
+
                     if(searched) {
                         JOptionPane.showMessageDialog(null, "Notice search successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -187,7 +168,7 @@ public class NoticeDetails extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         NoticeDetails noticedeatils=new NoticeDetails();
     }
 }
