@@ -28,16 +28,7 @@ public class Database {
         return conn;
     }
 
-    public static void closeConnection() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            conn = null;
-        }
-    }
+
 
     public static Connection getDatabaseConnection() throws Exception{
         // Load the MySQL JDBC driver
@@ -65,4 +56,4 @@ public class Database {
 
 
 
-}
+
