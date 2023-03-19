@@ -49,7 +49,48 @@ public class StudentForm extends JFrame{
                 notice.setVisible(true);
             }
         });
+        btnCourseDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Course_Details coursedetails = new Course_Details();
+                coursedetails.setVisible(true);
+            }
+        });
+        btnTimeTable.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Student_Timetable studenttimetable = new Student_Timetable();
+                studenttimetable.setVisible(true);
+            }
+        });
+        /*btnStudentAttendance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Student_Attendance studentattendance = new Student_Attendance();
+                studentattendance.setVisible(true);
+            }
+        });
+        btnStudentResult.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Student_Marks studentmarks = new Student_Marks();
+                studentmarks.setVisible(true);
+            }
+        });*/
+        btnMedicalRecord.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                Medical_Details medicaldetails = new Medical_Details();
+                medicaldetails.setVisible(true);
+            }
+        });
     }
+
 
 
     public static void main(String[] args) {
