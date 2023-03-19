@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.AdminData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,6 +40,8 @@ public class AddAdmin  extends JFrame{
         setResizable(true);
 
         AdminData adminUser=new AdminData();
+        Security security= new Security();
+
         try {
             adminTable.setModel(adminUser.showAdmin());
         } catch (Exception e) {
@@ -50,7 +53,11 @@ public class AddAdmin  extends JFrame{
                 AdminData adminUser=new AdminData();
                 adminUser.setID(txtID.getText());
                 adminUser.setUsername(txtUsername.getText());
-                adminUser.setPassword(txtPassword.getText());
+                try {
+                    adminUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 adminUser.setFname(txtFirstName.getText());
                 adminUser.setLname(txtLastName.getText());
                 adminUser.setMobile(txtMobile.getText());
