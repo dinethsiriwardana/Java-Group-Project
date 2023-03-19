@@ -129,18 +129,9 @@ public class LectureForm extends JFrame  {
 
      public void onLoad(){
 
-
-         SwingUtilities.invokeLater(() -> {
              Notices notices = new Notices();
              JList<String> jlist = notices.main();
              list1.setModel(jlist.getModel());
-             pnlLecturer.remove(progressBar);
-             pnlLecturer.revalidate();
-             pnlLecturer.repaint();
-         });
-
-
-
 
      }
 
