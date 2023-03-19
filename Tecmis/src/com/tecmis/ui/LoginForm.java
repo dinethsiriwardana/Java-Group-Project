@@ -3,6 +3,8 @@ package com.tecmis.ui;
 import com.tecmis.database.Auth;
 import com.tecmis.database.UserLogin;
 import com.tecmis.dto.User;
+//import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerForm;
+import com.tecmis.ui.admin.AdminForm;
 import com.tecmis.ui.lecture.LectureForm;
 
 import javax.swing.*;
@@ -19,13 +21,14 @@ public class LoginForm extends JFrame {
     private JComboBox comboAccountType;
     private JButton btnReset;
     private JButton btnLogin;
-    public LoginForm(){
+
+    public LoginForm() {
         add(pnlLogin);
         setVisible(true);
         setTitle("Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(250,400);
-        setPreferredSize(new Dimension(220,400));
+        setSize(250, 400);
+        setPreferredSize(new Dimension(220, 400));
         setResizable(false);
 
 
@@ -33,67 +36,71 @@ public class LoginForm extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-            String username = txtUsername.getText();
-            String password = txtPwd.getText();
-            String acctype = comboAccountType.getModel().getSelectedItem().toString();
+                String username = txtUsername.getText();
+                String password = txtPwd.getText();
+                String acctype = comboAccountType.getModel().getSelectedItem().toString();
 
-            UserLogin login = new UserLogin();
+                UserLogin login = new UserLogin();
+
 
 //                Student
 //                Lecturer
 //                Technical Officer
 //                Admin
                 try {
-//                    boolean auth = login.userLogin(acctype,username,password);
-//                    boolean auth = login.userLogin("Lecturer","lec001","lec001");
-//                    acctype = "Lecturer";
-//                    System.out.println(auth + acctype);
-//                    if (auth && acctype == "Lecturer"){
-//                        setVisible(false);
-//                        // Create and show the LectureEditUser frame
-//                        LectureForm lectureform = new LectureForm(username);
-//                        lectureform.setVisible(true);
-//                        // When the LectureEditUser frame is closed, show the LectureForm frame again
-//                        lectureform.addWindowListener(new WindowAdapter() {
-//                            @Override
-//                            public void windowClosed(WindowEvent e) {
-//                                super.windowClosed(e);
-//                                setVisible(true);
-//                            }
-//                        });
-//                    }
+                    boolean isCorrect = login.userLogin(acctype, username, password);
+                    acctype = "Lecturer";
 
-                    // TODO - Remove this Code after Finished
+                    if (isCorrect) {
 
-                    if (acctype == "Lecturer"){
-
-                        Auth auth = Auth.getInstance();
-                        auth.setUsername("lec001");
-                        setVisible(false);
-                        // Create and show the LectureEditUser frame
-                        LectureForm lectureform = new LectureForm();
-                        lectureform.setVisible(true);
-                        // When the LectureEditUser frame is closed, show the LectureForm frame again
-                        lectureform.addWindowListener(new WindowAdapter() {
-                            @Override
-                            public void windowClosed(WindowEvent e) {
-                                super.windowClosed(e);
-                                setVisible(true);
-                            }
-                        });
-                    } else if (acctype == "Admin") {
-//                        LectureForm lectureform = new LectureForm("admin001");
-//                        lectureform.setVisible(true);
-//                        // When the LectureEditUser frame is closed, show the LectureForm frame again
-//                        lectureform.addWindowListener(new WindowAdapter() {
-//                            @Override
-//                            public void windowClosed(WindowEvent e) {
-//                                super.windowClosed(e);
-//                                setVisible(true);
-//                            }
-//                        });
-
+                        if (acctype == "Lecturer") {
+                            setVisible(false);
+                            LectureForm lectureform = new LectureForm();
+                            lectureform.setVisible(true);
+                            lectureform.addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosed(WindowEvent e) {
+                                    super.windowClosed(e);
+                                    setVisible(true);
+                                }
+                            });
+                        } else if (acctype == "Student") {
+                            setVisible(false);
+//                            LectureForm lectureform = new LectureForm();
+//                            lectureform.setVisible(true);
+//                            lectureform.addWindowListener(new WindowAdapter() {
+//                                @Override
+//                                public void windowClosed(WindowEvent e) {
+//                                    super.windowClosed(e);
+//                                    setVisible(true);
+//                                }
+//                            });
+                        } else if (acctype == "Technical Officer") {
+                            setVisible(false);
+//                            TechnicalOfficerForm technicalOfficerForm = new TechnicalOfficerForm();
+//                            technicalOfficerForm.setVisible(true);
+//                            technicalOfficerForm.addWindowListener(new WindowAdapter() {
+//                                @Override
+//                                public void windowClosed(WindowEvent e) {
+//                                    super.windowClosed(e);
+//                                    setVisible(true);
+//                                }
+//                            });
+                        }else if (acctype == "Admin") {
+                            setVisible(false);
+                            AdminForm adminForm = new AdminForm();
+                            adminForm.setVisible(true);
+                            adminForm.addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosed(WindowEvent e) {
+                                    super.windowClosed(e);
+                                    setVisible(true);
+                                }
+                            });
+                        }
                     }
+
+
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -101,9 +108,6 @@ public class LoginForm extends JFrame {
             }
         });
     }
-
-
-
 
 
 }
