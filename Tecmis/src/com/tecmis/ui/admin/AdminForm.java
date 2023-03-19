@@ -88,9 +88,8 @@ public class AdminForm extends  JFrame
                     object = new NoticeDetails();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-
                 }
-                setVisible(true);
+                object.setVisible(true);
             }
         });
         manageTimetableButton.addActionListener(new ActionListener() {
