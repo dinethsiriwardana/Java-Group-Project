@@ -100,8 +100,12 @@ public class LoginForm extends JFrame {
 
             }
         });
-    }
 
+
+    }
+    void showHome(){
+
+    }
 
 
 
