@@ -34,7 +34,7 @@ public class AddAdmin  extends JFrame{
         setVisible(true);
         setTitle("Admin !!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,1500);
+        setSize(1500,1500);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
 
