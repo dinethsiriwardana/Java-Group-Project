@@ -26,7 +26,7 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
         add(PanalTechnicalOfficer);
         setVisible(true);
         setTitle("Technical Officer Attendance Form");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(500,400);
         setPreferredSize(new Dimension(800,1600));
         setResizable(true);

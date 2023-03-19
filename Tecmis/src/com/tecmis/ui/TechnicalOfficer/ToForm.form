@@ -87,7 +87,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="6a75c" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -99,7 +99,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="1c469" class="javax.swing.JButton" binding="btnUploadMarks">
+              <component id="98e7e" class="javax.swing.JButton" binding="btnStudentEligibility">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
@@ -107,35 +107,12 @@
                 </constraints>
                 <properties>
                   <font size="18"/>
-                  <text value="Profile Update"/>
-                </properties>
-              </component>
-              <component id="665c2" class="javax.swing.JButton" binding="btnStudentDetails">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <enabled value="true"/>
-                  <font size="18"/>
-                  <text value="Timetable"/>
-                </properties>
-              </component>
-              <component id="98e7e" class="javax.swing.JButton" binding="btnStudentEligibility">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <font size="18"/>
-                  <text value="Student Eligibility"/>
+                  <text value="Attendance"/>
                 </properties>
               </component>
               <component id="cd0c1" class="javax.swing.JButton" binding="btnMedicalRecord">
                 <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="40"/>
                   </grid>
                 </constraints>
@@ -144,20 +121,9 @@
                   <text value="Medical Record"/>
                 </properties>
               </component>
-              <component id="98ce8" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <icon value="com/tecmis/assets/icon/Profile.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
               <component id="18199" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
@@ -168,23 +134,12 @@
               </component>
               <component id="93c8f" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
                 <properties>
                   <icon value="com/tecmis/assets/icon/icons8-medical-history-40.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="3c166" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <icon value="com/tecmis/assets/icon/Manage-Materials.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -221,7 +176,7 @@
           </scrollpane>
         </children>
       </grid>
-      <grid id="29d7c" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="29d7c" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="0" bottom="10" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -240,7 +195,7 @@
               <text value="Welcome, "/>
             </properties>
           </component>
-          <component id="4ea6" class="javax.swing.JLabel">
+          <component id="4ea6" class="javax.swing.JLabel" binding="setting">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -254,6 +209,15 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
+          <component id="e8200" class="javax.swing.JLabel" binding="btnlogout">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-logout-rounded-30.png"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>
