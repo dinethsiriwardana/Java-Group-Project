@@ -22,6 +22,7 @@ public class StudentForm extends JFrame{
     private JButton btnMedicalRecord;
     private JPanel pnlStudent;
     private JLabel lblWelcomText;
+    private JButton noticeButton;
     private JList list1;
     private JLabel lblNotices;
 
@@ -38,6 +39,14 @@ public class StudentForm extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+            }
+        });
+        noticeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                StudentNotice notice = new StudentNotice();
+                notice.setVisible(true);
             }
         });
     }

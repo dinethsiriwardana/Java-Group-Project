@@ -1,6 +1,8 @@
 package com.tecmis.ui.Student;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Student_Timetable {
     private JLabel THeader;
@@ -14,48 +16,47 @@ public class Student_Timetable {
     private JButton downloadButton4;
 
 
-    downloadButton1.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            byte[] pdfData = retrievePdfFromDatabase("Level1");
-
-
-            savePdfToFile(pdfData, "Level1.pdf");
-        }
-    });
-
-    downloadButton2.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            byte[] pdfData = retrievePdfFromDatabase("Level2");
+   /* downloadButton1.addActionListener(new public Student_Timetable() {
+        downloadButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                byte[] pdfData = retrievePdfFromDatabase("Level1");
 
 
-            savePdfToFile(pdfData, "Level2.pdf");
-        }
-    });
+                savePdfToFile(pdfData, "Level1.pdf");
+            }
+        });
 
-    downloadButton3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            byte[] pdfData = retrievePdfFromDatabase("Level3");
-
-
-            savePdfToFile(pdfData, "Level3.pdf");
-        }
-    });
-
-    downloadButton4.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            byte[] pdfData = retrievePdfFromDatabase("Level4");
+        downloadButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                byte[] pdfData = retrievePdfFromDatabase("Level2");
 
 
-            savePdfToFile(pdfData, "Level4.pdf");
-        }
-    });
+                savePdfToFile(pdfData, "Level2.pdf");
+            }
+        });
+
+        downloadButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                byte[] pdfData = retrievePdfFromDatabase("Level3");
+
+
+                savePdfToFile(pdfData, "Level3.pdf");
+            }
+        });
+
+        downloadButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                byte[] pdfData = retrievePdfFromDatabase("Level4");
+
+
+                savePdfToFile(pdfData, "Level4.pdf");
+            }
+        });
+    }
+*/
 
 }
