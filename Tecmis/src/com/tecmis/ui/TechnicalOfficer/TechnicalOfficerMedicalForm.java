@@ -29,7 +29,7 @@ public class TechnicalOfficerMedicalForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
         setPreferredSize(new Dimension(800, 1600));
-        setResizable(false);
+        setResizable(true);
 
         conn = Database.getDatabaseConnection();
 

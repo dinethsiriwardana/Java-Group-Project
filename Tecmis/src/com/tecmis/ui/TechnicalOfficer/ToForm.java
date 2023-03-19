@@ -23,11 +23,11 @@ public class ToForm extends JFrame{
     public ToForm() {
         add(pnlLecturer);
         setVisible(true);
-        setTitle("Lecturer");
+        setTitle("Tecnical Officer Notice");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
-        setResizable(false);
+        setResizable(true);
 
 
     }

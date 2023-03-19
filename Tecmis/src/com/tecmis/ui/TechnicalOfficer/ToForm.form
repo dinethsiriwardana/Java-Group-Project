@@ -107,7 +107,7 @@
                 </constraints>
                 <properties>
                   <font size="18"/>
-                  <text value="Upload Marks"/>
+                  <text value="Profile Update"/>
                 </properties>
               </component>
               <component id="665c2" class="javax.swing.JButton" binding="btnStudentDetails">
@@ -151,7 +151,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <icon value="com/tecmis/assets/icon/upload_marks.png"/>
+                  <icon value="com/tecmis/assets/icon/Profile.png"/>
                   <text value=""/>
                 </properties>
               </component>
