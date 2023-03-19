@@ -1,320 +1,344 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.tecmis.ui.admin.AdminForm">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="537" height="763"/>
+      <xy x="20" y="20" width="753" height="763"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-4271392"/>
+      <foreground color="-4271392"/>
+    </properties>
     <border type="none"/>
     <children>
-      <grid id="3904a" binding="pnlAdmin" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <vspacer id="f7fa9">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+      </vspacer>
+      <grid id="a9ec5" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="10" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4271392"/>
+          <foreground color="-4271392"/>
+        </properties>
         <border type="none"/>
         <children>
-          <grid id="1c70" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="10" left="10" bottom="10" right="10"/>
+          <component id="c12de" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="15" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-add-user-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="b783d" class="javax.swing.JButton" binding="addAdminButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Add Admin"/>
+            </properties>
+          </component>
+          <component id="629b4" class="javax.swing.JButton" binding="manageCourseButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Manage Course"/>
+            </properties>
+          </component>
+          <component id="77e8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/Manage-Materials.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="67799" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="15" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-lecturer-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="2383f" class="javax.swing.JButton" binding="addLecturerButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Add Lecturer"/>
+            </properties>
+          </component>
+          <component id="c1efc" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-notice-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="fc305" class="javax.swing.JButton" binding="manageNoticeButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Manage Notice"/>
+            </properties>
+          </component>
+          <component id="37e5f" class="javax.swing.JButton" binding="addTechnicalOfficerButton" default-binding="true">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Add Technical Officer"/>
+            </properties>
+          </component>
+          <component id="6eb18" class="javax.swing.JButton" binding="manageTimetableButton" default-binding="true">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Manage Timetable"/>
+            </properties>
+          </component>
+          <component id="41f1" class="javax.swing.JButton" binding="addStudentButton" default-binding="true">
+            <constraints>
+              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="31"/>
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Add Student"/>
+            </properties>
+          </component>
+          <vspacer id="6e4e0">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="63220" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-timetable-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="7108f" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="15" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-add-technicalofficer-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="1acd" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="15" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-person-student-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="9e19" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="100"/>
+            <maximum-size width="-1" height="150"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-4271392"/>
+        </properties>
+        <border type="line">
+          <color color="-13746092"/>
+        </border>
+        <children>
+          <component id="fd9f8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/LOGO_OF_RUHUNA.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <grid id="e816f" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-4271392"/>
             </properties>
             <border type="none"/>
             <children>
-              <grid id="9e19" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="10" left="10" bottom="10" right="10"/>
+              <component id="81f2e" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="100"/>
-                    <maximum-size width="-1" height="150"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4271392"/>
-                </properties>
-                <border type="line">
-                  <color color="-13746092"/>
-                </border>
-                <children>
-                  <component id="fd9f8" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/LOGO_OF_RUHUNA.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <grid id="e816f" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-4271392"/>
-                    </properties>
-                    <border type="none"/>
-                    <children>
-                      <component id="81f2e" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <background color="-53151"/>
-                          <font size="48"/>
-                          <foreground color="-53151"/>
-                          <text value="TECMIS"/>
-                        </properties>
-                      </component>
-                      <component id="616bf" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <font size="18"/>
-                          <foreground color="-53151"/>
-                          <text value="Faculty Of Technology "/>
-                        </properties>
-                      </component>
-                      <component id="4d797" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <font size="18"/>
-                          <foreground color="-53151"/>
-                          <text value="University Of Ruhuna"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
-                </children>
-              </grid>
-              <grid id="a9ec5" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="10" right="0"/>
-                <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-4271392"/>
-                  <foreground color="-4271392"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="c12de" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-add-user-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="b783d" class="javax.swing.JButton" binding="addAdminButton" default-binding="true">
-                    <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Add Admin"/>
-                    </properties>
-                  </component>
-                  <component id="629b4" class="javax.swing.JButton" binding="manageCourseButton" default-binding="true">
-                    <constraints>
-                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Manage Course"/>
-                    </properties>
-                  </component>
-                  <component id="77e8" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/Manage-Materials.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="67799" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-lecturer-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="2383f" class="javax.swing.JButton" binding="addLecturerButton" default-binding="true">
-                    <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Add Lecturer"/>
-                    </properties>
-                  </component>
-                  <component id="c1efc" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-notice-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="fc305" class="javax.swing.JButton" binding="manageNoticeButton" default-binding="true">
-                    <constraints>
-                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Manage Notice"/>
-                    </properties>
-                  </component>
-                  <component id="37e5f" class="javax.swing.JButton" binding="addTechnicalOfficerButton" default-binding="true">
-                    <constraints>
-                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Add Technical Officer"/>
-                    </properties>
-                  </component>
-                  <component id="6eb18" class="javax.swing.JButton" binding="manageTimetableButton" default-binding="true">
-                    <constraints>
-                      <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Manage Timetable"/>
-                    </properties>
-                  </component>
-                  <component id="41f1" class="javax.swing.JButton" binding="addStudentButton" default-binding="true">
-                    <constraints>
-                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Add Student"/>
-                    </properties>
-                  </component>
-                  <vspacer id="6e4e0">
-                    <constraints>
-                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
-                  <component id="63220" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-timetable-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="7108f" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-add-technicalofficer-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <component id="1acd" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-person-student-40.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-              <hspacer id="3e753">
-                <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </hspacer>
-              <grid id="cdd15" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="10" left="10" bottom="10" right="10"/>
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-13746092"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="13581" class="javax.swing.JLabel" binding="lblWelcomText">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font size="16"/>
-                      <text value="Welcome, "/>
-                    </properties>
-                  </component>
-                  <component id="55a9" class="javax.swing.JLabel" binding="lblSetting">
-                    <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="com/tecmis/assets/icon/icons8-gear-30.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <hspacer id="8255b">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                </children>
-              </grid>
-              <hspacer id="c317b">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </hspacer>
-              <component id="688c5" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="Fira Code" size="22" style="1"/>
-                  <foreground color="-15659762"/>
-                  <text value="Admin Dashboard"/>
+                  <background color="-53151"/>
+                  <font size="48"/>
+                  <foreground color="-53151"/>
+                  <text value="TECMIS"/>
                 </properties>
               </component>
-              <component id="95332" class="javax.swing.JLabel">
+              <component id="616bf" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="com/tecmis/assets/icon/icons8-add-administrator-40.png"/>
-                  <text value=""/>
+                  <font size="18"/>
+                  <foreground color="-53151"/>
+                  <text value="Faculty Of Technology "/>
                 </properties>
               </component>
-              <vspacer id="ba8e6">
+              <component id="4d797" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-              </vspacer>
+                <properties>
+                  <font size="18"/>
+                  <foreground color="-53151"/>
+                  <text value="University Of Ruhuna"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
       </grid>
-      <hspacer id="6fb5f">
+      <grid id="1c70" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-      </hspacer>
-      <vspacer id="f7fa9">
+        <properties>
+          <background color="-4271392"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <hspacer id="3e753">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="c317b">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="688c5" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Fira Code" size="22" style="1"/>
+              <foreground color="-15659762"/>
+              <text value="Admin Dashboard"/>
+            </properties>
+          </component>
+          <vspacer id="ba8e6">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="95332" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="com/tecmis/assets/icon/icons8-add-administrator-40.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <hspacer id="7b9c3">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="90cb7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-      </vspacer>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="cdd15" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="10" bottom="10" right="10"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13746092"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="13581" class="javax.swing.JLabel" binding="lblWelcomText">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <text value="Welcome, "/>
+                </properties>
+              </component>
+              <component id="55a9" class="javax.swing.JLabel" binding="lblSetting">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="com/tecmis/assets/icon/icons8-gear-30.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <hspacer id="8255b">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
