@@ -46,9 +46,6 @@ public class ManageSubject {
         this.end_exam_p = end_exam_p;
     }
 
-
-
-
     public double[] getQuiz() {
         return quiz;
     }
@@ -85,12 +82,12 @@ public class ManageSubject {
 
 
 
-    public double getQuizTotal(int no_of_total_quiz,int no_of_counted_quiz){
-       if (quiz.length == no_of_total_quiz){
+    public double getQuizTotal(int No_of_Quiz,int Quiz_to_End){
+       if (quiz.length == No_of_Quiz){
             Double[] iObj = Arrays.stream(quiz).boxed().toArray(Double[]::new);
             Arrays.sort(iObj, Comparator.reverseOrder());
             double[] sortedquiz = Arrays.stream(iObj).mapToDouble(Double::doubleValue).toArray();
-            for(int i = 0; i < no_of_counted_quiz;i++){
+            for(int i = 0; i < Quiz_to_End;i++){
                 quizfullmarks = quizfullmarks + sortedquiz[i];
             }
         }else {
@@ -99,13 +96,13 @@ public class ManageSubject {
         return quizfullmarks;
     }
 
-    public double getAssessmentTotal(int no_of_total_assessment,int no_of_counted_assessment){
+    public double getAssessmentTotal(int No_of_Assessments,int Assessments_to_End){
 
-        if (assessment.length == no_of_total_assessment){
+        if (assessment.length == No_of_Assessments){
             Double[] iObj = Arrays.stream(assessment).boxed().toArray(Double[]::new);
             Arrays.sort(iObj, Comparator.reverseOrder());
             double[] sortedquiz = Arrays.stream(iObj).mapToDouble(Double::doubleValue).toArray();
-            for(int i = 0; i < no_of_counted_assessment;i++){
+            for(int i = 0; i < Assessments_to_End;i++){
                 assessmentfullmarks = assessmentfullmarks + sortedquiz[i];
             }
         }else {
