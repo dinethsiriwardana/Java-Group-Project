@@ -176,7 +176,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="d741d" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="d741d" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -189,7 +189,7 @@
           <grid id="88469" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-4271392"/>
@@ -231,6 +231,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Manage Course"/>
                 </properties>
               </component>
@@ -242,6 +243,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Manage Notice"/>
                 </properties>
               </component>
@@ -253,6 +255,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Manage Timetable"/>
                 </properties>
               </component>
@@ -290,6 +293,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Add Admin"/>
                 </properties>
               </component>
@@ -301,6 +305,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Add Lecturer"/>
                 </properties>
               </component>
@@ -312,6 +317,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Add Technical Officer"/>
                 </properties>
               </component>
@@ -323,6 +329,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <font size="16" style="1"/>
                   <text value="Add Student"/>
                 </properties>
               </component>
@@ -367,9 +374,19 @@
           </hspacer>
           <hspacer id="e6983">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
+          <vspacer id="36a25">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="fd2f6">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
     </children>

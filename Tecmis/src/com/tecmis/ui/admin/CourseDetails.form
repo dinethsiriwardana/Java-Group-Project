@@ -282,7 +282,6 @@
                 </constraints>
                 <properties>
                   <model>
-                    <item value="0"/>
                     <item value="1"/>
                     <item value="2"/>
                     <item value="3"/>
@@ -299,7 +298,6 @@
                 </constraints>
                 <properties>
                   <model>
-                    <item value="0"/>
                     <item value="1"/>
                     <item value="2"/>
                   </model>
