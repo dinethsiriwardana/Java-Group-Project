@@ -1,42 +1,61 @@
 package com.tecmis.ui.Student;
 
+import com.tecmis.database.Auth;
+import com.tecmis.database.GetAttendance;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.*;
 
-public class Student_Attendance {
+public class Student_Attendance extends JFrame{
     private JLabel HeaderAttendance;
-    private JLabel lblStuID;
     private JTextField textStuID;
     private JButton searchButton;
     private JTextArea textArea1;
+    private JPanel pnlStudentAttendance;
+    private JTable table1;
+    private JComboBox comboType;
+    private JComboBox comboSubject;
 
-
+    private static String username;
 
 
 
     public Student_Attendance() {
-        searchButton.addActionListener(e -> {
-            String studentID = textStuID.getText();
-            String attendanceDetails = getAttendanceDetails(studentID);
-            textArea1.setText(attendanceDetails);
-        });
+
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+
+        add(pnlStudentAttendance);
+        setVisible(true);
+        setTitle("Student !!!");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(550,600);
+        setPreferredSize(new Dimension(220,400));
+        setResizable(true);
+
+
+        GetAttendance getattendance = new GetAttendance();
+        System.out.println("Getting Data");
+        try {
+
+            String filter =  comboType.getModel().getSelectedItem().toString();
+            String search = "tg001";
+            String subject = comboSubject.getModel().getSelectedItem().toString();
+
+            DefaultTableModel model = getattendance.getAttendance(filter,search,subject);
+            table1.setModel(model);
+
+        }catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
-    private String getAttendanceDetails(String studentID) {
-        String attendanceDetails = "";
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://191.96.56.1:3306/u812963415_javag2", "u812963415_javag2", "qEc:0f=5");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM attendance WHERE student_id='" + studentID + "'");
-            while (rs.next()) {
-                String date = rs.getString("date");
-                String status = rs.getString("status");
-                attendanceDetails += date + ": " + status + "\n";
-            }
-            conn.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error retrieving attendance details: " + ex.getMessage());
-        }
-        return attendanceDetails;
+    public static void main(String[] args) {
+        Student_Attendance studentAttendance = new Student_Attendance();
     }
+
+
+
 }

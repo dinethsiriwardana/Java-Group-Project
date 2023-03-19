@@ -4,6 +4,8 @@ public class Auth {
     private static Auth instance;
     private String username;
 
+    private String SID;
+
     private Auth() {
         // Private constructor to prevent external instantiation
     }
@@ -21,5 +23,13 @@ public class Auth {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setSID(String SID) {
+        this.SID = SID;
+    }
+
+    public String getSID() {
+        return SID;
     }
 }
