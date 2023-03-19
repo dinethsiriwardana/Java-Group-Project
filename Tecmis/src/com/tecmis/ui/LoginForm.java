@@ -41,7 +41,7 @@ public class LoginForm extends JFrame {
                 String acctype = comboAccountType.getModel().getSelectedItem().toString();
 
                 UserLogin login = new UserLogin();
-                Auth auth = Auth.getInstance();
+
 
 //                Student
 //                Lecturer
@@ -50,7 +50,7 @@ public class LoginForm extends JFrame {
                 try {
                     boolean isCorrect = login.userLogin(acctype, username, password);
                     acctype = "Lecturer";
-                    System.out.println(auth + acctype);
+
                     if (isCorrect) {
 
                         if (acctype == "Lecturer") {

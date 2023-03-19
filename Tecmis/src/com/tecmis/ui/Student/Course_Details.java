@@ -20,7 +20,7 @@ public class Course_Details  extends JFrame{
         setVisible(true);
         setTitle("Student !!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1500,1500);
+        setSize(550,500);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
         course=this;
