@@ -3,6 +3,7 @@ package com.tecmis.ui.admin;
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
 import com.tecmis.dto.TechnicalOfficerData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +44,7 @@ public class AddLecturerForm extends JFrame {
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         LecturerData lecturerUser=new LecturerData();
+        Security security=new Security();
         try {
             lecturerTable.setModel(lecturerUser.showLecturer());
         } catch (Exception e) {
@@ -64,7 +66,12 @@ public class AddLecturerForm extends JFrame {
                 lecturerUser.setDom(txtDOB.getText());
                 lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
-                lecturerUser.setPassword(txtPassword.getText());
+
+                try {
+                    lecturerUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 lecturerUser.setUsername(txtUsername.getText());
 
 
