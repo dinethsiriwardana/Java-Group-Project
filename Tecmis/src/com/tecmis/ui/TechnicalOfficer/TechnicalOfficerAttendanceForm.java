@@ -1,66 +1,171 @@
 package com.tecmis.ui.TechnicalOfficer;
 
+import com.tecmis.database.Database;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class TechnicalOfficerAttendanceForm extends JFrame {
     private JPanel PanalTechnicalOfficer;
-    private JTextField textField1;
+    private JTextField txtSid;
     private JButton searchButton;
     private JButton addButton;
     private JButton updateButton;
+    private JComboBox comboBox1;
+    private JTextField txtDate;
+    private JTextField txtAttend;
+    private JTextField txtexDetails;
     private JTextArea textArea1;
+    Connection conn;
 
-    public TechnicalOfficerAttendanceForm(){
+
+    public TechnicalOfficerAttendanceForm() throws Exception {
         add(PanalTechnicalOfficer);
         setVisible(true);
         setTitle("Technical Officer Attendance Form");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,600);
+        setSize(500,400);
         setPreferredSize(new Dimension(800,1600));
         setResizable(false);
 
-        searchButton.addActionListener(e -> {
-            String studentId = textField1.getText().trim();
-            if (studentId.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please enter a student id");
-                return;
-            }
+        conn = Database.getDatabaseConnection();
 
-            try {
-                // Establish database connection
-                String dbUrl = "jdbc:mysql://localhost:3306/mydb";
-                String dbUsername = "rootu812963415_javag2";
-                String dbPassword = "qEc:0f=5";
-                Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
 
-                // Execute SQL query to retrieve attendance data for the student id
-                String query = "SELECT * FROM attendance WHERE student_id=?";
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, studentId);
-                ResultSet resultSet = statement.executeQuery();
+        updateButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    String table;
 
-                // Display the retrieved attendance data in the UI
-                StringBuilder attendanceData = new StringBuilder();
-                while (resultSet.next()) {
-                    String date = resultSet.getString("date");
-                    String status = resultSet.getString("status");
-                    attendanceData.append(date).append(": ").append(status).append("\n");
+                    switch (comboBox1.getModel().getSelectedItem().toString()) {
+                        case "ICT01 T":
+                            table = "ICT01_t_attendance";
+                            break;
+                        case "ICT02 T":
+                            table = "ICT02_t_attendance";
+                            break;
+                        case "ICT02 P":
+                            table = "ICT02_p_attendance";
+                            break;
+                        case "ICT03 T":
+                            table = "ICT03_t_attendance";
+                            break;
+                        case "ICT03 P":
+                            table = "ICT03_p_attendance";
+                            break;
+                        case "ICT04 T":
+                            table = "ICT04_t_attendance";
+                            break;
+                        case "ICT04 P":
+                            table = "ICT04_p_attendance";
+                            break;
+                        default:
+                            table = "invalid option";
+                            break;
+                    }
+                    String sql = "UPDATE " + table + " SET attend = "+txtAttend.getText()+", exDetails = '' WHERE SID = '" + txtSid.getText() + "' AND date = '" + txtDate.getText() + "'";
+                    System.out.println(sql);
+                    Statement stmt = conn.createStatement();
+                    int rowsAffected = stmt.executeUpdate(sql);
+                    System.out.println("Rows updated: " + rowsAffected);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
-                textArea1.setText(attendanceData.toString());
+            }
+        });
+        addButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    String table;
 
-                // Close database connection
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Failed to retrieve attendance data from the database");
+                    switch (comboBox1.getModel().getSelectedItem().toString()) {
+                        case "ICT01 T":
+                            table = "ICT01_t_attendance";
+                            break;
+                        case "ICT02 T":
+                            table = "ICT02_t_attendance";
+                            break;
+                        case "ICT02 P":
+                            table = "ICT02_p_attendance";
+                            break;
+                        case "ICT03 T":
+                            table = "ICT03_t_attendance";
+                            break;
+                        case "ICT03 P":
+                            table = "ICT03_p_attendance";
+                            break;
+                        case "ICT04 T":
+                            table = "ICT04_t_attendance";
+                            break;
+                        case "ICT04 P":
+                            table = "ICT04_p_attendance";
+                            break;
+                        default:
+                            table = "invalid option";
+                            break;
+                    }
+                    String sql = "Insert Into " + table + " VALUE ('" + txtSid.getText() + "','" + txtDate.getText() + "'," +txtAttend.getText()+",'"+txtexDetails.getText()+"')";
+                    System.out.println(sql);
+                    Statement stmt = conn.createStatement();
+                    int rowsAffected = stmt.executeUpdate(sql);
+                    System.out.println("Rows updated: " + rowsAffected);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        updateButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    String table;
+
+                    switch (comboBox1.getModel().getSelectedItem().toString()) {
+                        case "ICT01 T":
+                            table = "ICT01_t_attendance";
+                            break;
+                        case "ICT02 T":
+                            table = "ICT02_t_attendance";
+                            break;
+                        case "ICT02 P":
+                            table = "ICT02_p_attendance";
+                            break;
+                        case "ICT03 T":
+                            table = "ICT03_t_attendance";
+                            break;
+                        case "ICT03 P":
+                            table = "ICT03_p_attendance";
+                            break;
+                        case "ICT04 T":
+                            table = "ICT04_t_attendance";
+                            break;
+                        case "ICT04 P":
+                            table = "ICT04_p_attendance";
+                            break;
+                        default:
+                            table = "invalid option";
+                            break;
+                    }
+                    String sql = "UPDATE " + table + " SET attend = "+txtAttend.getText()+", exDetails = '' WHERE SID = '" + txtSid.getText() + "' AND date = '" + txtDate.getText() + "'";
+                    System.out.println(sql);
+                    Statement stmt = conn.createStatement();
+                    int rowsAffected = stmt.executeUpdate(sql);
+                    System.out.println("Rows updated: " + rowsAffected);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        TechnicalOfficerAttendanceForm technicalOfficerAttendanceForm = new TechnicalOfficerAttendanceForm();
     }
 }

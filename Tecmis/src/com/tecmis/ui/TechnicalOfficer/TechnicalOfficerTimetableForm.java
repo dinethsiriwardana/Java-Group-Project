@@ -8,6 +8,11 @@ import java.sql.*;
 
 public class TechnicalOfficerTimetableForm extends JFrame {
     private JPanel PanalTechnicalOfficer;
+    private JButton downloadButton2;
+    private JButton downloadButton3;
+    private JButton downloadButton1;
+    private JButton downloadButton;
+    private JComboBox comboBox1;
     private JTextField textField1;
     private JButton searchButton;
     private JButton addButton;

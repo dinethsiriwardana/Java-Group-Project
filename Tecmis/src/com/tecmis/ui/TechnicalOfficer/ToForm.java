@@ -29,12 +29,7 @@ public class ToForm extends JFrame{
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
 
-        btnManageMaterials.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
+
     }
 
 
