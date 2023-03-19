@@ -54,9 +54,9 @@ public class StudentForm extends JFrame{
 
     public static void main(String[] args) {
         StudentForm studentForm = new StudentForm();
-        Notices notices = new Notices();
+        /*Notices notices = new Notices();
         JList<String> jlist = notices.main();
-        studentForm.list1.setModel(jlist.getModel());
+        studentForm.list1.setModel(jlist.getModel());*/
 
     }
 

@@ -1,38 +1,65 @@
 package com.tecmis.ui.Student;
 
+import com.tecmis.database.Database;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.*;
 
 
-public class Course_Details {
+public class Course_Details  extends JFrame{
     private JLabel lblcourseHeader;
-    private JTextArea textArea1;
+    private JTable courseTable;
+    private JPanel pnlCourse;
 
+    private static final String[] course_columns = {"Course_ID", "Course_Name", "Credit"};
+    static Course_Details course;
     public Course_Details() {
-
-        String courseDetails = getCourseDetails();
-        textArea1.setText(courseDetails);
-    }
-
-    private String getCourseDetails() {
-        String courseDetails = "";
+        add(pnlCourse);
+        setVisible(true);
+        setTitle("Student !!!");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(1500,1500);
+        setPreferredSize(new Dimension(220,400));
+        setResizable(true);
+        course=this;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://191.96.56.1:3306/u812963415_javag2", "u812963415_javag2", "qEc:0f=5");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM course");
-            while (rs.next()) {
-                String CourseID = rs.getString("Course_ID");
-                String CourseName = rs.getString("Course_name");
-                Integer Credit  = rs.getInt("Credit");
-                String Dep_ID = rs.getString("Dep_ID");
-                String Lec_ID = rs.getString("Lec_ID");
+            courseTable.setModel(course.showCourse());
 
-                courseDetails += "Course ID: " + CourseID + "\nCourse Name: " + CourseName + "\nCredit: " + Credit + "\nDep_ID: " + Dep_ID + "\nLec_ID: " + Lec_ID + "\n\n";
-            }
-            conn.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error retrieving course details: " + ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return courseDetails;
+
     }
-}
+    public static DefaultTableModel showCourse() throws Exception {
+
+
+        Connection conn = Database.getDatabaseConnection();
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_columns) + " FROM Course");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        DefaultTableModel model = new DefaultTableModel(course_columns, 0);
+
+        while (rs.next()) {
+            Object[] row = new Object[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                row[i - 1] = rs.getObject(i);
+            }
+            model.addRow(row);
+        }
+        return model;
+
+    }
+
+        public static void main(String[] args) {
+        Course_Details course=new Course_Details();
+    }
+
+
+    }
+

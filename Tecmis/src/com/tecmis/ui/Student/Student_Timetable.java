@@ -1,10 +1,11 @@
 package com.tecmis.ui.Student;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Student_Timetable {
+public class Student_Timetable extends JFrame{
     private JLabel THeader;
     private JLabel lbl1;
     private JButton downloadButton1;
@@ -14,49 +15,21 @@ public class Student_Timetable {
     private JButton downloadButton3;
     private JLabel lbl4;
     private JButton downloadButton4;
+    private JPanel pnlTimetable;
 
 
-   /* downloadButton1.addActionListener(new public Student_Timetable() {
-        downloadButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                byte[] pdfData = retrievePdfFromDatabase("Level1");
+    public Student_Timetable() {
+        add(pnlTimetable);
+        setVisible(true);
+        setTitle("Student !!!");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(1500,1500);
+        setPreferredSize(new Dimension(220,400));
+        setResizable(true);
 
-
-                savePdfToFile(pdfData, "Level1.pdf");
-            }
-        });
-
-        downloadButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                byte[] pdfData = retrievePdfFromDatabase("Level2");
-
-
-                savePdfToFile(pdfData, "Level2.pdf");
-            }
-        });
-
-        downloadButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                byte[] pdfData = retrievePdfFromDatabase("Level3");
-
-
-                savePdfToFile(pdfData, "Level3.pdf");
-            }
-        });
-
-        downloadButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                byte[] pdfData = retrievePdfFromDatabase("Level4");
-
-
-                savePdfToFile(pdfData, "Level4.pdf");
-            }
-        });
     }
-*/
 
+    public static void main(String[] args) {
+        Student_Timetable timetable=new Student_Timetable();
+    }
 }
