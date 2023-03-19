@@ -16,9 +16,8 @@ public class Security {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         byte[] encryptedDataByte = cipher.doFinal(encryption.getBytes("UTF-8"));
-        String encryptedData = Base64.getEncoder().encodeToString(encryptedDataByte);
 
-        return encryptedData;
+        return Base64.getEncoder().encodeToString(encryptedDataByte);
     }
     private String decryption(String encryptedData) throws Exception {
         byte[] key = "tecmisjavagroup2".getBytes("UTF-8");
@@ -28,9 +27,8 @@ public class Security {
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
         byte[] encryptedDataByte = Base64.getDecoder().decode(encryptedData);
         byte[] decryptedDataByte = cipher.doFinal(encryptedDataByte);
-        String decryptedData = new String(decryptedDataByte, "UTF-8");
 
-        return decryptedData;
+        return new String(decryptedDataByte, "UTF-8");
     }
 }
 
