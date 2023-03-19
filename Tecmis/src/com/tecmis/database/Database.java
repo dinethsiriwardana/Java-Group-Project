@@ -18,16 +18,7 @@ public class Database {
 
 
 
-    public static void closeConnection() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            conn = null;
-        }
-    }
+
 
        }
 

@@ -61,6 +61,7 @@ public class ManageUsers implements ManageUserInterface{
             Connection conn = Database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
+            System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
