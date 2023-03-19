@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 
 public class AddStudent extends JFrame{
-    private JPanel pnlUser;
     private JTextField txtID;
     private JTextField txtFirstName;
     private JTextField txtLastName;

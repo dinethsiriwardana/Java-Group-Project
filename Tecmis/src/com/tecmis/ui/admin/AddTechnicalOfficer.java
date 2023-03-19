@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddTechnicalOfficer extends JFrame{
-    private JPanel pnlUser;
     private JTextField txtID;
     private JTextField txtFirstName;
     private JTextField txtLastName;

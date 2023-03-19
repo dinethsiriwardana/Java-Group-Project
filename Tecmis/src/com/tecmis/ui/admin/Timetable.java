@@ -15,7 +15,6 @@ import java.sql.SQLException;
 
 
 public class Timetable extends JFrame {
-    private JPanel pnlUser;
     private JTextField txtTime_ID;
     private JButton addButton;
     private JButton deleteButton;
