@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.StudentData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +42,7 @@ public class AddStudent extends JFrame{
     setPreferredSize(new Dimension(220,400));
     setResizable(true);
     StudentData studentUser=new StudentData();
+    Security security=new Security();
 
         try {
             studentTable.setModel(studentUser.showStudent());
@@ -54,7 +56,11 @@ public class AddStudent extends JFrame{
             StudentData studentUser=new StudentData();
             studentUser.setId(txtID.getText());
             studentUser.setUserName(txtUserName.getText());
-            studentUser.setPassword(txtPassword.getText());
+            try {
+                studentUser.setPassword(security.encryption(txtPassword.getText()));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             studentUser.setFirstName(txtFirstName.getText());
             studentUser.setLastName(txtLastName.getText());
             studentUser.setMobile(txtMobile.getText());

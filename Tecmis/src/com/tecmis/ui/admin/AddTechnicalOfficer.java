@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.TechnicalOfficerData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,7 @@ public class AddTechnicalOfficer extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(true);
         TechnicalOfficerData toUser=new TechnicalOfficerData();
+        Security security=new Security();
         try {
             toTable.setModel(toUser.showTechnicalOfficer());
         } catch (Exception e) {
@@ -49,7 +51,11 @@ public class AddTechnicalOfficer extends JFrame{
                 TechnicalOfficerData toUser=new TechnicalOfficerData();
                 toUser.setId(txtID.getText());
                 toUser.setUserName(txtUserName.getText());
-                toUser.setPassword(txtPassword.getText());
+                try {
+                    toUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 toUser.setFirstName(txtFirstName.getText());
                 toUser.setLastName(txtLastName.getText());
                 toUser.setMobile(txtMobile.getText());
