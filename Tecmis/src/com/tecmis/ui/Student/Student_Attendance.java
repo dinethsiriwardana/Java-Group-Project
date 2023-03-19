@@ -6,7 +6,8 @@ import com.tecmis.database.GetAttendance;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Student_Attendance extends JFrame{
     private JLabel HeaderAttendance;
@@ -17,6 +18,7 @@ public class Student_Attendance extends JFrame{
     private JTable table1;
     private JComboBox comboType;
     private JComboBox comboSubject;
+    private JButton SEARCHButton;
 
     private static String username;
 
@@ -37,19 +39,26 @@ public class Student_Attendance extends JFrame{
 
 
         GetAttendance getattendance = new GetAttendance();
-        System.out.println("Getting Data");
-        try {
 
-            String filter =  comboType.getModel().getSelectedItem().toString();
-            String search = "tg001";
-            String subject = comboSubject.getModel().getSelectedItem().toString();
+        SEARCHButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println("Getting Data");
+                try {
 
-            DefaultTableModel model = getattendance.getAttendance(filter,search,subject);
-            table1.setModel(model);
+                    String filter =  comboType.getModel().getSelectedItem().toString();
+                    String search = auth.getSID();
+                    String subject = comboSubject.getModel().getSelectedItem().toString();
 
-        }catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
+                    DefaultTableModel model = getattendance.getAttendance(filter,search,subject);
+                    table1.setModel(model);
+
+                }catch (Exception exception) {
+                    System.out.println(exception.getMessage());
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
