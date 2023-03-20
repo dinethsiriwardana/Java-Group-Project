@@ -33,6 +33,7 @@ public class StudentForm extends JFrame{
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
+        onLoad();
 
         btnTimeTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -40,14 +41,7 @@ public class StudentForm extends JFrame{
                 super.mouseClicked(e);
             }
         });
-        noticeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                StudentNotice notice = new StudentNotice();
-                notice.setVisible(true);
-            }
-        });
+
         btnCourseDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -181,6 +175,14 @@ public class StudentForm extends JFrame{
                 }
             }
         });
+    }
+
+    public void onLoad(){
+
+        Notices notices = new Notices();
+        JList<String> jlist = notices.main();
+        list1.setModel(jlist.getModel());
+
     }
 
 
