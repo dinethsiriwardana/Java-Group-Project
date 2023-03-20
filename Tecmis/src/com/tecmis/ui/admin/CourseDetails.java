@@ -23,6 +23,7 @@ public class CourseDetails extends JFrame {
 
     private JComboBox txtQuiz;
     private JComboBox txtAsses;
+    private JButton backButton;
 
 
     public CourseDetails() throws Exception {
@@ -189,6 +190,14 @@ public class CourseDetails extends JFrame {
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

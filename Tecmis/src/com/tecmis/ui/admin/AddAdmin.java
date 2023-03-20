@@ -29,6 +29,7 @@ public class AddAdmin  extends JFrame{
     private JTextField txtAdminRole;
     private JButton SEARCHButton;
     private JTable adminTable;
+    private JButton backButton;
 
     public  AddAdmin(){
         add(pnlAdmin);
@@ -223,6 +224,14 @@ public class AddAdmin  extends JFrame{
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

@@ -31,6 +31,7 @@ public class AddStudent extends JFrame{
     private JButton searchButton;
     private JComboBox txtDepartment;
     private JTable studentTable;
+    private JButton backButton;
 
 
     public AddStudent(){
@@ -237,6 +238,14 @@ public class AddStudent extends JFrame{
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

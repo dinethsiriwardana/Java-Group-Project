@@ -2,7 +2,6 @@ package com.tecmis.ui.admin;
 
 
 
-import com.tecmis.database.Course;
 import com.tecmis.database.ManageTimetable;
 
 import javax.swing.*;
@@ -27,6 +26,7 @@ public class Timetable extends JFrame {
     private JComboBox txtDepartment;
     private JTable timeTable;
     private JTextField txtPDF;
+    private JButton backButton;
 
     public Timetable() {
         add(pnlTimetable);
@@ -41,7 +41,7 @@ public class Timetable extends JFrame {
             throw new RuntimeException(e);
         }
 
-        addButton.addActionListener(new ActionListener() {
+        /*addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageTimetable managetable = new ManageTimetable();
@@ -78,7 +78,7 @@ public class Timetable extends JFrame {
                     throw new RuntimeException(ex);
                 }
             }
-        });
+        });*/
 
 // to view the document
         uploadButton.addActionListener(new ActionListener() {
@@ -149,6 +149,14 @@ public class Timetable extends JFrame {
             }
         });
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
+            }
+        });
     }
     public static void main(String[] args) {
         Timetable timetable=new Timetable();

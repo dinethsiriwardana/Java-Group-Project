@@ -20,6 +20,7 @@ public class NoticeDetails extends JFrame {
     private JButton updateButton;
     private JButton searchButton;
     private JTextArea txtDes;
+    private JButton backButton;
 
 
     public NoticeDetails() throws Exception {
@@ -165,6 +166,14 @@ public class NoticeDetails extends JFrame {
 
             }
 
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
+            }
         });
     }
 
