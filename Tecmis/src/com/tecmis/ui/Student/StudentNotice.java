@@ -1,7 +1,6 @@
 package com.tecmis.ui.Student;
 
 import com.tecmis.database.Database;
-import com.tecmis.database.NoticeDetailsAdmin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -7,6 +7,7 @@ public class ManageTimetable {
     private String id;
     private String departmentName;
     private String level;
+
     private byte[] pdf;
 
     public byte []getPdf() {
@@ -40,6 +41,10 @@ public class ManageTimetable {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public static ManageTimetable getTimetable(ManageTimetable managetable) {
+        return managetable;
     }
 
     private static final String[] time_table_columns = {"Timetable_ID", "DepartmentName", "Level", "PDF"};
