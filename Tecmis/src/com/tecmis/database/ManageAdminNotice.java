@@ -3,7 +3,7 @@ package com.tecmis.database;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
-public class NoticeDetailsAdmin {
+public class ManageAdminNotice {
     private String noticeID;
     private String date;
     private String title;
@@ -68,37 +68,47 @@ public class NoticeDetailsAdmin {
         this.noticeDes = noticeDes;
     }
     private static final String[] notice_columns = {"Notice_ID", "Date", "Title", "Notice_Des"};
+    static Connection conn = null;
+
 
     public static DefaultTableModel showNotice() throws Exception {
+        Statement smt = null;
+        DefaultTableModel model=null;
+        try {
+            conn = Database.getDatabaseConnection();
+            smt = conn.createStatement();
+            ResultSet rs = smt.executeQuery("SELECT " + String.join(",", notice_columns) + " FROM Notice");
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            model = new DefaultTableModel(notice_columns, 0);
 
-
-        Connection conn = Database.getDatabaseConnection();
-        Statement stmt = conn.createStatement();
-
-        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", notice_columns) + " FROM Notice");
-
-        ResultSetMetaData metaData = rs.getMetaData();
-        int columnCount = metaData.getColumnCount();
-
-        DefaultTableModel model = new DefaultTableModel(notice_columns, 0);
-
-        while (rs.next()) {
-            Object[] row = new Object[columnCount];
-            for (int i = 1; i <= columnCount; i++) {
-                row[i - 1] = rs.getObject(i);
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
             }
-            model.addRow(row);
+
+        } catch (Exception e) {
+            System.out.println("Error in getting connection " + e.getMessage());
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("Error in closing the Connection..."+ e.getMessage());
+            }
         }
         return model;
 
 
 
     }
-    public static boolean addNotice(NoticeDetailsAdmin noticedetail) throws SQLException {
+    public static boolean addNotice(ManageAdminNotice noticedetail) throws SQLException {
         boolean added=false;
         try {
 
-            Connection conn = Database.getDatabaseConnection();
+            conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des) VALUES (?, ?, ?, ?)");
             stmt.setString(1, noticedetail.getNoticeID());
@@ -121,7 +131,7 @@ public class NoticeDetailsAdmin {
         }
         return  added;
     }
-    public static boolean updateNotice(NoticeDetailsAdmin noticedetail) throws  SQLException {
+    public static boolean updateNotice(ManageAdminNotice noticedetail) throws  SQLException {
         boolean updated = false;
         try {
             Connection conn = Database.getDatabaseConnection();
@@ -145,15 +155,13 @@ public class NoticeDetailsAdmin {
         return updated;
     }
 
-    public static boolean deleteNotice(NoticeDetailsAdmin noticedetail) throws  SQLException{
+    public static boolean deleteNotice(ManageAdminNotice noticedetail) throws  SQLException{
         boolean deleted=false;
         try{
             Connection conn=Database.getDatabaseConnection();
             PreparedStatement stmt=conn.prepareStatement("DELETE from  Notice WHERE Notice_Id=?");
             stmt.setString(1,noticedetail.getNoticeID());
-            stmt.setString(2,noticedetail.getDate());
-            stmt.setString(3,noticedetail.getTitle());
-            stmt.setString(4,noticedetail.getNoticeDes());
+
 
             int rowsDeleted=stmt.executeUpdate();
             stmt.close();
@@ -168,10 +176,12 @@ public class NoticeDetailsAdmin {
 
         } catch (Exception e) {
             System.out.println(e);
+        }finally {
+
         }
         return  deleted;
     }
-    public static boolean searchNotice(NoticeDetailsAdmin noticedetail) throws  SQLException{
+    public static boolean searchNotice(ManageAdminNotice noticedetail) throws  SQLException{
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notice WHERE Notice_Id=?");

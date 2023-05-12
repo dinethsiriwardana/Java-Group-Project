@@ -27,6 +27,7 @@ public class AddTechnicalOfficer extends JFrame{
     private JTextField txtPassword;
     private JButton searchButton;
     private JTable toTable;
+    private JButton backButton;
 
 
     public AddTechnicalOfficer(){
@@ -216,6 +217,14 @@ public class AddTechnicalOfficer extends JFrame{
                     JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }
