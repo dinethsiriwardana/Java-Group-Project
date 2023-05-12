@@ -32,7 +32,7 @@ public class Student_Attendance extends JFrame{
         add(pnlStudentAttendance);
         setVisible(true);
         setTitle("Student !!!");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(550,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);

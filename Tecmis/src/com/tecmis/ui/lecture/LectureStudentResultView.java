@@ -22,8 +22,8 @@ public class LectureStudentResultView extends JFrame{
     public LectureStudentResultView() throws Exception {
         add(pnlLecStuResult);
         setVisible(true);
-        setTitle("Student");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Student Result");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         setResizable(false);
@@ -67,8 +67,6 @@ public class LectureStudentResultView extends JFrame{
     }
 
 
-    public static void main(String[] args) throws Exception {
-        LectureStudentResultView lectureStudentResultView = new LectureStudentResultView();
-    }
+
 
 }

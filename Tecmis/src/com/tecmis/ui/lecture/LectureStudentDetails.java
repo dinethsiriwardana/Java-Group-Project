@@ -23,7 +23,7 @@ public class LectureStudentDetails extends JFrame {
 
         add(pnlLecStudentDetails);
         setVisible(true);
-        setTitle("Lecturer Details");
+        setTitle("Lecturer Student Details");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1200, 600);
 
@@ -56,8 +56,6 @@ public class LectureStudentDetails extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        LectureStudentDetails lectureStudentDetails = new LectureStudentDetails();
-    }
+
 }
 

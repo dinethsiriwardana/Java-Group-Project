@@ -9,7 +9,7 @@ public class Security {
 
 
 
-    public String encryption(String encryption) throws Exception{
+    public static String encryption(String encryption) throws Exception{
         byte[] key = "tecmisjavagroup2".getBytes("UTF-8");
         SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
 
@@ -30,5 +30,10 @@ public class Security {
 
         return new String(decryptedDataByte, "UTF-8");
     }
+
+//    public static void main(String[] args) throws Exception {
+//        System.out.println( encryption("to001"));
+//
+//    }
 }
 

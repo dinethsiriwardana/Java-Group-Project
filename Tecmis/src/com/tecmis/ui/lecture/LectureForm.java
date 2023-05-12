@@ -1,6 +1,8 @@
 package com.tecmis.ui.lecture;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.Notices;
+import com.tecmis.ui.LoginForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +12,8 @@ import java.net.URL;
 public class LectureForm extends JFrame  {
 
 
-    private JButton btnManageMaterials;
+
     private JButton btnStudentDetails;
-    private JButton btnStudentEligibility;
     private JButton btnStudentResult;
     private JButton btnMedicalRecord;
     private JPanel pnlLecturer;
@@ -20,6 +21,7 @@ public class LectureForm extends JFrame  {
     private JButton btnUploadMarks;
     private JList list1;
     private JLabel lblSetting;
+    private JLabel btnLogout;
     private JLabel lblNotices;
 
     private String username;
@@ -38,15 +40,11 @@ public class LectureForm extends JFrame  {
         setResizable(false);
 
         lecForm = this;
+        Auth auth = Auth.getInstance();
 
         onLoad();
 
-        btnManageMaterials.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
+
 
         lblSetting.addMouseListener(new MouseAdapter() {
             @Override
@@ -94,18 +92,99 @@ public class LectureForm extends JFrame  {
                 }
             }
         });
-
         btnMedicalRecord.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
                     setVisible(false);
-                    // Create and show the LectureEditUser frame
                     LectureStudentAttendance lectureStudentAttendance = new  LectureStudentAttendance();
                     lectureStudentAttendance.setVisible(true);
-                    // When the LectureEditUser frame is closed, show the LectureForm frame again
                     lectureStudentAttendance.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnLogout.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    auth.setUsername("");
+                    LoginForm loginForm = new LoginForm();
+                    loginForm.setVisible(true);
+                    loginForm.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnUploadMarks.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                try {
+                    setVisible(false);
+
+                    LectureStudentResult lectureStudentResult = new LectureStudentResult();
+                    lectureStudentResult.setVisible(true);
+                    lectureStudentResult.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnStudentDetails.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    LectureStudentDetails lectureStudentDetails = new LectureStudentDetails();
+                    lectureStudentDetails.setVisible(true);
+                    lectureStudentDetails.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        btnStudentResult.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    LectureStudentResultView lectureStudentResultView = new LectureStudentResultView();
+                    lectureStudentResultView.setVisible(true);
+                    lectureStudentResultView.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent e) {
                             super.windowClosed(e);
@@ -119,14 +198,6 @@ public class LectureForm extends JFrame  {
         });
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            LectureForm lecForm = new LectureForm();
-            lecForm.pack();
-            lecForm.setVisible(true);
-        });
-    }
-
      public void onLoad(){
 
              Notices notices = new Notices();
@@ -134,7 +205,5 @@ public class LectureForm extends JFrame  {
              list1.setModel(jlist.getModel());
 
      }
-
-
 
 }

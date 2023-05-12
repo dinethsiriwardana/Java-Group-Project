@@ -19,7 +19,7 @@ public class Course_Details  extends JFrame{
         add(pnlCourse);
         setVisible(true);
         setTitle("Student !!!");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(550,500);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
