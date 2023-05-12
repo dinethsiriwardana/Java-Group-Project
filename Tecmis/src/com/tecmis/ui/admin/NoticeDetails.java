@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NoticeDetails extends JFrame {
@@ -144,13 +145,12 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean searched= ManageAdminNotice.searchNotice(noticeDetail);
-                    txtNoticeId.setText("");
-                    txtDate.setText("");
-                    txtTitle.setText("");
-                    txtDes.setText("");
-
-                    if(searched) {
+                    ResultSet searched= ManageAdminNotice.searchNotice(noticeDetail);
+                    if(searched.next()) {
+                        txtNoticeId.setText(searched.getString("Notice_Id"));
+                        txtDate.setText(searched.getString("Date"));
+                        txtTitle.setText(searched.getString("Title"));
+                        txtDes.setText(searched.getString("Notice_Des"));
                         JOptionPane.showMessageDialog(null, "Notice search successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                     }

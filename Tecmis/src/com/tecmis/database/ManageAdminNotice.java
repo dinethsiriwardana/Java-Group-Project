@@ -181,27 +181,21 @@ public class ManageAdminNotice {
         }
         return  deleted;
     }
-    public static boolean searchNotice(ManageAdminNotice noticedetail) throws  SQLException{
+    public static ResultSet searchNotice(ManageAdminNotice noticedetail) throws  SQLException{
+        ResultSet rs=null;
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notice WHERE Notice_Id=?");
             stmt.setString(1, noticedetail.getNoticeID());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found!!");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found!!");
-                return false;
-            }
+            rs = stmt.executeQuery();
+
         } catch (SQLException e) {
             System.out.println("Error searching notice record: " + e.getMessage());
-            throw e;
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
+        return rs;
     }
 
 }

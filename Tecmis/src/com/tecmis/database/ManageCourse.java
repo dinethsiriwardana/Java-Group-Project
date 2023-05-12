@@ -211,30 +211,22 @@ public  class ManageCourse {
     }
 
 
-    public static boolean searchCourse(ManageCourse manageCourse) throws SQLException {
-        boolean searched=false;
+    public static ResultSet searchCourse(ManageCourse manageCourse) throws SQLException {
+        ResultSet rs=null;
         try {
              conn = Database.getDatabaseConnection();
              pst= conn.prepareStatement("SELECT * FROM Courses_test WHERE Course_Id=?");
              pst.setString(1, manageCourse.getCourseId());
-             ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                // record found
-                searched=true;
-                System.out.println("Record found!!");
-            }
-            else {
-                // record not found
-                System.out.println("Record not found!!");
-            }
+             rs = pst.executeQuery();
+
 
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }finally {
             conn.close();
         }
-        return searched;
+        return rs;
     }
 
 

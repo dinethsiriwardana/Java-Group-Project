@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CourseDetails extends JFrame {
@@ -168,15 +169,16 @@ public class CourseDetails extends JFrame {
                 manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
-                    boolean searched = ManageCourse.searchCourse(manageCourse);
-                    txtID.setText("");
-                    txtCourseName.setText("");
-                    txtCredit.setText("");
-                    txtCourseDepID.setText("");
-                    txtCourseDepID.setText("");
-                    txtQuiz.setSelectedItem("");
-                    txtAsses.setSelectedItem("");
-                    if (searched) {
+                    ResultSet searched = ManageCourse.searchCourse(manageCourse);
+                    if(searched.next()) {
+                        txtID.setText(searched.getString("Course_ID"));
+                        txtCourseName.setText(searched.getString("Course_Name"));
+                        txtCredit.setText(searched.getString("Credit"));
+                        txtCourseDepID.setText(searched.getString("Dep_ID"));
+                        txtCourseLecID.setText(searched.getString("Lec_ID"));
+                        txtQuiz.setSelectedItem(searched.getString("No_of_Quiz"));
+                        txtAsses.setSelectedItem(searched.getString("No_of_Assessments"));
+
                         JOptionPane.showMessageDialog(null, "Course search successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
