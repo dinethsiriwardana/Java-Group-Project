@@ -1,6 +1,6 @@
 package com.tecmis.ui.admin;
 
-import com.tecmis.database.Course;
+import com.tecmis.database.ManageCourse;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,30 +26,30 @@ public class CourseDetails extends JFrame {
     private JButton backButton;
 
 
-    public CourseDetails() throws Exception {
+    public CourseDetails()  {
         add(panelCourse);
         setVisible(true);
         setTitle("Admin !!!");
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Course course = new Course();
-        courseTable.setModel(course.showCourses());
+        ManageCourse manageCourse = new ManageCourse();
+        courseTable.setModel(manageCourse.showCourses());
 
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course course = new Course();
-                course.setCourseId(txtID.getText());
-                course.setCourseName(txtCourseName.getText());
-                course.setCredit(Integer.parseInt(txtCredit.getText()));
-                course.setDepID(txtCourseDepID.getText());
-                course.setLecID(txtCourseLecID.getText());
-                course.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
-                course.setAsses(txtAsses.getModel().getSelectedItem().toString());
+                ManageCourse manageCourse = new ManageCourse();
+                manageCourse.setCourseId(txtID.getText());
+                manageCourse.setCourseName(txtCourseName.getText());
+                manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
+                manageCourse.setDepID(txtCourseDepID.getText());
+                manageCourse.setLecID(txtCourseLecID.getText());
+                manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
+                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
-                    boolean added = Course.addCourse(course);
+                    boolean added = ManageCourse.addCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
@@ -67,10 +67,9 @@ public class CourseDetails extends JFrame {
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
 
-                }
-                catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Failed to add course",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                } catch (Exception ex) {
+                    System.out.println(ex);
                 }
 
 
@@ -81,18 +80,18 @@ public class CourseDetails extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course course = new Course();
-                course.setCourseId(txtID.getText());
-                course.setCourseName(txtCourseName.getText());
+                ManageCourse manageCourse = new ManageCourse();
+                manageCourse.setCourseId(txtID.getText());
+                manageCourse.setCourseName(txtCourseName.getText());
                 if (!txtCredit.getText().isEmpty()) {
-                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                    manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-                course.setDepID(txtCourseDepID.getText());
-                course.setLecID(txtCourseLecID.getText());
-                course.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
-                course.setAsses(txtAsses.getModel().getSelectedItem().toString());
+                manageCourse.setDepID(txtCourseDepID.getText());
+                manageCourse.setLecID(txtCourseLecID.getText());
+                manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
+                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
                 try {
-                    boolean updated = Course.updateCourse(course);
+                    boolean updated = ManageCourse.updateCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
@@ -120,19 +119,19 @@ public class CourseDetails extends JFrame {
         DELETEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course course = new Course();
-                course.setCourseId(txtID.getText());
-                course.setCourseName(txtCourseName.getText());
+                ManageCourse manageCourse = new ManageCourse();
+                manageCourse.setCourseId(txtID.getText());
+                manageCourse.setCourseName(txtCourseName.getText());
                 if (!txtCredit.getText().isEmpty()) {
-                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                    manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-                course.setDepID(txtCourseDepID.getText());
-                course.setLecID(txtCourseLecID.getText());
-                course.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
-                course.setAsses(txtAsses.getModel().getSelectedItem().toString());
+                manageCourse.setDepID(txtCourseDepID.getText());
+                manageCourse.setLecID(txtCourseLecID.getText());
+                manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
+                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
-                    boolean deleted = Course.deleteCourse(course);
+                    boolean deleted = ManageCourse.deleteCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
@@ -157,19 +156,19 @@ public class CourseDetails extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course course=new Course();
-                course.setCourseId(txtID.getText());
-                course.setCourseName(txtCourseName.getText());
+                ManageCourse manageCourse =new ManageCourse();
+                manageCourse.setCourseId(txtID.getText());
+                manageCourse.setCourseName(txtCourseName.getText());
                 if (!txtCredit.getText().isEmpty()) {
-                    course.setCredit(Integer.parseInt(txtCredit.getText()));
+                    manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-                course.setDepID(txtCourseDepID.getText());
-                course.setLecID(txtCourseLecID.getText());
-                course.setAsses(txtQuiz.getModel().getSelectedItem().toString());
-                course.setAsses(txtAsses.getModel().getSelectedItem().toString());
+                manageCourse.setDepID(txtCourseDepID.getText());
+                manageCourse.setLecID(txtCourseLecID.getText());
+                manageCourse.setAsses(txtQuiz.getModel().getSelectedItem().toString());
+                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
-                    boolean searched = Course.searchCourse(course);
+                    boolean searched = ManageCourse.searchCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");

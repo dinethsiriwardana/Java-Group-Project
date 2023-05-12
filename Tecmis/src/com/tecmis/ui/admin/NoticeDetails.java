@@ -1,6 +1,6 @@
 package com.tecmis.ui.admin;
 
-import com.tecmis.database.NoticeDetailsAdmin;
+import com.tecmis.database.ManageAdminNotice;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,13 +31,13 @@ public class NoticeDetails extends JFrame {
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
-        NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+        ManageAdminNotice noticeDetail=new ManageAdminNotice();
         noticeTable.setModel(noticeDetail.showNotice());
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+                ManageAdminNotice noticeDetail=new ManageAdminNotice();
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
@@ -46,7 +46,7 @@ public class NoticeDetails extends JFrame {
 
                 try{
 
-                    boolean added=NoticeDetailsAdmin.addNotice(noticeDetail);
+                    boolean added= ManageAdminNotice.addNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
@@ -72,7 +72,7 @@ public class NoticeDetails extends JFrame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NoticeDetailsAdmin noticeDetail = new NoticeDetailsAdmin();
+                ManageAdminNotice noticeDetail = new ManageAdminNotice();
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
@@ -80,7 +80,7 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean updated=NoticeDetailsAdmin.updateNotice(noticeDetail);
+                    boolean updated= ManageAdminNotice.updateNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
@@ -104,7 +104,7 @@ public class NoticeDetails extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NoticeDetailsAdmin noticeDetail = new NoticeDetailsAdmin();
+                ManageAdminNotice noticeDetail = new ManageAdminNotice();
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
@@ -112,7 +112,7 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean deleted=NoticeDetailsAdmin.deleteNotice(noticeDetail);
+                    boolean deleted= ManageAdminNotice.deleteNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
@@ -136,7 +136,7 @@ public class NoticeDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                NoticeDetailsAdmin noticeDetail=new NoticeDetailsAdmin();
+                ManageAdminNotice noticeDetail=new ManageAdminNotice();
                 noticeDetail.setNoticeID(txtNoticeId.getText());
                 noticeDetail.setDate(txtDate.getText());
                 noticeDetail.setTitle(txtTitle.getText());
@@ -144,7 +144,7 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean searched=NoticeDetailsAdmin.searchNotice(noticeDetail);
+                    boolean searched= ManageAdminNotice.searchNotice(noticeDetail);
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
