@@ -48,34 +48,39 @@ public class ManageTimetable {
     }
 
     private static final String[] time_table_columns = {"Timetable_ID", "DepartmentName", "Level", "PDF"};
-
+    static Connection conn;
     public static DefaultTableModel showTimetable() throws Exception {
-        Connection conn = Database.getDatabaseConnection();
-        Statement stmt = conn.createStatement();
+        Statement smt = null;
+        DefaultTableModel model=null;
+        try {
+            conn = Database.getDatabaseConnection();
+            smt = conn.createStatement();
+            ResultSet rs = smt.executeQuery("SELECT " + String.join(",", time_table_columns) + " FROM Timetable");
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            model = new DefaultTableModel(time_table_columns, 0);
 
-        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", time_table_columns) + " FROM Timetable");
-
-        ResultSetMetaData metaData = rs.getMetaData();
-        int columnCount = metaData.getColumnCount();
-
-        DefaultTableModel model = new DefaultTableModel(time_table_columns, 0);
-
-        while (rs.next()) {
-            Object[] row = new Object[columnCount];
-            for (int i = 1; i <= columnCount; i++) {
-                row[i - 1] = rs.getObject(i);
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
             }
-            model.addRow(row);
+
+        } catch (Exception e) {
+            System.out.println("Error in getting connection " + e.getMessage());
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("Error in closing the Connection..."+ e.getMessage());
+            }
         }
-
-        conn.close();
-        stmt.close();
-        rs.close();
-
         return model;
     }
 
-    public static void addTimetable(ManageTimetable managetable) throws SQLException {
+    public static void uploadTimetable(ManageTimetable managetable) throws SQLException {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(

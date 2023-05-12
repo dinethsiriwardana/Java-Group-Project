@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AddAdmin  extends JFrame{
 
@@ -99,7 +101,7 @@ public class AddAdmin  extends JFrame{
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminData adminUser=new AdminData();
+                AdminData adminUser = new AdminData();
                 adminUser.setID(txtID.getText());
                 adminUser.setUsername(txtUsername.getText());
                 adminUser.setPassword(txtPassword.getText());
@@ -113,31 +115,29 @@ public class AddAdmin  extends JFrame{
                 adminUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 adminUser.setAdmin_role(txtAdminRole.getText());
 
-
-
                 ManageUsers manageUser = new ManageUsers();
                 boolean isUpdated = manageUser.upAdm(adminUser);
-                if (isUpdated) {
-                    txtID.setText("");
-                    txtUsername.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtAdminRole.setText("");
-                    JOptionPane.showMessageDialog(null, "Admin update successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to update Admin ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+
+                    if (isUpdated) {
+                        txtID.setText("");
+                        txtUsername.setText("");
+                        txtPassword.setText("");
+                        txtFirstName.setText("");
+                        txtLastName.setText("");
+                        txtMobile.setText("");
+                        txtAddress.setText("");
+                        txtAge.setText("");
+                        txtEmail.setText("");
+                        txtDOB.setText("");
+                        txtGender.setSelectedItem("");
+                        txtAdminRole.setText("");
+                        JOptionPane.showMessageDialog(null, "Admin update successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to update Admin ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
             }
         });
         DELETEButton.addActionListener(new ActionListener() {
@@ -201,27 +201,32 @@ public class AddAdmin  extends JFrame{
                 adminUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 adminUser.setAdmin_role(txtAdminRole.getText());
                 ManageUsers manageUser = new ManageUsers();
-                boolean isSearched = manageUser.searchAdm(adminUser);
-                if (isSearched) {
-                    txtID.setText("");
-                    txtUsername.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtAdminRole.setText("");
-                    JOptionPane.showMessageDialog(null, "Admin search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to search Admin ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                ResultSet userdata = manageUser.searchAdm(adminUser);
+                try {
+                    if (userdata.next()) {
+
+                        txtID.setText(userdata.getString("ID"));
+                        txtUsername.setText(userdata.getString("username"));
+                        txtPassword.setText(userdata.getString("password"));
+                        txtFirstName.setText(userdata.getString("Fname"));
+                        txtLastName.setText(userdata.getString("Lname"));
+                        txtMobile.setText(userdata.getString("Mobile"));
+                        txtAddress.setText(userdata.getString("Address"));
+                        txtAge.setText(userdata.getString("Age"));
+                        txtEmail.setText(userdata.getString("Email"));
+                        txtDOB.setText(userdata.getString("DOM"));
+                        txtGender.setSelectedItem(userdata.getString("Gender"));
+                        txtAdminRole.setText(userdata.getString("Admin_role"));
+                        JOptionPane.showMessageDialog(null, "Admin search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Admin ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                 }
 
             }

@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AddTechnicalOfficer extends JFrame{
     private JTextField txtID;
@@ -196,26 +198,31 @@ public class AddTechnicalOfficer extends JFrame{
                 searchTo.setGender(txtGender.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isSearched = manageUser.serchTo(searchTo);
-                if (isSearched) {
-                    txtID.setText("");
-                    txtUserName.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "Technical officer search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                ResultSet serachTec = manageUser.serchTo(searchTo);
+                try {
+                    if (serachTec.next()) {
+                        txtID.setText(serachTec.getString("ID"));
+                        txtUserName.setText(serachTec.getString("username"));
+                        txtPassword.setText(serachTec.getString("password"));
+                        txtFirstName.setText(serachTec.getString("Fname"));
+                        txtLastName.setText(serachTec.getString("Lname"));
+                        txtMobile.setText(serachTec.getString("Mobile"));
+                        txtAddress.setText(serachTec.getString("Address"));
+                        txtAge.setText(serachTec.getString("Age"));
+                        txtEmail.setText(serachTec.getString("Email"));
+                        txtDOB.setText(serachTec.getString("DOM"));
+                        txtGender.setSelectedItem(serachTec.getString("Gender"));
+
+                        JOptionPane.showMessageDialog(null, "Technical officer search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });

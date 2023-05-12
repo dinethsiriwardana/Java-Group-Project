@@ -2,11 +2,7 @@ package com.tecmis.database;
 
 import com.tecmis.dto.AdminData;
 
-import javax.swing.table.DefaultTableModel;
 import java.sql.*;
-
-import static com.tecmis.database.Database.getDatabaseConnection;
-import static com.tecmis.dto.AdminData.showAdmin;
 
 
 public class ManageAdmin {
@@ -88,19 +84,18 @@ public class ManageAdmin {
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected == 1) {
-
                 System.out.println("Record update successfully!! ");
                 return true;
-            } else {
 
+            } else {
                 System.out.println("Record update failed!!");
                 return false;
             }
 
-
         } catch (SQLException e){
             System.out.println("Error in executing query "+e.getMessage());
             return false;
+
         }catch (Exception e) {
             System.out.println("Error in getting connection"+e.getMessage());
             return false;
@@ -137,30 +132,22 @@ public class ManageAdmin {
 
 
     }
-    public static boolean searchAdmin(AdminData addata) {
+    public static ResultSet searchAdmin(AdminData addata) {
         String query = "SELECT * FROM Admin WHERE ID='" + addata.getID() + "'";
         System.out.println(query);
         try {
             Connection connection = Database.getDatabaseConnection();
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            return rs;
 
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found!!");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found!!!");
-                return false;
-            }
         } catch (SQLException e){
             System.out.println("Error in executing query "+e.getMessage());
-            return false;
+            return null;
         }
         catch (Exception e) {
             System.out.println("Error in getting connection"+e.getMessage());
-            return false;
+            return null;
         }
 
     }

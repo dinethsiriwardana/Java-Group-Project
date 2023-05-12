@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static java.lang.Integer.parseInt;
 
@@ -208,27 +210,33 @@ public class AddLecturerForm extends JFrame {
                 lecturerUser.setUsername(txtUsername.getText());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isSearched = manageUser.serchUser(lecturerUser);
-                if (isSearched) {
-                    txtID.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtPosition.setSelectedItem("");
-                    txtPassword.setText("");
-                    txtUsername.setText("");
-                    JOptionPane.showMessageDialog(null, "Lecturer search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to search Lecturer ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                ResultSet lecSearch = manageUser.serchUser(lecturerUser);
+                try {
+                    if (lecSearch.next()) {
+
+                        txtID.setText(lecSearch.getString("ID"));
+                        txtUsername.setText(lecSearch.getString("username"));
+                        txtPassword.setText(lecSearch.getString("password"));
+                        txtFirstName.setText(lecSearch.getString("Fname"));
+                        txtLastName.setText(lecSearch.getString("Lname"));
+                        txtMobile.setText(lecSearch.getString("Mobile"));
+                        txtAddress.setText(lecSearch.getString("Address"));
+                        txtAge.setText(lecSearch.getString("Age"));
+                        txtEmail.setText(lecSearch.getString("Email"));
+                        txtDOB.setText(lecSearch.getString("DOM"));
+                        txtGender.setSelectedItem(lecSearch.getString("Gender"));
+                        txtPosition.setSelectedItem(lecSearch.getString("Position"));
+
+                        JOptionPane.showMessageDialog(null, "Lecturer search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Lecturer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                 }
 
             }

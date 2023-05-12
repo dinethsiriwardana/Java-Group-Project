@@ -131,7 +131,7 @@ public class ManageLecturer {
 
     }
 
-    public static boolean searchLecturer(LecturerData lecdata) {
+    public static ResultSet searchLecturer(LecturerData lecdata) {
         String query = "SELECT * FROM Lecturer WHERE ID='" + lecdata.getId() + "'";
         System.out.println(query);
         try {
@@ -139,21 +139,14 @@ public class ManageLecturer {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found");
-                return false;
-            }
+            return rs;
+
         } catch (SQLException e) {
             System.out.println("Error searching search record: " + e.getMessage());
-            return false;
+           return null;
         } catch (Exception e) {
             System.out.println("Error in getting connection" + e.getMessage());
-            return false;
+           return null;
         }
     }
 }
