@@ -8,16 +8,15 @@ public class ManageTimetable {
     private String departmentName;
     private String level;
 
-    private byte[] pdf;
+    private String file_path;
 
-    public byte []getPdf() {
-        return pdf;
+    public String getFile_path() {
+        return file_path;
     }
 
-    public void setPdf(byte[] pdf) {
-        this.pdf = pdf;
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
     }
-
 
     public String getId() {
         return id;
@@ -47,7 +46,7 @@ public class ManageTimetable {
         return managetable;
     }
 
-    private static final String[] time_table_columns = {"Timetable_ID", "DepartmentName", "Level", "PDF"};
+    private static final String[] time_table_columns = {"Timetable_ID", "DepartmentName", "Level", "File_path"};
     static Connection conn;
     public static DefaultTableModel showTimetable() throws Exception {
         Statement smt = null;
@@ -84,11 +83,11 @@ public class ManageTimetable {
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Timetable (Timetable_ID, DepartmentName, Level, PDF) VALUES (?, ?, ?, ?)");
+                    "INSERT INTO Timetable (Timetable_ID, DepartmentName, Level, File_path) VALUES (?, ?, ?, ?)");
             stmt.setString(1, managetable.getId());
             stmt.setString(2, managetable.getDepartmentName());
             stmt.setString(3, managetable.getLevel());
-            stmt.setBytes(4, managetable.getPdf());
+            stmt.setString(4, managetable.getFile_path());
             stmt.executeUpdate(); // execute the update statement to insert the data
             conn.close();
             stmt.close();

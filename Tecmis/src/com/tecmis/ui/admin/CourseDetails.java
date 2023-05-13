@@ -40,6 +40,7 @@ public class CourseDetails extends JFrame {
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 ManageCourse manageCourse = new ManageCourse();
                 manageCourse.setCourseId(txtID.getText());
                 manageCourse.setCourseName(txtCourseName.getText());
@@ -87,12 +88,9 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-                manageCourse.setDepID(txtCourseDepID.getText());
-                manageCourse.setLecID(txtCourseLecID.getText());
-                manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
-                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
+
                 try {
-                    boolean updated = ManageCourse.updateCourse(manageCourse);
+                    ManageCourse.updateCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
@@ -100,17 +98,11 @@ public class CourseDetails extends JFrame {
                     txtCourseLecID.setText("");
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
-
-                    if (updated) {
-                        JOptionPane.showMessageDialog(null, "Course update successful",
+                    JOptionPane.showMessageDialog(null, "Course update successful",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
 
-                        JOptionPane.showMessageDialog(null, "Failed to update course: Course not found",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
                 }catch (SQLException ex){
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to update course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
 
@@ -141,8 +133,8 @@ public class CourseDetails extends JFrame {
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
                     if (deleted) {
-                        JOptionPane.showMessageDialog(null, "Course delete successfully",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Course delete successfully");
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to delete course: Course not found",
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -157,6 +149,7 @@ public class CourseDetails extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 ManageCourse manageCourse =new ManageCourse();
                 manageCourse.setCourseId(txtID.getText());
                 manageCourse.setCourseName(txtCourseName.getText());
@@ -170,7 +163,9 @@ public class CourseDetails extends JFrame {
 
                 try {
                     ResultSet searched = ManageCourse.searchCourse(manageCourse);
+
                     if(searched.next()) {
+
                         txtID.setText(searched.getString("Course_ID"));
                         txtCourseName.setText(searched.getString("Course_Name"));
                         txtCredit.setText(searched.getString("Credit"));
@@ -179,8 +174,8 @@ public class CourseDetails extends JFrame {
                         txtQuiz.setSelectedItem(searched.getString("No_of_Quiz"));
                         txtAsses.setSelectedItem(searched.getString("No_of_Assessments"));
 
-                        JOptionPane.showMessageDialog(null, "Course search successfully",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Course search successfully");
+
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Failed to search course: course not found",

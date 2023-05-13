@@ -60,8 +60,9 @@ public class ManageAdmin {
     }
 
     public static boolean updateAdmin(AdminData addata) {
+
         String query = "UPDATE Admin SET  username=?, password=?, Fname=?, Lname=?, " +
-                       "Mobile=?, Address=?, Age=?, Email=?, DOM=?, Gender=?, Admin_role=? WHERE ID=?"  ;
+                       "Mobile=?, Address=?, Age=?, Email=?, DOM=?, Gender=?WHERE ID=?"  ;
 
         try {
             Connection connection = Database.getDatabaseConnection();
@@ -78,8 +79,8 @@ public class ManageAdmin {
             pst.setString(8, addata.getEmail());
             pst.setString(9, addata.getDOM());
             pst.setString(10, addata.getGender());
-            pst.setString(11, addata.getAdmin_role());
-            pst.setString(12, addata.getID());
+            //pst.setString(11, addata.getAdmin_role());
+            pst.setString(11, addata.getID());
 
             int rowsAffected = pst.executeUpdate();
 

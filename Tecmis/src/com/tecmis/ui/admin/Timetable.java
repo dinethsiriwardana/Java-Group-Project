@@ -19,7 +19,7 @@ public class Timetable extends JFrame {
     private JButton uploadButton;
     private JComboBox txtDepartment;
     private JTable timeTable;
-    private JTextField txtPDF;
+    private JTextField txtFilePath;
     private JButton backButton;
 
     public Timetable() {

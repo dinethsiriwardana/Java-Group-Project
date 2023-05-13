@@ -105,7 +105,7 @@ public class ManageAdminNotice {
 
     }
     public static boolean addNotice(ManageAdminNotice noticedetail) throws SQLException {
-        boolean added=false;
+        boolean added = false;
         try {
 
             conn = Database.getDatabaseConnection();
@@ -117,10 +117,9 @@ public class ManageAdminNotice {
             stmt.setString(4,noticedetail.getNoticeDes());
 
             int rowsAdded = stmt.executeUpdate();
-            stmt.close();
-            conn.close();
+
             if (rowsAdded > 0) {
-                added = true;
+
                 System.out.println("Notice add successful!!");
             } else {
                 System.out.println("No rows were added to the Notice table.");
@@ -128,35 +127,37 @@ public class ManageAdminNotice {
 
         } catch (Exception e) {
             System.out.println(e);
+        }finally {
+            conn.close();
         }
-        return  added;
+    return added;
     }
-    public static boolean updateNotice(ManageAdminNotice noticedetail) throws  SQLException {
-        boolean updated = false;
+    public static void updateNotice(ManageAdminNotice noticedetail) throws  SQLException {
+
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?, Notice_Des=? WHERE Notice_Id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Notice_Des=? WHERE Notice_Id=?");
             stmt.setString(1, noticedetail.getDate());
-            stmt.setString(2, noticedetail.getTitle());
-            stmt.setString(3, noticedetail.getNoticeDes());
-            stmt.setString(4, noticedetail.getNoticeID());
+           // stmt.setString(2, noticedetail.getTitle());
+            stmt.setString(2, noticedetail.getNoticeDes());
+            stmt.setString(3, noticedetail.getNoticeID());
             int rowsUpdated = stmt.executeUpdate();
-            stmt.close();
-            conn.close();
+
+
             if (rowsUpdated > 0) {
-                updated = true;
                 System.out.println("Notice update successful!!");
+               new ManageAdminNotice();
             } else {
                 System.out.println("No rows were updated in the Notice table.");
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return updated;
+
     }
 
-    public static boolean deleteNotice(ManageAdminNotice noticedetail) throws  SQLException{
-        boolean deleted=false;
+    public static void deleteNotice(ManageAdminNotice noticedetail) throws  SQLException{
+
         try{
             Connection conn=Database.getDatabaseConnection();
             PreparedStatement stmt=conn.prepareStatement("DELETE from  Notice WHERE Notice_Id=?");
@@ -167,7 +168,7 @@ public class ManageAdminNotice {
             stmt.close();
             conn.close();
             if (rowsDeleted > 0) {
-                deleted= true;
+
                 System.out.println("Notice add successful!!");
             } else {
                 System.out.println("No rows were added to the Notice table.");
@@ -177,9 +178,9 @@ public class ManageAdminNotice {
         } catch (Exception e) {
             System.out.println(e);
         }finally {
-
+            conn.close();
         }
-        return  deleted;
+
     }
     public static ResultSet searchNotice(ManageAdminNotice noticedetail) throws  SQLException{
         ResultSet rs=null;

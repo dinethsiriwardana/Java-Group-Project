@@ -101,6 +101,7 @@ public class AddAdmin  extends JFrame{
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 AdminData adminUser = new AdminData();
                 adminUser.setID(txtID.getText());
                 adminUser.setUsername(txtUsername.getText());
@@ -116,30 +117,34 @@ public class AddAdmin  extends JFrame{
                 adminUser.setAdmin_role(txtAdminRole.getText());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isUpdated = manageUser.upAdm(adminUser);
+                try {
+                    boolean isUpdated=manageUser.upAdm(adminUser);
 
-                    if (isUpdated) {
-                        txtID.setText("");
-                        txtUsername.setText("");
-                        txtPassword.setText("");
-                        txtFirstName.setText("");
-                        txtLastName.setText("");
-                        txtMobile.setText("");
-                        txtAddress.setText("");
-                        txtAge.setText("");
-                        txtEmail.setText("");
-                        txtDOB.setText("");
-                        txtGender.setSelectedItem("");
-                        txtAdminRole.setText("");
-                        JOptionPane.showMessageDialog(null, "Admin update successfully",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failed to update Admin ",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
+                    txtID.setText("");
+                    txtUsername.setText("");
+                    txtPassword.setText("");
+                    txtFirstName.setText("");
+                    txtLastName.setText("");
+                    txtMobile.setText("");
+                    txtAddress.setText("");
+                    txtAge.setText("");
+                    txtEmail.setText("");
+                    txtDOB.setText("");
+                    txtGender.setSelectedItem("");
+                    txtAdminRole.setText("");
 
+                    JOptionPane.showMessageDialog(null, "Admin update successfully",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                }catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Failed to update Admin ",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                }
             }
         });
+
         DELETEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

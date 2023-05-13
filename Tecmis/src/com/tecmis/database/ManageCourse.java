@@ -76,7 +76,7 @@ public  class ManageCourse {
     static PreparedStatement pst=null;
     static DefaultTableModel model = null;
 
-    public static DefaultTableModel showCourses() {
+    public  DefaultTableModel showCourses() {
 
 
         try {
@@ -149,26 +149,22 @@ public  class ManageCourse {
         return added;
     }
 
-    public static boolean updateCourse(ManageCourse manageCourse) throws SQLException {
-       boolean updated=false;
+    public static void updateCourse(ManageCourse manageCourse) throws SQLException {
+
 
         try {
              conn = Database.getDatabaseConnection();
              pst = conn.prepareStatement(
-                    "UPDATE Courses_test SET Course_Name=?, Credit=?, Dep_Id=?, Lec_Id=?, No_of_Quiz=?,No_of_Assessments=? WHERE Course_Id=?");
+                    "UPDATE Courses_test SET Course_Name=?, Credit=? WHERE Course_Id=?");
             pst.setString(1, manageCourse.getCourseName());
             pst.setInt(2, manageCourse.getCredit());
-            pst.setString(3, manageCourse.getDepID());
-            pst.setString(4, manageCourse.getLecID());
-            pst.setString(5, manageCourse.getQuiz());
-            pst.setString(6, manageCourse.getAsses());
-            pst.setString(7, manageCourse.getCourseId());
+            pst.setString(3, manageCourse.getCourseId());
 
             int rowsUpdated = pst.executeUpdate();
 
 
             if (rowsUpdated > 0) {
-                updated=true;
+
                 System.out.println("Course Update successful!!");
             } else {
                 System.out.println("Course not update!!");
@@ -179,7 +175,7 @@ public  class ManageCourse {
         }finally {
             conn.close();
         }
-        return  updated;
+
     }
 
 
@@ -193,9 +189,9 @@ public  class ManageCourse {
                     "DELETE FROM Courses_test WHERE Course_Id=?");
             pst.setString(1, manageCourse.getCourseId());
             int rowsAffected = pst.executeUpdate();
+
             if (rowsAffected > 0) {
-                // record found and
-                deleted = true;
+                // record found
                 System.out.println("Record deleted successfully!!");
             } else {
                 // record not found
@@ -218,8 +214,6 @@ public  class ManageCourse {
              pst= conn.prepareStatement("SELECT * FROM Courses_test WHERE Course_Id=?");
              pst.setString(1, manageCourse.getCourseId());
              rs = pst.executeQuery();
-
-
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
