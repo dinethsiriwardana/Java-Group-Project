@@ -23,10 +23,10 @@ public class LectureStudentAttendance extends JFrame{
         add(pnlLSA);
         setVisible(true);
         setTitle("Lecturer");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(750,900);
         setResizable(false);
-
+        lecSA = this;
 
 
         lblSearchbtn.addMouseListener(new MouseAdapter() {

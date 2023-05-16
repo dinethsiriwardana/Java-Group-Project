@@ -2,13 +2,14 @@ package com.tecmis.ui.admin;
 
 
 
-import com.tecmis.database.Course;
 import com.tecmis.database.ManageTimetable;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.SQLException;
@@ -25,25 +26,26 @@ public class Timetable extends JFrame {
     private JComboBox txtDepartment;
     private JTable timeTable;
     private JTextField txtPDF;
+    private JButton backButton;
 
-    public Timetable(){
+    public Timetable() {
         add(pnlTimetable);
         setVisible(true);
-        setSize(1000,600);
+        setSize(1000, 600);
         setTitle("Timetable!!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ManageTimetable managetables=new ManageTimetable();
+        ManageTimetable managetables = new ManageTimetable();
         try {
             timeTable.setModel(managetables.showTimetable());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        addButton.addActionListener(new ActionListener() {
+        /*addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageTimetable managetable = new ManageTimetable();
-                JFileChooser fileChooser=new JFileChooser();
+                JFileChooser fileChooser = new JFileChooser();
                 int result = fileChooser.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
@@ -56,7 +58,7 @@ public class Timetable extends JFrame {
                 // read the selected file and set the bytes to the PDF property of the managetable object
                 try {
                     File pdfFile = new File(txtPDF.getText());
-                    byte [] pdfData= Files.readAllBytes(pdfFile.toPath());
+                    byte[] pdfData = Files.readAllBytes(pdfFile.toPath());
                     managetable.setPdf(pdfData);
 
                 } catch (IOException ex) {
@@ -76,17 +78,47 @@ public class Timetable extends JFrame {
                     throw new RuntimeException(ex);
                 }
             }
-        });
+        });*/
 
-
-
-
-        updateButton.addActionListener(new ActionListener() {
+// to view the document
+        uploadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int selectedRow = timeTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Please select a timetable to download", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
+                ManageTimetable managetable = new ManageTimetable();
+                managetable.setId((String) timeTable.getValueAt(selectedRow, 0)); // assumes the first column is the ID column
+
+                try {
+                    byte[] pdfData = ManageTimetable.getTimetable(managetable).getPdf();
+
+                    // Choose a file to save the PDF
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Save PDF File");
+                    int userSelection = fileChooser.showSaveDialog(null);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        File fileToSave = fileChooser.getSelectedFile();
+                        FileOutputStream fos = new FileOutputStream(fileToSave);
+                        fos.write(pdfData);
+                        fos.close();
+
+                        // Open the downloaded PDF using the Desktop class
+                        Desktop.getDesktop().open(fileToSave);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Failed to save PDF file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
+
         });
+
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
@@ -116,8 +148,16 @@ public class Timetable extends JFrame {
 
             }
         });
-    }
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
+            }
+        });
+    }
     public static void main(String[] args) {
         Timetable timetable=new Timetable();
     }

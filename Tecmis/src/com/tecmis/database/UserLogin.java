@@ -33,8 +33,11 @@ public class UserLogin {
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next() == true){
             System.out.println("Logged as "+ username + " As a " +  acctype);
-            auth.setSID(resultSet.getString("ID"));
-            System.out.println(resultSet.getString("ID"));
+            if (acctype == "Student"){
+                auth.setSID(resultSet.getString("ID"));
+                System.out.println(resultSet.getString("ID"));
+            }
+
             auth.setUsername(username);
             this.username = username;
             return true;

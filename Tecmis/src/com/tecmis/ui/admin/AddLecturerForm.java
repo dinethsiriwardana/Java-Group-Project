@@ -2,7 +2,6 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
-import com.tecmis.dto.TechnicalOfficerData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
@@ -34,6 +33,7 @@ public class AddLecturerForm extends JFrame {
     private JTextField txtPassword;
     private JButton SEARCHButton;
     private JTable lecturerTable;
+    private JButton backButton;
 
 
     public AddLecturerForm() {
@@ -231,6 +231,14 @@ public class AddLecturerForm extends JFrame {
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

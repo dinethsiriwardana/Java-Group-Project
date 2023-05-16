@@ -1,13 +1,11 @@
 package com.tecmis.ui.Student;
 
 import com.tecmis.database.Notices;
+import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -24,6 +22,7 @@ public class StudentForm extends JFrame{
     private JLabel lblWelcomText;
     private JButton noticeButton;
     private JList list1;
+    private JLabel setting;
     private JLabel lblNotices;
 
     public StudentForm() {
@@ -34,6 +33,7 @@ public class StudentForm extends JFrame{
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setResizable(false);
+        onLoad();
 
         btnTimeTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -41,65 +41,153 @@ public class StudentForm extends JFrame{
                 super.mouseClicked(e);
             }
         });
-        noticeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                StudentNotice notice = new StudentNotice();
-                notice.setVisible(true);
-            }
-        });
+
         btnCourseDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                Course_Details coursedetails = new Course_Details();
-                coursedetails.setVisible(true);
+
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Course_Details coursedetails = new Course_Details();
+
+                    coursedetails.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    coursedetails.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         btnTimeTable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                Student_Timetable studenttimetable = new Student_Timetable();
-                studenttimetable.setVisible(true);
+
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Student_Timetable studenttimetable = new Student_Timetable();
+
+
+                    studenttimetable.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    studenttimetable.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
-        /*btnStudentAttendance.addActionListener(new ActionListener() {
+        btnStudentAttendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                Student_Attendance studentattendance = new Student_Attendance();
-                studentattendance.setVisible(true);
+
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Student_Attendance studentattendance = new Student_Attendance();
+
+
+                    studentattendance.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    studentattendance.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
         });
-        btnStudentResult.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                Student_Marks studentmarks = new Student_Marks();
-                studentmarks.setVisible(true);
-            }
-        });*/
+//        btnStudentResult.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                setVisible(false);
+//                Student_Marks studentmarks = new Student_Marks();
+//                studentmarks.setVisible(true);
+//            }
+//        });
         btnMedicalRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                Medical_Details medicaldetails = new Medical_Details();
-                medicaldetails.setVisible(true);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Medical_Details medicaldetails = new Medical_Details();
+
+                    medicaldetails.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    medicaldetails.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+
+            }
+        });
+        btnStudentAttendance.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        setting.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Profile_Update profileUpdate = new  Profile_Update();
+                    profileUpdate.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    profileUpdate.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
 
+    public void onLoad(){
 
-
-    public static void main(String[] args) {
-        StudentForm studentForm = new StudentForm();
-        /*Notices notices = new Notices();
+        Notices notices = new Notices();
         JList<String> jlist = notices.main();
-        studentForm.list1.setModel(jlist.getModel());*/
+        list1.setModel(jlist.getModel());
 
     }
+
+
+
+
 
 
 
