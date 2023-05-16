@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.TechnicalOfficerData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddTechnicalOfficer extends JFrame{
-    private JPanel pnlUser;
     private JTextField txtID;
     private JTextField txtFirstName;
     private JTextField txtLastName;
@@ -27,6 +27,7 @@ public class AddTechnicalOfficer extends JFrame{
     private JTextField txtPassword;
     private JButton searchButton;
     private JTable toTable;
+    private JButton backButton;
 
 
     public AddTechnicalOfficer(){
@@ -38,6 +39,7 @@ public class AddTechnicalOfficer extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(true);
         TechnicalOfficerData toUser=new TechnicalOfficerData();
+        Security security=new Security();
         try {
             toTable.setModel(toUser.showTechnicalOfficer());
         } catch (Exception e) {
@@ -50,7 +52,11 @@ public class AddTechnicalOfficer extends JFrame{
                 TechnicalOfficerData toUser=new TechnicalOfficerData();
                 toUser.setId(txtID.getText());
                 toUser.setUserName(txtUserName.getText());
-                toUser.setPassword(txtPassword.getText());
+                try {
+                    toUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 toUser.setFirstName(txtFirstName.getText());
                 toUser.setLastName(txtLastName.getText());
                 toUser.setMobile(txtMobile.getText());
@@ -211,6 +217,14 @@ public class AddTechnicalOfficer extends JFrame{
                     JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.StudentData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,6 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 
 public class AddStudent extends JFrame{
-    private JPanel pnlUser;
     private JTextField txtID;
     private JTextField txtFirstName;
     private JTextField txtLastName;
@@ -31,6 +31,7 @@ public class AddStudent extends JFrame{
     private JButton searchButton;
     private JComboBox txtDepartment;
     private JTable studentTable;
+    private JButton backButton;
 
 
     public AddStudent(){
@@ -42,6 +43,7 @@ public class AddStudent extends JFrame{
     setPreferredSize(new Dimension(220,400));
     setResizable(true);
     StudentData studentUser=new StudentData();
+    Security security=new Security();
 
         try {
             studentTable.setModel(studentUser.showStudent());
@@ -55,7 +57,11 @@ public class AddStudent extends JFrame{
             StudentData studentUser=new StudentData();
             studentUser.setId(txtID.getText());
             studentUser.setUserName(txtUserName.getText());
-            studentUser.setPassword(txtPassword.getText());
+            try {
+                studentUser.setPassword(security.encryption(txtPassword.getText()));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             studentUser.setFirstName(txtFirstName.getText());
             studentUser.setLastName(txtLastName.getText());
             studentUser.setMobile(txtMobile.getText());
@@ -232,6 +238,14 @@ public class AddStudent extends JFrame{
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminForm object = new AdminForm();
+                object.setVisible(true);
             }
         });
     }

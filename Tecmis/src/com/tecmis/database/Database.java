@@ -7,7 +7,7 @@ public class Database {
 
 
 
-    public static Connection getDatabaseConnection() throws Exception{
+    public static Connection getDatabaseConnection() throws Exception {
         // Load the MySQL JDBC driver
         Class.forName("org.mariadb.jdbc.Driver");
         // Create a connection to the database
@@ -18,10 +18,4 @@ public class Database {
 
 
 
-
-
-       }
-
-
-
-
+}

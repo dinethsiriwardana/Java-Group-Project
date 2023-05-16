@@ -37,8 +37,8 @@ public class LectureStudentResult extends JFrame {
 
         add(pnlLecStuResult);
         setVisible(true);
-        setTitle("Student");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Student Result Manage");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
         setResizable(false);
@@ -171,7 +171,7 @@ public class LectureStudentResult extends JFrame {
                                 values[column] = data[row][column].toString();
                             }
                         }
-                        String insertSql = "INSERT INTO "+comboBox1.getModel().getSelectedItem()+" (" +
+                        String insertSql = "INSERT INTO "+comboBox1.getModel().getSelectedItem()+"_marks (" +
                                 String.join(", ", columnNames) + ") " +
                                 "VALUES (" + String.join(", ", values) + ")";
                         System.out.println(insertSql);
@@ -185,7 +185,4 @@ public class LectureStudentResult extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        LectureStudentResult lectureStudentResult = new LectureStudentResult();
-    }
 }
