@@ -128,6 +128,7 @@ public  class ManageCourse {
 
             int rowsAdded=pst.executeUpdate();
 
+
             if (rowsAdded > 0) {
                 added=true;
                 System.out.println("Course add successful!!");
@@ -184,27 +185,26 @@ public  class ManageCourse {
     public static boolean deleteCourse(ManageCourse manageCourse) throws SQLException {
         boolean deleted = false;
         try {
-             conn = Database.getDatabaseConnection();
-             pst = conn.prepareStatement(
-                    "DELETE FROM Courses_test WHERE Course_Id=?");
+            conn = Database.getDatabaseConnection();
+            pst = conn.prepareStatement("DELETE FROM Courses_test WHERE Course_Id = ?");
             pst.setString(1, manageCourse.getCourseId());
-            int rowsAffected = pst.executeUpdate();
 
-            if (rowsAffected > 0) {
-                // record found
-                System.out.println("Record deleted successfully!!");
+            int rowsDeleted = pst.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                deleted = true;
+                System.out.println("Course delete successful!!");
             } else {
-                // record not found
-                System.out.println("Record not found!!");
+                System.out.println("Course not found!!");
             }
-
         } catch (Exception e) {
             System.out.println(e);
-        }finally {
+        } finally {
             conn.close();
         }
         return deleted;
     }
+
 
 
     public static ResultSet searchCourse(ManageCourse manageCourse) throws SQLException {

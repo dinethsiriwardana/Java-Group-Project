@@ -5,6 +5,7 @@ import com.tecmis.dto.TechnicalOfficerData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -86,6 +87,9 @@ public class AddTechnicalOfficer extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
 
+                    DefaultTableModel model=toUser.showTechnicalOfficer();
+                    toTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Technical officer added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -127,6 +131,9 @@ public class AddTechnicalOfficer extends JFrame{
                     txtEmail.setText("");
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
+
+                    DefaultTableModel model=toUser.showTechnicalOfficer();
+                    toTable.setModel(model);
                     JOptionPane.showMessageDialog(null, "Technical officer updated successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -171,6 +178,9 @@ public class AddTechnicalOfficer extends JFrame{
                     txtEmail.setText("");
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
+
+                    DefaultTableModel model=toUser.showTechnicalOfficer();
+                    toTable.setModel(model);
                     JOptionPane.showMessageDialog(null, "Technical officer delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -230,7 +240,7 @@ public class AddTechnicalOfficer extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

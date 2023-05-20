@@ -37,6 +37,7 @@ public class ManageAdmin {
                 pst.setString(12, addata.getAdmin_role());
 
             int rowsAffected = pst.executeUpdate();
+            new AdminData().showAdmin();
 
             if (rowsAffected == 1) {
 

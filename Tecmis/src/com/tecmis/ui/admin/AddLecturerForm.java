@@ -5,6 +5,7 @@ import com.tecmis.dto.LecturerData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,6 +93,9 @@ public class AddLecturerForm extends JFrame {
                     txtPosition.setSelectedItem("");
                     txtPassword.setText("");
                     txtUsername.setText("");
+
+                    DefaultTableModel model=lecturerUser.showLecturer();
+                    lecturerTable.setModel(model);
                     JOptionPane.showMessageDialog(null, "Lecturer added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -138,6 +142,9 @@ public class AddLecturerForm extends JFrame {
                     txtGender.setSelectedItem("");
                     txtPosition.setSelectedItem("");
 
+                    DefaultTableModel model=lecturerUser.showLecturer();
+                    lecturerTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Lecturer deleted successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else
@@ -181,6 +188,10 @@ public class AddLecturerForm extends JFrame {
                     txtPosition.setSelectedItem("");
                     txtPassword.setText("");
                     txtUsername.setText("");
+
+                    DefaultTableModel model=lecturerUser.showLecturer();
+                    lecturerTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Lecturer update successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -245,7 +256,7 @@ public class AddLecturerForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

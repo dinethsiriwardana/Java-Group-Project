@@ -337,7 +337,7 @@
           <background color="-53151"/>
           <font size="20" style="1"/>
           <foreground color="-15659762"/>
-          <text value="Add/ View Course Details"/>
+          <text value="Create and maintain  Course Details"/>
         </properties>
       </component>
       <vspacer id="43750">

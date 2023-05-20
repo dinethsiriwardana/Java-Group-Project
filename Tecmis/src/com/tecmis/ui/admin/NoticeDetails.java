@@ -3,6 +3,7 @@ package com.tecmis.ui.admin;
 import com.tecmis.database.ManageAdminNotice;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +50,10 @@ public class NoticeDetails extends JFrame {
 
                     boolean added=ManageAdminNotice.addNotice(noticeDetail);
                     if(added) {
+
+                        DefaultTableModel model = noticeDetail.showNotice();
+                        noticeTable.setModel(model);
+
                         txtNoticeId.setText("");
                         txtDate.setText("");
                         txtTitle.setText("");
@@ -61,6 +66,8 @@ public class NoticeDetails extends JFrame {
                 }catch(SQLException ex ){
                     ex.printStackTrace();
 
+                }catch (Exception ex){
+                    System.out.println(ex.getMessage());
                 }
 
             }
@@ -77,6 +84,10 @@ public class NoticeDetails extends JFrame {
 
                 try {
                     ManageAdminNotice.updateNotice(noticeDetail);
+
+                    DefaultTableModel model = noticeDetail.showNotice();
+                    noticeTable.setModel(model);
+
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
@@ -90,6 +101,8 @@ public class NoticeDetails extends JFrame {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to update Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -105,6 +118,10 @@ public class NoticeDetails extends JFrame {
 
                 try {
                     ManageAdminNotice.deleteNotice(noticeDetail);
+
+                    DefaultTableModel model = noticeDetail.showNotice();
+                    noticeTable.setModel(model);
+
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
@@ -116,6 +133,8 @@ public class NoticeDetails extends JFrame {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to delete Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -157,7 +176,7 @@ public class NoticeDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

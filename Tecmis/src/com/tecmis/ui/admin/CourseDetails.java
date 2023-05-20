@@ -2,6 +2,7 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageCourse;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,8 @@ public class CourseDetails extends JFrame {
                     txtAsses.setSelectedItem("");
 
                     if (added) {
+                        DefaultTableModel model = manageCourse.showCourses();
+                        courseTable.setModel(model);
                         JOptionPane.showMessageDialog(null, "Course added successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -98,6 +101,11 @@ public class CourseDetails extends JFrame {
                     txtCourseLecID.setText("");
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
+
+                    //Refresh the table
+                    DefaultTableModel model=manageCourse.showCourses();
+                    courseTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Course update successful",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -133,6 +141,8 @@ public class CourseDetails extends JFrame {
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
                     if (deleted) {
+                        DefaultTableModel model=manageCourse.showCourses();
+                        courseTable.setModel(model);
                         JOptionPane.showMessageDialog(null, "Course delete successfully");
 
                     } else {
@@ -192,7 +202,7 @@ public class CourseDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

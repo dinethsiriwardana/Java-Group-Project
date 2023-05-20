@@ -5,6 +5,7 @@ import com.tecmis.dto.AdminData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,6 +89,10 @@ public class AddAdmin  extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtAdminRole.setText("");
+
+                    DefaultTableModel model=adminUser.showAdmin();
+                    adminTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Admin added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -120,6 +125,7 @@ public class AddAdmin  extends JFrame{
                 try {
                     boolean isUpdated=manageUser.upAdm(adminUser);
 
+
                     txtID.setText("");
                     txtUsername.setText("");
                     txtPassword.setText("");
@@ -132,6 +138,9 @@ public class AddAdmin  extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtAdminRole.setText("");
+
+                    DefaultTableModel model=adminUser.showAdmin();
+                    adminTable.setModel(model);
 
                     JOptionPane.showMessageDialog(null, "Admin update successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -179,6 +188,10 @@ public class AddAdmin  extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
                     txtAdminRole.setText("");
+
+                    DefaultTableModel model=adminUser.showAdmin();
+                    adminTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Admin delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -240,7 +253,7 @@ public class AddAdmin  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

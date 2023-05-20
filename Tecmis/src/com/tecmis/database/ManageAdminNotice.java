@@ -104,34 +104,33 @@ public class ManageAdminNotice {
 
 
     }
-    public static boolean addNotice(ManageAdminNotice noticedetail) throws SQLException {
+    public static boolean addNotice(ManageAdminNotice noticeDetail) throws SQLException {
         boolean added = false;
         try {
-
             conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Notice (Notice_Id, Date,Title, Notice_Des) VALUES (?, ?, ?, ?)");
-            stmt.setString(1, noticedetail.getNoticeID());
-            stmt.setString(2, noticedetail.getDate());
-            stmt.setString(3,noticedetail.getTitle());
-            stmt.setString(4,noticedetail.getNoticeDes());
+                    "INSERT INTO Notice (Notice_Id, Date, Title, Notice_Des) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, noticeDetail.getNoticeID());
+            stmt.setString(2, noticeDetail.getDate());
+            stmt.setString(3, noticeDetail.getTitle());
+            stmt.setString(4, noticeDetail.getNoticeDes());
 
             int rowsAdded = stmt.executeUpdate();
 
             if (rowsAdded > 0) {
-
-                System.out.println("Notice add successful!!");
+                added = true; // Set added to true when the notice is successfully added
+                System.out.println("Notice added successfully!!");
             } else {
                 System.out.println("No rows were added to the Notice table.");
             }
-
         } catch (Exception e) {
             System.out.println(e);
-        }finally {
+        } finally {
             conn.close();
         }
-    return added;
+        return added;
     }
+
     public static void updateNotice(ManageAdminNotice noticedetail) throws  SQLException {
 
         try {
@@ -169,9 +168,9 @@ public class ManageAdminNotice {
             conn.close();
             if (rowsDeleted > 0) {
 
-                System.out.println("Notice add successful!!");
+                System.out.println("Notice delete successful!!");
             } else {
-                System.out.println("No rows were added to the Notice table.");
+                System.out.println("No rows were delected  to the Notice table.");
             }
 
 

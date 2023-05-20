@@ -5,6 +5,7 @@ import com.tecmis.dto.StudentData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,6 +94,10 @@ public class AddStudent extends JFrame{
                 txtGender.setSelectedItem("");
                 txtLevel.setText("");
                 txtDepartment.setSelectedItem("");
+
+                DefaultTableModel model=studentUser.showStudent();
+                studentTable.setModel(model);
+
                 JOptionPane.showMessageDialog(null, "Student added successfully",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -142,6 +147,10 @@ public class AddStudent extends JFrame{
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
                     txtDepartment.setSelectedItem("");
+
+                    DefaultTableModel model=studentUser.showStudent();
+                    studentTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Student updated successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -172,6 +181,7 @@ public class AddStudent extends JFrame{
                 studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
+
                 boolean isDeleted = manageUser.delStu(studentUser);
                 if (isDeleted) {
                     txtID.setText("");
@@ -187,6 +197,10 @@ public class AddStudent extends JFrame{
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
                     txtDepartment.setSelectedItem("");
+
+                    DefaultTableModel model=studentUser.showStudent();
+                    studentTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Student delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -251,7 +265,7 @@ public class AddStudent extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });
