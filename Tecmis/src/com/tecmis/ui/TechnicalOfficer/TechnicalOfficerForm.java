@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.Objects;
 
 import com.tecmis.database.Auth;
 import com.tecmis.database.Database;
@@ -80,7 +81,8 @@ public class TechnicalOfficerForm extends JFrame {
         toUI.txtareaAddress.setText(String.join("\n", udata.get("Address").split(",\\s*")));
         toUI.txtDob.setText(udata.get("DOM"));
         toUI.txtEmailAdd.setText(udata.get("Email"));
-        toUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
+        System.out.println(udata.get("Gender"));
+        toUI.comboGender.getModel().setSelectedItem(Objects.equals(udata.get("Gender"), "M") ? "Male" : "Female");
         toUI.comboDepartment.getModel().setSelectedItem(udata.get("T_Dep_ID"));
 
     }

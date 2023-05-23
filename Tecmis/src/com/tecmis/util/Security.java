@@ -31,9 +31,9 @@ public class Security {
         return new String(decryptedDataByte, "UTF-8");
     }
 
-//    public static void main(String[] args) throws Exception {
-//        System.out.println( encryption("to001"));
-//
-//    }
+    public static void main(String[] args) throws Exception {
+        System.out.println( encryption("admin001"));
+
+    }
 }
 
