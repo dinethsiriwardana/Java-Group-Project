@@ -268,7 +268,7 @@
           <background color="-53151"/>
           <font size="20" style="1"/>
           <foreground color="-15659762"/>
-          <text value="Add/ View Notice"/>
+          <text value="Create and maintain Notice"/>
         </properties>
       </component>
       <vspacer id="973ff">

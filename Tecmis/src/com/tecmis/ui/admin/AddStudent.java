@@ -5,9 +5,12 @@ import com.tecmis.dto.StudentData;
 import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static java.lang.Integer.parseInt;
 
@@ -91,6 +94,10 @@ public class AddStudent extends JFrame{
                 txtGender.setSelectedItem("");
                 txtLevel.setText("");
                 txtDepartment.setSelectedItem("");
+
+                DefaultTableModel model=studentUser.showStudent();
+                studentTable.setModel(model);
+
                 JOptionPane.showMessageDialog(null, "Student added successfully",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -140,6 +147,10 @@ public class AddStudent extends JFrame{
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
                     txtDepartment.setSelectedItem("");
+
+                    DefaultTableModel model=studentUser.showStudent();
+                    studentTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Student updated successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -170,6 +181,7 @@ public class AddStudent extends JFrame{
                 studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
+
                 boolean isDeleted = manageUser.delStu(studentUser);
                 if (isDeleted) {
                     txtID.setText("");
@@ -185,6 +197,10 @@ public class AddStudent extends JFrame{
                     txtGender.setSelectedItem("");
                     txtLevel.setText("");
                     txtDepartment.setSelectedItem("");
+
+                    DefaultTableModel model=studentUser.showStudent();
+                    studentTable.setModel(model);
+
                     JOptionPane.showMessageDialog(null, "Student delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -214,28 +230,33 @@ public class AddStudent extends JFrame{
                 studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isSearched = manageUser.serchStu(studentUser);
-                if (isSearched) {
-                    txtID.setText("");
-                    txtUserName.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtLevel.setText("");
-                    txtDepartment.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "Student search successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to search Student ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                ResultSet  searchStudent = manageUser.serchStu(studentUser);
+                try {
+                    if (searchStudent.next()) {
+
+                        txtUserName.setText(searchStudent.getString("username"));
+                        txtPassword.setText(searchStudent.getString("password"));
+                        txtID.setText(searchStudent.getString("ID"));
+                        txtFirstName.setText(searchStudent.getString("Fname"));
+                        txtLastName.setText(searchStudent.getString("Lname"));
+                        txtMobile.setText(searchStudent.getString("Mobile"));
+                        txtAddress.setText(searchStudent.getString("Address"));
+                        txtAge.setText(searchStudent.getString("Age"));
+                        txtEmail.setText(searchStudent.getString("Email"));
+                        txtDOB.setText(searchStudent.getString("DOM"));
+                        txtGender.setSelectedItem(searchStudent.getString("Gender"));
+                        txtLevel.setText(searchStudent.getString("Level"));
+                        txtDepartment.setSelectedItem(searchStudent.getString("Department"));
+                        JOptionPane.showMessageDialog(null, "Student search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Student ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                 }
 
             }
@@ -244,7 +265,7 @@ public class AddStudent extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

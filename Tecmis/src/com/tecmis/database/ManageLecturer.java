@@ -41,11 +41,11 @@ public class ManageLecturer {
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected == 1) {
-
+                //add successfull
                 System.out.println("Record add successfully!! ");
                 return true;
             } else {
-
+                //add failed
                 System.out.println("Record add  failed!!");
                 return false;
             }
@@ -54,13 +54,15 @@ public class ManageLecturer {
             System.out.println("Error in executing query " + e.getMessage());
             return false;
         } catch (Exception e) {
-            System.out.println("Error in getting connection" + e.getMessage());
+
+            System.out.println( e.getMessage());
             return false;
         }
     }
 
 
     public static boolean updateLecturer(LecturerData lecdata) {
+
         String query = "UPDATE Lecturer SET  username=?, password=?, Fname=?, Lname=?, " +
                 "Mobile=?, Address=?, Age=?, Email=?, DOM=?, Gender=?, Position=? WHERE ID=?";
 
@@ -86,12 +88,13 @@ public class ManageLecturer {
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected == 1) {
-
-                    System.out.println("Record add successfully!! ");
+                    //update successfull
+                    System.out.println("Record update successfully!! ");
                     return true;
-                } else {
 
-                    System.out.println("Record add  failed!!");
+                } else {
+                    //update failed
+                    System.out.println("Record update  failed!!");
                     return false;
                 }
         }catch (SQLException e) {
@@ -99,12 +102,13 @@ public class ManageLecturer {
             return false;
 
         } catch (Exception e) {
-            System.out.println("Error in getting connection" + e.getMessage());
+            System.out.println("Error in getting connection"+e.getMessage());
             return false;
         }
-   }
+    }
 
     public static boolean deleteLecturer(LecturerData lecdata) {
+
         String query = "DELETE FROM Lecturer WHERE ID='" + lecdata.getId() + "'";
 
         System.out.println(query);
@@ -115,11 +119,11 @@ public class ManageLecturer {
             int rowsAffected = stmt.executeUpdate(query);
 
             if (rowsAffected == 1) {
-                // update successful
+                // delete successful
                 System.out.println("Record delete successfully!! ");
                 return true;
             } else {
-                // update failed
+                // delete failed
                 System.out.println("Record delete failed");
                 return false;
             }
@@ -131,7 +135,7 @@ public class ManageLecturer {
 
     }
 
-    public static boolean searchLecturer(LecturerData lecdata) {
+    public static ResultSet searchLecturer(LecturerData lecdata) {
         String query = "SELECT * FROM Lecturer WHERE ID='" + lecdata.getId() + "'";
         System.out.println(query);
         try {
@@ -139,21 +143,14 @@ public class ManageLecturer {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found");
-                return false;
-            }
+            return rs;
+
         } catch (SQLException e) {
             System.out.println("Error searching search record: " + e.getMessage());
-            return false;
+           return null;
         } catch (Exception e) {
             System.out.println("Error in getting connection" + e.getMessage());
-            return false;
+           return null;
         }
     }
 }
