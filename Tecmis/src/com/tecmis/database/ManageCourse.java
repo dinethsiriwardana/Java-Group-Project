@@ -112,7 +112,7 @@ public  class ManageCourse {
     public static boolean addCourse(ManageCourse manageCourse)  {
         boolean added=false;
 
-       String query="INSERT INTO Courses_test (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id, No_of_Quiz,No_of_Assessments) VALUES (?, ?, ?, ?, ?,?,?)";
+       String query="INSERT INTO Courses (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id, No_of_Quiz,No_of_Assessments) VALUES (?, ?, ?, ?, ?,?,?)";
 
         try {
              conn = Database.getDatabaseConnection();

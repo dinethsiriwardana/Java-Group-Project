@@ -110,7 +110,7 @@
                 </constraints>
                 <properties>
                   <font size="18"/>
-                  <text value="Upload Marks"/>
+                  <text value="Manage Marks"/>
                 </properties>
               </component>
               <component id="665c2" class="javax.swing.JButton" binding="btnStudentDetails">
