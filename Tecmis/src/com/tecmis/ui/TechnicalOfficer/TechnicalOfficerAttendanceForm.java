@@ -4,6 +4,8 @@ import com.tecmis.database.Database;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.*;
@@ -18,6 +20,7 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
     private JTextField txtDate;
     private JTextField txtAttend;
     private JTextField txtexDetails;
+    private JButton BackButton;
     private JTextArea textArea1;
     Connection conn;
 
@@ -161,6 +164,14 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                TechnicalOfficerDashBoard obj2 = new TechnicalOfficerDashBoard();
+                obj2.setVisible(true);
             }
         });
     }

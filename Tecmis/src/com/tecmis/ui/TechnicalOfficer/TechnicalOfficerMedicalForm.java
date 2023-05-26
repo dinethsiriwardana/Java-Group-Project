@@ -4,6 +4,8 @@ import com.tecmis.database.Database;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.*;
@@ -18,6 +20,7 @@ public class TechnicalOfficerMedicalForm extends JFrame {
     private JTextField txtDate;
     private JTextField txtMid;
     private JComboBox comboBox1;
+    private JButton BackBtn;
 
     //    TechnicalOfficerMedicalForm technicalOfficerMedicalForm ;
     Connection conn;
@@ -118,6 +121,14 @@ public class TechnicalOfficerMedicalForm extends JFrame {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        BackBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                TechnicalOfficerDashBoard obj3 = new TechnicalOfficerDashBoard();
+                obj3.setVisible(true);
             }
         });
     }
