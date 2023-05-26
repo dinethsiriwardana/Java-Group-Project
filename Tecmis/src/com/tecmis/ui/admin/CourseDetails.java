@@ -85,35 +85,46 @@ public class CourseDetails extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageCourse manageCourse = new ManageCourse();
-                manageCourse.setCourseId(txtID.getText());
-                manageCourse.setCourseName(txtCourseName.getText());
-                if (!txtCredit.getText().isEmpty()) {
-                    manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
-                }
+                if (txtID.getText().isEmpty() || txtCourseName.getText().isEmpty() || txtCredit.getText().isEmpty() ||
+                        txtCourseDepID.getText().isEmpty() || txtCourseLecID.getText().isEmpty() || txtQuiz.getModel().getSelectedItem().toString().isEmpty() || txtAsses.getModel().getSelectedItem().toString().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+                else{
+                    ManageCourse manageCourse = new ManageCourse();
+                    manageCourse.setCourseId(txtID.getText());
+                    manageCourse.setCourseName(txtCourseName.getText());
+                    if (!txtCredit.getText().isEmpty()) {
+                        manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
+                    }
+                    manageCourse.setDepID(txtID.getText());
+                    manageCourse.setLecID(txtCourseLecID.getText());
+                    manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
+                    manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
+                    manageCourse.setCourseId(txtID.getText());
 
-                try {
-                    ManageCourse.updateCourse(manageCourse);
-                    txtID.setText("");
-                    txtCourseName.setText("");
-                    txtCredit.setText("");
-                    txtCourseDepID.setText("");
-                    txtCourseLecID.setText("");
-                    txtQuiz.setSelectedItem("");
-                    txtAsses.setSelectedItem("");
+                    try {
+                        ManageCourse.updateCourse(manageCourse);
+                        txtID.setText("");
+                        txtCourseName.setText("");
+                        txtCredit.setText("");
+                        txtCourseDepID.setText("");
+                        txtCourseLecID.setText("");
+                        txtQuiz.setSelectedItem("");
+                        txtAsses.setSelectedItem("");
 
-                    //Refresh the table
-                    DefaultTableModel model=manageCourse.showCourses();
-                    courseTable.setModel(model);
+                        //Refresh the table
+                        DefaultTableModel model = manageCourse.showCourses();
+                        courseTable.setModel(model);
 
-                    JOptionPane.showMessageDialog(null, "Course update successful",
+                        JOptionPane.showMessageDialog(null, "Course update successful",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                }catch (SQLException ex){
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Failed to update course",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Failed to update course",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
 
+                    }
                 }
             }
         });

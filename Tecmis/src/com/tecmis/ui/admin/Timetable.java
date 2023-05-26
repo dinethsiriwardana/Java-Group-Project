@@ -72,7 +72,7 @@ public class Timetable extends JFrame {
                     System.out.println(ex.getMessage());
                 }
 
-                int result = JOptionPane.showConfirmDialog(null, "Do you want to download the file?", "File Download", JOptionPane.YES_NO_OPTION);
+                /*int result = JOptionPane.showConfirmDialog(null, "Do you want to download the file?", "File Download", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     File file = new File(filePath);
                     if (file.exists()) {
@@ -84,7 +84,7 @@ public class Timetable extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "File does not exist", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
-                }
+                }*/
 
             }
         });
@@ -138,9 +138,24 @@ public class Timetable extends JFrame {
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String timetableId = txtTime_ID.getText();
+                String department = txtDepartment.getSelectedItem().toString();
+                String level = txtLevel.getSelectedItem().toString();
+                String filePath = txtFilePath.getText();
 
+                // Prompt the user to enter the timetable ID
+                timetableId = JOptionPane.showInputDialog(null, "Enter Timetable ID:");
+
+                // Check if the user entered a timetable ID
+                if (timetableId != null && !timetableId.isEmpty()) {
+                    managetables.uploadTimetable(timetableId, department, level, filePath);
+                    // Add code for downloading the timetable
+                } else {
+                    // Display an error message or handle the case where no timetable ID was provided
+                }
             }
         });
+
     }
 
 

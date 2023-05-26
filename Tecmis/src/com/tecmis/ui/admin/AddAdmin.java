@@ -106,8 +106,17 @@ public class AddAdmin  extends JFrame{
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (txtID.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() ||
+                        txtAge.getText().isEmpty() || txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() ||
+                        txtGender.getModel().getSelectedItem().toString().isEmpty() || txtAdminRole.getText().isEmpty())
+                {
+
+                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }else{
 
                 AdminData adminUser = new AdminData();
+
                 adminUser.setID(txtID.getText());
                 adminUser.setUsername(txtUsername.getText());
                 adminUser.setPassword(txtPassword.getText());
@@ -151,6 +160,7 @@ public class AddAdmin  extends JFrame{
                             "ERROR", JOptionPane.ERROR_MESSAGE);
 
                 }
+            }
             }
         });
 
