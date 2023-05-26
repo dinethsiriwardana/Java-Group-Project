@@ -6,17 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="48a47a2d-a62e-4d1c-84e2-9ed48bdc33f3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/Notices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tecmis/com/tecmis/database/UserLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/ManageUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/ManageUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/Notices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/database/UserLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureEditUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/lecture/LectureForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/Student/Course_Details.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/Student/Course_Details.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tecmis/ui/Student/StudentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/tecmis/ui/Student/StudentForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +85,9 @@
       <workItem from="1677823898286" duration="2477000" />
       <workItem from="1678197904560" duration="2557000" />
       <workItem from="1678525480000" duration="5575000" />
+      <workItem from="1683864588953" duration="6000" />
+      <workItem from="1683864638306" duration="379000" />
+      <workItem from="1684218795149" duration="41000" />
     </task>
     <servers />
   </component>

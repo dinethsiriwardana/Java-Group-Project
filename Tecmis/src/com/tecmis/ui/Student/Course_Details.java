@@ -56,6 +56,8 @@ public class Course_Details  extends JFrame{
 
     }
 
+
+
         public static void main(String[] args) {
         Course_Details course=new Course_Details();
     }
