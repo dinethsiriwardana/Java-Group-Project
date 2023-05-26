@@ -1,12 +1,9 @@
 package com.tecmis.ui.TechnicalOfficer;
 
-
 import com.tecmis.database.Auth;
 import com.tecmis.database.Notices;
 import com.tecmis.ui.LoginForm;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerAttendanceForm;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerProfile;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerMedicalForm;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ToNotice extends JFrame{
+public class ToForm extends JFrame{
 
 
     private JButton btnManageMaterials;
@@ -27,9 +24,9 @@ public class ToNotice extends JFrame{
     private JLabel btnlogout;
     private JLabel setting;
     private JLabel lblNotices;
-    static ToNotice toNotice;
+    static  ToForm toForm;
 
-    public ToNotice() {
+    public ToForm() {
         add(pnlLecturer);
         setVisible(true);
         setTitle("Tecnical Officer Notice");
@@ -38,7 +35,7 @@ public class ToNotice extends JFrame{
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
         Auth auth = Auth.getInstance();
-       // toForm = this;
+        toForm = this;
         onLoad();
 
 
@@ -110,10 +107,10 @@ public class ToNotice extends JFrame{
                 try {
                     setVisible(false);
                     // Create and show the LectureEditUser frame
-                    TechnicalOfficerProfile technicalOfficerProfile = new TechnicalOfficerProfile();
-                    technicalOfficerProfile.setVisible(true);
+                    TechnicalOfficerProfile technicalOfficerForm = new  TechnicalOfficerProfile();
+                    technicalOfficerForm.setVisible(true);
                     // When the LectureEditUser frame is closed, show the LectureForm frame again
-                    technicalOfficerProfile.addWindowListener(new WindowAdapter() {
+                    technicalOfficerForm.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent e) {
                             super.windowClosed(e);
@@ -137,9 +134,8 @@ public class ToNotice extends JFrame{
     }
 
     public static void main(String[] args) {
-        ToNotice technicalOfficer=new ToNotice();
+        ToForm toForm1 = new ToForm();
     }
-
 
 
 }
