@@ -2,9 +2,11 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageCourse;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CourseDetails extends JFrame {
@@ -39,6 +41,7 @@ public class CourseDetails extends JFrame {
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 ManageCourse manageCourse = new ManageCourse();
                 manageCourse.setCourseId(txtID.getText());
                 manageCourse.setCourseName(txtCourseName.getText());
@@ -59,6 +62,8 @@ public class CourseDetails extends JFrame {
                     txtAsses.setSelectedItem("");
 
                     if (added) {
+                        DefaultTableModel model = manageCourse.showCourses();
+                        courseTable.setModel(model);
                         JOptionPane.showMessageDialog(null, "Course added successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -86,12 +91,9 @@ public class CourseDetails extends JFrame {
                 if (!txtCredit.getText().isEmpty()) {
                     manageCourse.setCredit(Integer.parseInt(txtCredit.getText()));
                 }
-                manageCourse.setDepID(txtCourseDepID.getText());
-                manageCourse.setLecID(txtCourseLecID.getText());
-                manageCourse.setQuiz(txtQuiz.getModel().getSelectedItem().toString());
-                manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
+
                 try {
-                    boolean updated = ManageCourse.updateCourse(manageCourse);
+                    ManageCourse.updateCourse(manageCourse);
                     txtID.setText("");
                     txtCourseName.setText("");
                     txtCredit.setText("");
@@ -100,16 +102,15 @@ public class CourseDetails extends JFrame {
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
 
-                    if (updated) {
-                        JOptionPane.showMessageDialog(null, "Course update successful",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
+                    //Refresh the table
+                    DefaultTableModel model=manageCourse.showCourses();
+                    courseTable.setModel(model);
 
-                        JOptionPane.showMessageDialog(null, "Failed to update course: Course not found",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
+                    JOptionPane.showMessageDialog(null, "Course update successful",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+
                 }catch (SQLException ex){
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to update course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
 
@@ -140,8 +141,10 @@ public class CourseDetails extends JFrame {
                     txtQuiz.setSelectedItem("");
                     txtAsses.setSelectedItem("");
                     if (deleted) {
-                        JOptionPane.showMessageDialog(null, "Course delete successfully",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        DefaultTableModel model=manageCourse.showCourses();
+                        courseTable.setModel(model);
+                        JOptionPane.showMessageDialog(null, "Course delete successfully");
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to delete course: Course not found",
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -156,6 +159,7 @@ public class CourseDetails extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 ManageCourse manageCourse =new ManageCourse();
                 manageCourse.setCourseId(txtID.getText());
                 manageCourse.setCourseName(txtCourseName.getText());
@@ -168,17 +172,20 @@ public class CourseDetails extends JFrame {
                 manageCourse.setAsses(txtAsses.getModel().getSelectedItem().toString());
 
                 try {
-                    boolean searched = ManageCourse.searchCourse(manageCourse);
-                    txtID.setText("");
-                    txtCourseName.setText("");
-                    txtCredit.setText("");
-                    txtCourseDepID.setText("");
-                    txtCourseDepID.setText("");
-                    txtQuiz.setSelectedItem("");
-                    txtAsses.setSelectedItem("");
-                    if (searched) {
-                        JOptionPane.showMessageDialog(null, "Course search successfully",
-                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    ResultSet searched = ManageCourse.searchCourse(manageCourse);
+
+                    if(searched.next()) {
+
+                        txtID.setText(searched.getString("Course_ID"));
+                        txtCourseName.setText(searched.getString("Course_Name"));
+                        txtCredit.setText(searched.getString("Credit"));
+                        txtCourseDepID.setText(searched.getString("Dep_ID"));
+                        txtCourseLecID.setText(searched.getString("Lec_ID"));
+                        txtQuiz.setSelectedItem(searched.getString("No_of_Quiz"));
+                        txtAsses.setSelectedItem(searched.getString("No_of_Assessments"));
+
+                        JOptionPane.showMessageDialog(null, "Course search successfully");
+
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Failed to search course: course not found",
@@ -195,7 +202,7 @@ public class CourseDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

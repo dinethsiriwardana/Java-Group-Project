@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminForm extends  JFrame
+public class  AdminDashboard extends  JFrame
 
 {
     private JPanel pnlAdmin;
@@ -19,7 +19,7 @@ public class AdminForm extends  JFrame
     private JLabel lblWelcomText;
     private JLabel lblSetting;
 
-    public  AdminForm() {
+    public AdminDashboard() {
         add(pnlAdmin);
 
         setVisible(true);
@@ -38,6 +38,7 @@ public class AdminForm extends  JFrame
                 setVisible(false);
                 AddAdmin object=new AddAdmin();
                 object.setVisible(true);
+
 
             }
         });
@@ -103,6 +104,6 @@ public class AdminForm extends  JFrame
     }
 
     public static void main(String[] args) {
-        AdminForm adminForm=new AdminForm();
+        AdminDashboard adminForm=new AdminDashboard();
     }
 }

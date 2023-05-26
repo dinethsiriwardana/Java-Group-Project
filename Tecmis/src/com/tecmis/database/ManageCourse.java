@@ -76,7 +76,7 @@ public  class ManageCourse {
     static PreparedStatement pst=null;
     static DefaultTableModel model = null;
 
-    public static DefaultTableModel showCourses() {
+    public  DefaultTableModel showCourses() {
 
 
         try {
@@ -112,7 +112,7 @@ public  class ManageCourse {
     public static boolean addCourse(ManageCourse manageCourse)  {
         boolean added=false;
 
-       String query="INSERT INTO Courses_test (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id, No_of_Quiz,No_of_Assessments) VALUES (?, ?, ?, ?, ?,?,?)";
+       String query="INSERT INTO Courses (Course_Id, Course_Name, Credit, Dep_Id, Lec_Id, No_of_Quiz,No_of_Assessments) VALUES (?, ?, ?, ?, ?,?,?)";
 
         try {
              conn = Database.getDatabaseConnection();
@@ -127,6 +127,7 @@ public  class ManageCourse {
             pst.setString(7, manageCourse.getAsses());
 
             int rowsAdded=pst.executeUpdate();
+
 
             if (rowsAdded > 0) {
                 added=true;
@@ -149,26 +150,22 @@ public  class ManageCourse {
         return added;
     }
 
-    public static boolean updateCourse(ManageCourse manageCourse) throws SQLException {
-       boolean updated=false;
+    public static void updateCourse(ManageCourse manageCourse) throws SQLException {
+
 
         try {
              conn = Database.getDatabaseConnection();
              pst = conn.prepareStatement(
-                    "UPDATE Courses_test SET Course_Name=?, Credit=?, Dep_Id=?, Lec_Id=?, No_of_Quiz=?,No_of_Assessments=? WHERE Course_Id=?");
+                    "UPDATE Courses_test SET Course_Name=?, Credit=? WHERE Course_Id=?");
             pst.setString(1, manageCourse.getCourseName());
             pst.setInt(2, manageCourse.getCredit());
-            pst.setString(3, manageCourse.getDepID());
-            pst.setString(4, manageCourse.getLecID());
-            pst.setString(5, manageCourse.getQuiz());
-            pst.setString(6, manageCourse.getAsses());
-            pst.setString(7, manageCourse.getCourseId());
+            pst.setString(3, manageCourse.getCourseId());
 
             int rowsUpdated = pst.executeUpdate();
 
 
             if (rowsUpdated > 0) {
-                updated=true;
+
                 System.out.println("Course Update successful!!");
             } else {
                 System.out.println("Course not update!!");
@@ -179,7 +176,7 @@ public  class ManageCourse {
         }finally {
             conn.close();
         }
-        return  updated;
+
     }
 
 
@@ -188,53 +185,42 @@ public  class ManageCourse {
     public static boolean deleteCourse(ManageCourse manageCourse) throws SQLException {
         boolean deleted = false;
         try {
-             conn = Database.getDatabaseConnection();
-             pst = conn.prepareStatement(
-                    "DELETE FROM Courses_test WHERE Course_Id=?");
+            conn = Database.getDatabaseConnection();
+            pst = conn.prepareStatement("DELETE FROM Courses_test WHERE Course_Id = ?");
             pst.setString(1, manageCourse.getCourseId());
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                // record found and
-                deleted = true;
-                System.out.println("Record deleted successfully!!");
-            } else {
-                // record not found
-                System.out.println("Record not found!!");
-            }
 
+            int rowsDeleted = pst.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                deleted = true;
+                System.out.println("Course delete successful!!");
+            } else {
+                System.out.println("Course not found!!");
+            }
         } catch (Exception e) {
             System.out.println(e);
-        }finally {
+        } finally {
             conn.close();
         }
         return deleted;
     }
 
 
-    public static boolean searchCourse(ManageCourse manageCourse) throws SQLException {
-        boolean searched=false;
+
+    public static ResultSet searchCourse(ManageCourse manageCourse) throws SQLException {
+        ResultSet rs=null;
         try {
              conn = Database.getDatabaseConnection();
              pst= conn.prepareStatement("SELECT * FROM Courses_test WHERE Course_Id=?");
              pst.setString(1, manageCourse.getCourseId());
-             ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                // record found
-                searched=true;
-                System.out.println("Record found!!");
-            }
-            else {
-                // record not found
-                System.out.println("Record not found!!");
-            }
-
+             rs = pst.executeQuery();
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }finally {
             conn.close();
         }
-        return searched;
+        return rs;
     }
 
 

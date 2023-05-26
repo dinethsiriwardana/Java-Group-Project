@@ -1,32 +1,37 @@
 package com.tecmis.ui.admin;
 
 
-
+import com.tecmis.database.Database;
 import com.tecmis.database.ManageTimetable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
 public class Timetable extends JFrame {
     private JTextField txtTime_ID;
-    private JButton addButton;
+
     private JButton deleteButton;
-    private JButton updateButton;
+    private JButton btn_up;
     private JPanel pnlTimetable;
     private JComboBox txtLevel;
-    private JButton uploadButton;
+    private JButton downloadButton;
     private JComboBox txtDepartment;
     private JTable timeTable;
-    private JTextField txtPDF;
+    private JTextField txtFilePath;
     private JButton backButton;
+    private JButton btn_browse;
 
     public Timetable() {
         add(pnlTimetable);
@@ -41,124 +46,122 @@ public class Timetable extends JFrame {
             throw new RuntimeException(e);
         }
 
-        /*addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ManageTimetable managetable = new ManageTimetable();
-                JFileChooser fileChooser = new JFileChooser();
-                int result = fileChooser.showOpenDialog(null);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    txtPDF.setText(selectedFile.getAbsolutePath());
-                }
-                managetable.setId(txtTime_ID.getText());
-                managetable.setDepartmentName(txtDepartment.getSelectedItem().toString());
-                managetable.setLevel(txtLevel.getSelectedItem().toString());
-
-                // read the selected file and set the bytes to the PDF property of the managetable object
-                try {
-                    File pdfFile = new File(txtPDF.getText());
-                    byte[] pdfData = Files.readAllBytes(pdfFile.toPath());
-                    managetable.setPdf(pdfData);
-
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Failed to read PDF file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                try {
-                    ManageTimetable.addTimetable(managetable);
-                    timeTable.setModel(managetable.showTimetable());
-                    JOptionPane.showMessageDialog(null, "Timetable added successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Failed to add timetable: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });*/
-
-// to view the document
-        uploadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = timeTable.getSelectedRow();
-                if (selectedRow == -1) {
-                    JOptionPane.showMessageDialog(null, "Please select a timetable to download", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                ManageTimetable managetable = new ManageTimetable();
-                managetable.setId((String) timeTable.getValueAt(selectedRow, 0)); // assumes the first column is the ID column
-
-                try {
-                    byte[] pdfData = ManageTimetable.getTimetable(managetable).getPdf();
-
-                    // Choose a file to save the PDF
-                    JFileChooser fileChooser = new JFileChooser();
-                    fileChooser.setDialogTitle("Save PDF File");
-                    int userSelection = fileChooser.showSaveDialog(null);
-                    if (userSelection == JFileChooser.APPROVE_OPTION) {
-                        File fileToSave = fileChooser.getSelectedFile();
-                        FileOutputStream fos = new FileOutputStream(fileToSave);
-                        fos.write(pdfData);
-                        fos.close();
-
-                        // Open the downloaded PDF using the Desktop class
-                        Desktop.getDesktop().open(fileToSave);
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Failed to save PDF file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-
-        });
-
-
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = timeTable.getSelectedRow();
-                if (selectedRow == -1) {
-                    JOptionPane.showMessageDialog(null, "Please select a timetable to delete", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                ManageTimetable managetable = new ManageTimetable();
-                managetable.setId((String) timeTable.getValueAt(selectedRow, 0)); // assumes the first column is the ID column
-
-                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this timetable?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
-                if (confirmResult == JOptionPane.YES_OPTION) {
-                    try {
-                        ManageTimetable.deleteTimetable(managetable);
-                        timeTable.setModel(managetable.showTimetable());
-                        JOptionPane.showMessageDialog(null, "Timetable deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "Failed to delete timetable: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-
-            }
-        });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });
+
+        btn_up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String timetableId = txtTime_ID.getText();
+                String department = txtDepartment.getSelectedItem().toString();
+                String level = txtLevel.getSelectedItem().toString();
+                String filePath = txtFilePath.getText();
+
+                managetables.uploadTimetable(timetableId, department, level, filePath);
+                try {
+                    DefaultTableModel model = managetables.showTimetable();
+                    timeTable.setModel(model);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+                int result = JOptionPane.showConfirmDialog(null, "Do you want to download the file?", "File Download", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    File file = new File(filePath);
+                    if (file.exists()) {
+                        try {
+                            Desktop.getDesktop().open(file);
+                        } catch (IOException ex) {
+                            JOptionPane.showMessageDialog(null, "Failed to open file", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "File does not exist", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            }
+        });
+        btn_browse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    txtFilePath.setText(selectedFile.getAbsolutePath());
+
+                }
+
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageTimetable manageTimetable = new ManageTimetable();
+                manageTimetable.setId(txtTime_ID.getText());
+                manageTimetable.setDepartmentName(txtDepartment.getSelectedItem().toString());
+                manageTimetable.setLevel(txtLevel.getSelectedItem().toString());
+                manageTimetable.setFile_path(txtFilePath.getText().getBytes());
+
+                try {
+                    ManageTimetable.deleteTimetable(manageTimetable);
+                    DefaultTableModel model = manageTimetable.showTimetable();
+                    timeTable.setModel(model);
+
+
+                    txtTime_ID.setText("");
+                    txtDepartment.setSelectedItem("");
+                    txtLevel.setSelectedItem("");
+                    txtFilePath.setText("");
+
+                    JOptionPane.showMessageDialog(null, "Timetable delete successfully");
+
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Timetable to delete course",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+        });
+        downloadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = timeTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Please select a timetable to download.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+
+                String timetableId = timeTable.getValueAt(selectedRow, 0).toString(); // Assuming timetable ID is stored in the first column
+                String filePath = timeTable.getValueAt(selectedRow, 3).toString(); // Assuming file path is stored in the fourth column
+                ManageTimetable manageTimetable = new ManageTimetable();
+                manageTimetable.downlaodTimetable();
+
+
+            }
+        });
     }
+
+
+
+
     public static void main(String[] args) {
         Timetable timetable=new Timetable();
     }
 }
+
+
+

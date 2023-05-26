@@ -171,11 +171,28 @@ public class LectureStudentResult extends JFrame {
                                 values[column] = data[row][column].toString();
                             }
                         }
-                        String insertSql = "INSERT INTO "+comboBox1.getModel().getSelectedItem()+"_marks (" +
-                                String.join(", ", columnNames) + ") " +
-                                "VALUES (" + String.join(", ", values) + ")";
-                        System.out.println(insertSql);
-                        stmt.executeUpdate(insertSql);
+
+
+                        // Check if record exists
+                        String sql = "SELECT * FROM " + comboBox1.getModel().getSelectedItem() + "_marks WHERE " + columnNames[0] + " = '" + data[row][0] + "'";
+                        ResultSet rs = stmt.executeQuery(sql);
+
+// If record exists, update it
+                        if (rs.next()) {
+                            String updateSql = "UPDATE " + comboBox1.getModel().getSelectedItem() + "_marks SET ";
+                            for (int i = 1; i < columns; i++) {
+                                updateSql += columnNames[i] + " = '" + data[row][i] + "', ";
+                            }
+                            updateSql = updateSql.substring(0, updateSql.length() - 2) + " WHERE " + columnNames[0] + " = '" + data[row][0] + "'";
+                            stmt.executeUpdate(updateSql);
+                        } else {
+                            // If record does not exist, insert it
+                            String insertSql = "INSERT INTO " + comboBox1.getModel().getSelectedItem() + "_marks (" +
+                                    String.join(", ", columnNames) + ") " +
+                                    "VALUES (" + String.join(", ", values) + ")";
+                            System.out.println(insertSql);
+                            stmt.executeUpdate(insertSql);
+                        }
                     }
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);

@@ -147,7 +147,7 @@ public class ManageTechnicalOfficer extends User {
         }
 
     }
-    public static boolean searchTechnicalOfficer(TechnicalOfficerData tecdata) {
+    public static ResultSet searchTechnicalOfficer(TechnicalOfficerData tecdata) {
 
         String query = "SELECT * FROM TechnicalOfficer WHERE ID='" + tecdata.getId() + "'";
 
@@ -158,21 +158,13 @@ public class ManageTechnicalOfficer extends User {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found!!");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found!!");
-                return false;
-            }
+            return rs;
         } catch (SQLException e) {
             System.out.println("Error in executing query " + e.getMessage());
-            return false;
+            return null;
         } catch (Exception e) {
             System.out.println("Error in getting connection" + e.getMessage());
-            return false;
+            return null;
         }finally {
             try {
                 connection.close();

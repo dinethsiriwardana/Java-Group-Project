@@ -101,12 +101,12 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
-    public boolean serchUser(User userSea) {
+    public ResultSet serchUser(User userSea) {
         if(userSea.getUserAccountType()=="lecturer"){
             return ManageLecturer.searchLecturer((LecturerData) userSea);
         }
 
-        return false;
+        return null;
     }
 
     @Override
@@ -137,11 +137,11 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
-    public boolean serchStu(User userSea) {
+    public ResultSet serchStu(User userSea) {
         if(userSea.getUserAccountType()=="student"){
             return ManageStudent.searchStudent( (StudentData) userSea);
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -180,12 +180,12 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
-    public boolean serchTo(User userSea) {
+    public ResultSet serchTo(User userSea) {
         if(userSea.getUserAccountType()=="technical officer"){
             return ManageTechnicalOfficer.searchTechnicalOfficer( (TechnicalOfficerData) userSea);
         }
 
-        return false;
+        return null;
     }
 
     @Override
@@ -214,11 +214,11 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
-    public boolean searchAdm(User userSea) {
+    public ResultSet searchAdm(User userSea) {
         if(userSea.getUserAccountType()=="admin"){
             return ManageAdmin.searchAdmin((AdminData) userSea);
         }
-        return false;
+        return null;
     }
 
 
