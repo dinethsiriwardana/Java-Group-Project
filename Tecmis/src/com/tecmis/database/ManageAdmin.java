@@ -37,7 +37,7 @@ public class ManageAdmin {
                 pst.setString(12, addata.getAdmin_role());
 
             int rowsAffected = pst.executeUpdate();
-            new AdminData().showAdmin();
+
 
             if (rowsAffected == 1) {
 
@@ -115,11 +115,11 @@ public class ManageAdmin {
             int rowsAffected = stmt.executeUpdate(query);
 
             if (rowsAffected == 1) {
-                // update successful
+
                 System.out.println("Record delete successfully!! ");
                 return true;
             } else {
-                // update failed
+
                 System.out.println("Record delete failed!!");
                 return false;
             }
