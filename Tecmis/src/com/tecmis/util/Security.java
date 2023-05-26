@@ -16,7 +16,7 @@ public class Security {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         byte[] encryptedDataByte = cipher.doFinal(encryption.getBytes("UTF-8"));
-
+        System.out.println( Base64.getEncoder().encodeToString(encryptedDataByte));
         return Base64.getEncoder().encodeToString(encryptedDataByte);
     }
     private String decryption(String encryptedData) throws Exception {
