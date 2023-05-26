@@ -3,9 +3,11 @@ package com.tecmis.ui.admin;
 import com.tecmis.database.ManageAdminNotice;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NoticeDetails extends JFrame {
@@ -46,25 +48,26 @@ public class NoticeDetails extends JFrame {
 
                 try{
 
-                    boolean added= ManageAdminNotice.addNotice(noticeDetail);
-                    txtNoticeId.setText("");
-                    txtDate.setText("");
-                    txtTitle.setText("");
-                    txtDes.setText("");
-
-
+                    boolean added=ManageAdminNotice.addNotice(noticeDetail);
                     if(added) {
+
+                        DefaultTableModel model = noticeDetail.showNotice();
+                        noticeTable.setModel(model);
+
+                        txtNoticeId.setText("");
+                        txtDate.setText("");
+                        txtTitle.setText("");
+                        txtDes.setText("");
                         JOptionPane.showMessageDialog(null, "Notice added successfully!!",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Faild to  add Notice,please check again!!","Error",JOptionPane.ERROR_MESSAGE);
                     }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Failed to add notice: please try again!!1",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-
                 }catch(SQLException ex ){
-                    JOptionPane.showMessageDialog(null, "Failed to add Notice!!",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+
+                }catch (Exception ex){
+                    System.out.println(ex.getMessage());
                 }
 
             }
@@ -80,24 +83,26 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean updated= ManageAdminNotice.updateNotice(noticeDetail);
+                    ManageAdminNotice.updateNotice(noticeDetail);
+
+                    DefaultTableModel model = noticeDetail.showNotice();
+                    noticeTable.setModel(model);
+
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtDes.setText("");
 
-
-                    if(updated) {
-                        JOptionPane.showMessageDialog(null, "Notice update successfully!!",
+                    JOptionPane.showMessageDialog(null, "Notice update successfully!!",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Failed to update notice: notice not found",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
+
+
                 } catch (SQLException ex) {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to update Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -112,23 +117,24 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean deleted= ManageAdminNotice.deleteNotice(noticeDetail);
+                    ManageAdminNotice.deleteNotice(noticeDetail);
+
+                    DefaultTableModel model = noticeDetail.showNotice();
+                    noticeTable.setModel(model);
+
                     txtNoticeId.setText("");
                     txtDate.setText("");
                     txtTitle.setText("");
                     txtDes.setText("");
-
-                    if(deleted) {
-                        JOptionPane.showMessageDialog(null, "Notice delete successfully!!",
+                    JOptionPane.showMessageDialog(null, "Notice delete successfully!!",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Failed to delete notice: notice not found!!",
-                                "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (SQLException ex) {
+
+                }catch (SQLException ex) {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to delete Notice!!",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -144,13 +150,12 @@ public class NoticeDetails extends JFrame {
 
 
                 try {
-                    boolean searched= ManageAdminNotice.searchNotice(noticeDetail);
-                    txtNoticeId.setText("");
-                    txtDate.setText("");
-                    txtTitle.setText("");
-                    txtDes.setText("");
-
-                    if(searched) {
+                    ResultSet searched= ManageAdminNotice.searchNotice(noticeDetail);
+                    if(searched.next()) {
+                        txtNoticeId.setText(searched.getString("Notice_Id"));
+                        txtDate.setText(searched.getString("Date"));
+                        txtTitle.setText(searched.getString("Title"));
+                        txtDes.setText(searched.getString("Notice_Des"));
                         JOptionPane.showMessageDialog(null, "Notice search successfully",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -171,7 +176,7 @@ public class NoticeDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                AdminForm object = new AdminForm();
+                AdminDashboard object = new AdminDashboard();
                 object.setVisible(true);
             }
         });

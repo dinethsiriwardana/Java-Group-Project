@@ -130,7 +130,7 @@ public class ManageStudent {
 
 
     }
-    public static boolean searchStudent(StudentData studata){
+    public static ResultSet searchStudent(StudentData studata){
 
         String query = "SELECT * FROM Student WHERE ID='" + studata.getId() + "'";
         System.out.println(query);
@@ -139,21 +139,13 @@ public class ManageStudent {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            if (rs.next()) {
-                // record found
-                System.out.println("Record found!!");
-                return true;
-            } else {
-                // record not found
-                System.out.println("Record not found!!");
-                return false;
-            }
+            return rs;
         } catch (SQLException e) {
             System.out.println("Error in executing query " + e.getMessage());
-            return false;
+            return null;
         } catch (Exception e) {
             System.out.println("Error in getting connection" + e.getMessage());
-            return false;
+            return null;
         }
     }
 
