@@ -49,6 +49,10 @@ public class Medical_Details extends JFrame{
             }
         });
     }
+
+    public static void main(String[] args) {
+        Medical_Details Medical = new Medical_Details();
+    }
 }
 
 
