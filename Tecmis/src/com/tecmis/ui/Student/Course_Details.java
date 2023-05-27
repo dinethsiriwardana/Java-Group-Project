@@ -38,7 +38,7 @@ public class Course_Details  extends JFrame{
         Connection conn = Database.getDatabaseConnection();
         Statement stmt = conn.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_columns) + " FROM Course");
+        ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", course_columns) + " FROM Courses");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount = metaData.getColumnCount();

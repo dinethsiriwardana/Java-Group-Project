@@ -1,7 +1,6 @@
 package com.tecmis.ui.Student;
 
 import com.tecmis.database.Notices;
-import com.tecmis.ui.lecture.LectureEditUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +22,7 @@ public class StudentForm extends JFrame{
     private JButton noticeButton;
     private JList list1;
     private JLabel setting;
+    private JButton noticesButton;
     private JLabel lblNotices;
 
     public StudentForm() {
@@ -65,6 +65,7 @@ public class StudentForm extends JFrame{
                 }
             }
         });
+
         btnTimeTable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,14 +115,7 @@ public class StudentForm extends JFrame{
 
             }
         });
-//        btnStudentResult.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                setVisible(false);
-//                Student_Marks studentmarks = new Student_Marks();
-//                studentmarks.setVisible(true);
-//            }
-//        });
+
         btnMedicalRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,6 +140,8 @@ public class StudentForm extends JFrame{
 
             }
         });
+
+
         btnStudentAttendance.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -177,7 +173,75 @@ public class StudentForm extends JFrame{
         });
 
 
+        btnMedicalRecord.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        btnCourseDetails.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        btnStudentResult.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    Student_Marks studentMarks = new Student_Marks();
 
+                    studentMarks.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    studentMarks.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnStudentResult.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        noticesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    StudentNotice studentNotice = new StudentNotice();
+
+                    studentNotice.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    studentNotice.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        noticesButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
     }
 
     public void onLoad(){
@@ -189,10 +253,9 @@ public class StudentForm extends JFrame{
     }
 
 
-
-
-
-
+    public static void main(String[] args) {
+        StudentForm studentForm =  new StudentForm();
+    }
 
 
 

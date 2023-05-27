@@ -34,7 +34,7 @@ public class Profile_Update extends  JFrame{
         
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
-        
+        username = "tg001";
         add(pnlProfile);
         setVisible(true);
         setTitle("Student !!!");
@@ -69,8 +69,17 @@ public class Profile_Update extends  JFrame{
         //profileUpdate.txtDob.setText(udata.get("DOM"));
         profileUpdate.txtEmailAdd.setText(udata.get("Email"));
         //profileUpdate.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
-        profileUpdate.comboLevel.getModel().setSelectedItem(udata.get("Level"));
+//        profileUpdate.comboLevel.getModel().setSelectedItem(udata.get("Level"));
         //profileUpdate.txtDepartment.setText(udata.get("Department"));
+        ImageIcon originalIcon = new ImageIcon("Tecmis/src/com/tecmis/assets/img/tg001.jpg");
+        int desiredWidth = 200;
+        int desiredHeight = 200;
+        Image scaledImage = originalIcon.getImage().getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
+
+        // Create a new ImageIcon with the scaled image
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        lblImage.setIcon(scaledIcon);
 
     }
 

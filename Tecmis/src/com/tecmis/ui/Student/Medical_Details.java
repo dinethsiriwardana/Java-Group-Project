@@ -1,8 +1,7 @@
 package com.tecmis.ui.Student;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class Medical_Details extends JFrame{
     private JLabel lblStuID;
@@ -17,9 +16,17 @@ public class Medical_Details extends JFrame{
     private JComboBox TypecomboBox;
     private JButton clearButton;
     private JButton submitButton;
+    private JPanel Jmedi;
 
 
-public  Medical_Details(){
+    public  Medical_Details(){
+    add(Jmedi);
+    setVisible(true);
+    setTitle("Medical Details");
+    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    setSize(1500,1500);
+    setPreferredSize(new Dimension(220,400));
+    setResizable(true);
 
 }
 }

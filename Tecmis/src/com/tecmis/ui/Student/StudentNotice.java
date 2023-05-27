@@ -11,10 +11,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class StudentNotice extends JFrame{
-    private JTextField txtID;
-    private JTextField txtDate;
-    private JTextField txtTitle;
-    private JTextArea txtNoticeDes;
     private JPanel pnlStudentNotice;
     private JTable noticeTable;
     private static final String[] notice_columns = {"Notice_ID", "Date", "Title", "Notice_Des"};

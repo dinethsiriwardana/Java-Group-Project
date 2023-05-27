@@ -6,7 +6,17 @@ public class Auth {
 
     private String SID;
 
-    private Auth() {
+    private String accouttype;
+
+    public void setAccouttype(String accouttype) {
+        this.accouttype = accouttype;
+    }
+
+    public String getAccouttype() {
+        return accouttype;
+    }
+
+    Auth() {
         // Private constructor to prevent external instantiation
     }
 
