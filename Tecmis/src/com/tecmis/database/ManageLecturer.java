@@ -64,7 +64,7 @@ public class ManageLecturer {
     public static boolean updateLecturer(LecturerData lecdata) {
 
         String query = "UPDATE Lecturer SET  username=?, password=?, Fname=?, Lname=?, " +
-                "Mobile=?, Address=?, Age=?, Email=?, DOM=?, Gender=?, Position=? WHERE ID=?";
+                       "Mobile=?, Address=?, Age=?, Email=?, DOM=?, Gender=?, Position=? WHERE ID=?";
 
 
         System.out.println(query);

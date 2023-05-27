@@ -75,34 +75,40 @@ public class NoticeDetails extends JFrame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageAdminNotice noticeDetail = new ManageAdminNotice();
-                noticeDetail.setNoticeID(txtNoticeId.getText());
-                noticeDetail.setDate(txtDate.getText());
-                noticeDetail.setTitle(txtTitle.getText());
-                noticeDetail.setNoticeDes(txtDes.getText());
+                if (txtNoticeId.getText().isEmpty() || txtDate.getText().isEmpty() || txtTitle.getText().isEmpty() ||
+                        txtDes.getText().isEmpty() )
+                {
+                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+                else {
+                    ManageAdminNotice noticeDetail = new ManageAdminNotice();
+                    noticeDetail.setNoticeID(txtNoticeId.getText());
+                    noticeDetail.setDate(txtDate.getText());
+                    noticeDetail.setTitle(txtTitle.getText());
+                    noticeDetail.setNoticeDes(txtDes.getText());
 
 
-                try {
-                    ManageAdminNotice.updateNotice(noticeDetail);
+                    try {
+                        ManageAdminNotice.updateNotice(noticeDetail);
 
-                    DefaultTableModel model = noticeDetail.showNotice();
-                    noticeTable.setModel(model);
+                        DefaultTableModel model = noticeDetail.showNotice();
+                        noticeTable.setModel(model);
 
-                    txtNoticeId.setText("");
-                    txtDate.setText("");
-                    txtTitle.setText("");
-                    txtDes.setText("");
+                        txtNoticeId.setText("");
+                        txtDate.setText("");
+                        txtTitle.setText("");
+                        txtDes.setText("");
 
-                    JOptionPane.showMessageDialog(null, "Notice update successfully!!",
+                        JOptionPane.showMessageDialog(null, "Notice update successfully!!",
                                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
 
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Failed to update Notice!!",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Failed to update Notice!!",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
             }
         });

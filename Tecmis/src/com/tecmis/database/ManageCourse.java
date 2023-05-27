@@ -29,7 +29,7 @@ public  class ManageCourse {
         this.asses = asses;
     }
 
-    private static final String[] courses_test_table_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID", "No_of_Quiz", "No_of_Assessments"};
+    private static final String[] courses_columns = {"Course_ID", "Course_Name", "Credit", "Dep_ID", "Lec_ID", "No_of_Quiz", "No_of_Assessments"};
 
 
     public String getDepID() {
@@ -82,10 +82,10 @@ public  class ManageCourse {
         try {
             conn = Database.getDatabaseConnection();
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", courses_test_table_columns) + " FROM Courses_test");
+            ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", courses_columns) + " FROM Courses");
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-            model = new DefaultTableModel(courses_test_table_columns, 0);
+            model = new DefaultTableModel(courses_columns, 0);
 
             while (rs.next()) {
                 Object[] row = new Object[columnCount];
@@ -156,10 +156,14 @@ public  class ManageCourse {
         try {
              conn = Database.getDatabaseConnection();
              pst = conn.prepareStatement(
-                    "UPDATE Courses_test SET Course_Name=?, Credit=? WHERE Course_Id=?");
+                    "UPDATE Courses SET Course_Name=?, Credit=?,Dep_ID=?,Lec_ID=?,No_of_Quiz=?,No_of_Assessments=? WHERE Course_Id=?");
             pst.setString(1, manageCourse.getCourseName());
             pst.setInt(2, manageCourse.getCredit());
-            pst.setString(3, manageCourse.getCourseId());
+            pst.setString(3, manageCourse.getDepID());
+            pst.setString(4,manageCourse.getLecID());
+            pst.setString(5,manageCourse.getQuiz());
+            pst.setString(6,manageCourse.getAsses());
+            pst.setString(7,manageCourse.getCourseId());
 
             int rowsUpdated = pst.executeUpdate();
 
@@ -186,7 +190,7 @@ public  class ManageCourse {
         boolean deleted = false;
         try {
             conn = Database.getDatabaseConnection();
-            pst = conn.prepareStatement("DELETE FROM Courses_test WHERE Course_Id = ?");
+            pst = conn.prepareStatement("DELETE FROM Courses WHERE Course_Id = ?");
             pst.setString(1, manageCourse.getCourseId());
 
             int rowsDeleted = pst.executeUpdate();
@@ -211,7 +215,7 @@ public  class ManageCourse {
         ResultSet rs=null;
         try {
              conn = Database.getDatabaseConnection();
-             pst= conn.prepareStatement("SELECT * FROM Courses_test WHERE Course_Id=?");
+             pst= conn.prepareStatement("SELECT * FROM Courses WHERE Course_Id=?");
              pst.setString(1, manageCourse.getCourseId());
              rs = pst.executeQuery();
         }
