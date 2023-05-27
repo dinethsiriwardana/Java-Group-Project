@@ -68,11 +68,16 @@ public class Timetable extends JFrame {
                 try {
                     DefaultTableModel model = managetables.showTimetable();
                     timeTable.setModel(model);
+                    txtTime_ID.setText("");
+                    txtDepartment.setSelectedItem("");
+                    txtLevel.setSelectedItem("");
+                    txtFilePath.setText("");
+
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
 
-                /*int result = JOptionPane.showConfirmDialog(null, "Do you want to download the file?", "File Download", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, "Do you want to download the file?", "File Download", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     File file = new File(filePath);
                     if (file.exists()) {
@@ -84,7 +89,7 @@ public class Timetable extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "File does not exist", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
-                }*/
+                }
 
             }
         });

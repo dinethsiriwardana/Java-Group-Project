@@ -105,10 +105,11 @@ public class AddTechnicalOfficer extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (txtID.getText().isEmpty() || txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty() ||
-                        txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() || txtAge.getText().isEmpty() ||
-                        txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() || txtGender.getModel().getSelectedItem().toString().isEmpty() )
+                   txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() || txtAge.getText().isEmpty() || txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() || txtGender.getModel().getSelectedItem().toString().isEmpty() )
+
                 {
-                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+                 JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+
                 else {
                     TechnicalOfficerData updateTo = new TechnicalOfficerData();
                     updateTo.setId(txtID.getText());

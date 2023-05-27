@@ -86,8 +86,8 @@ public class CourseDetails extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (txtID.getText().isEmpty() || txtCourseName.getText().isEmpty() || txtCredit.getText().isEmpty() ||
-                        txtCourseDepID.getText().isEmpty() || txtCourseLecID.getText().isEmpty() || txtQuiz.getModel().getSelectedItem().toString().isEmpty() || txtAsses.getModel().getSelectedItem().toString().isEmpty())
-                {
+                    txtCourseDepID.getText().isEmpty() || txtCourseLecID.getText().isEmpty() || txtQuiz.getModel().getSelectedItem().toString().isEmpty() || txtAsses.getModel().getSelectedItem().toString().isEmpty())
+                    {
                     JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
                 else{
                     ManageCourse manageCourse = new ManageCourse();
