@@ -3,71 +3,98 @@ package com.tecmis.dto;
 
 import com.tecmis.database.Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.sql.*;
 import java.util.*;
 
 public class StudentResult {
 
    private List<Double> quiz;
    private List<Double> assigment;
+   String subject;
+   Connection conn = Database.getDatabaseConnection();
+
+   public StudentResult(String subject) throws Exception {
+      System.out.println("Set Subject: "+ subject);
+     this.subject = subject;
+   }
+
+   public void setSubject(String subject) {
+      this.subject = subject;
+   }
+
+   public DefaultTableModel showResult() throws SQLException {
+      Statement stmt = conn.createStatement();
+
+      String sql = "SELECT * FROM "+subject+"_marks";
+      System.out.println(sql);
+      ResultSet rs = stmt.executeQuery(sql);
+
+      // Create a DefaultTableModel object and add the column names to it
+      DefaultTableModel model = new DefaultTableModel();
+      ResultSetMetaData metaData = rs.getMetaData();
+      int columnCount = metaData.getColumnCount();
+      for (int i = 1; i <= columnCount; i++) {
+         model.addColumn(metaData.getColumnLabel(i));
+      }
+
+      // Iterate through the rows of the result set and add each row to the DefaultTableModel object
+      while (rs.next()) {
+         Object[] rowData = new Object[columnCount];
+         for (int i = 1; i <= columnCount; i++) {
+            rowData[i-1] = rs.getObject(i);
+         }
+         model.addRow(rowData);
+      }
 
 
+      return model;
 
-   //   private
-   public static void main(String[] args) {
+   }
 
+   public boolean calfinalQuiz() throws SQLException {
 
-      String subject = "ICT02";
-
-      try (Connection conn = Database.getDatabaseConnection()) {
-         // Get details about the subject from Courses_test table
          PreparedStatement courseStmt = conn.prepareStatement(
-                 "SELECT No_of_Quiz, Quiz_to_End, Quiz_Percentage FROM Courses_test WHERE Course_ID = ?");
+                 "SELECT No_of_Quiz, Quiz_to_End, Quiz_Percentage FROM Courses WHERE Course_ID = ?");
          courseStmt.setString(1, subject);
          ResultSet courseRs = courseStmt.executeQuery();
+
          if (courseRs.next()) {
             int numQuizzes = courseRs.getInt("No_of_Quiz");
             int quizzesToEnd = courseRs.getInt("Quiz_to_End");
-            double quizPercentage = courseRs.getDouble("Quiz_Percentage");
-
-            // Get quiz marks from ICT012_marks table
+            System.out.println("Course" + subject + "has "+ numQuizzes + "No_of_Quiz" +quizzesToEnd+ "Quiz_to_End");
             PreparedStatement quizStmt = conn.prepareStatement(
                     "SELECT * FROM "+subject+"_marks");
             ResultSet quizRs = quizStmt.executeQuery();
             double[] quizMarks = new double[numQuizzes];
-            for (int i = 0; i < numQuizzes; i++) {
-               if (quizRs.next()) {
+            while (quizRs.next()) {
+               for (int i = 0; i < numQuizzes; i++) {
                   quizMarks[i] = quizRs.getDouble("quiz_" + (i + 1));
-                  System.out.println(quizMarks[i]);
-               } else {
-                  throw new SQLException("Not enough quiz marks found for " + subject);
                }
+
+               BigDecimal bd = new BigDecimal(getQuizTotal(quizzesToEnd, quizMarks));
+               bd = bd.setScale(2, RoundingMode.HALF_UP);
+
+               double quizTotalMarks = bd.doubleValue();
+
+               String updatesql = "UPDATE "+subject+"_marks SET quiz_full = ? WHERE SID = ?";
+
+               PreparedStatement updateStmt = conn.prepareStatement(updatesql);
+               updateStmt.setDouble(1, quizTotalMarks );
+               updateStmt.setString(2, quizRs.getString("SID"));
+               System.out.println(updateStmt);
+               updateStmt.executeUpdate();
             }
+            return true;
 
-            // Calculate quiz total marks
-            double quizTotalMarks = getQuizTotal(quizzesToEnd, quizMarks);
-            String updatesql = "UPDATE "+subject+"_marks SET quiz_full = ? WHERE SID = ?";
-            // Insert quiz total marks into ICT012_marks table
-            PreparedStatement updateStmt = conn.prepareStatement(updatesql);
-
-            updateStmt.setDouble(1, quizTotalMarks * quizPercentage / 100);
-            updateStmt.setString(2, subject + "_marks");
-            updateStmt.executeUpdate();
-            System.out.println("Quiz total marks for " + subject + " inserted successfully.");
          } else {
-            throw new SQLException("Subject " + subject + " not found in Courses_test table.");
+//            throw new SQLException("Subject " + subject + " not found in Courses_test table.");
+            return false;
          }
 
-      } catch (SQLException e) {
-         throw new RuntimeException(e);
-      } catch (Exception e) {
-         throw new RuntimeException(e);
-      }
    }
-
    private static double getQuizTotal(int quizzesToEnd, double[] quizMarks) {
       if (quizMarks.length == 0) {
          return 0;
@@ -78,7 +105,8 @@ public class StudentResult {
                  .sorted(Comparator.reverseOrder()).toArray(Double[]::new);
          double bestQuizTotal = Arrays.stream(sortedQuizMarks).limit(quizzesToEnd).mapToDouble(Double::doubleValue).sum();
          double remainingQuizTotal = Arrays.stream(sortedQuizMarks).skip(quizzesToEnd).mapToDouble(Double::doubleValue).average().orElse(0);
-         return bestQuizTotal + remainingQuizTotal;
+
+         return bestQuizTotal/quizzesToEnd;
       }
    }
 }
