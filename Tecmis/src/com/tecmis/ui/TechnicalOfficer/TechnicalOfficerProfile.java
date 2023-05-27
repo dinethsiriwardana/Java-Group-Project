@@ -2,6 +2,8 @@ package com.tecmis.ui.TechnicalOfficer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -41,14 +43,14 @@ public class TechnicalOfficerProfile extends JFrame {
     public TechnicalOfficerProfile(){
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
-
+username = "to001";
         add(panalTechnicalOfficer);
         setVisible(true);
         setTitle("Technical Officer Profile Update");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600,1000);
         //setPreferredSize(new Dimension(800,600));
-        setResizable(false);
+        setResizable(true);
 
 
         toUI = this;
@@ -57,22 +59,36 @@ public class TechnicalOfficerProfile extends JFrame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 updateUserDetails();
             }
         });
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 TechnicalOfficerDashBoard obj4 = new TechnicalOfficerDashBoard();
                 obj4.setVisible(true);
+            }
+        });
+
+
+        cancelButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                txtFname.setText("");
+                txtLname.setText("");
+                txtMobileNo.setText("");
+                txtareaAddress.setText("");
+                departmentField.setText("");
+                txtEmailAdd.setText("");
+                txtDob.setText("");
+                comboGender.setSelectedItem("");
+                comboDepartment.setSelectedItem("");
+                txtDob.setText("");
             }
         });
     }

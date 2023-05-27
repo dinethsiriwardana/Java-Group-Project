@@ -14,7 +14,7 @@ public class TechnicalOfficerMedicalForm extends JFrame {
     private JPanel PanalTechnicalOfficer;
 
     private JButton addButton;
-    private JButton deleteButton;
+    private JButton clearButton;
     private JTextField tctSid;
     private JTextField txtCid;
     private JTextField txtDate;
@@ -80,55 +80,26 @@ public class TechnicalOfficerMedicalForm extends JFrame {
 
             }
         });
-        deleteButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                try {
-                String table;
 
-                switch (comboBox1.getModel().getSelectedItem().toString()) {
-                    case "ICT01 T":
-                        table = "ICT01_t_attendance";
-                        break;
-                    case "ICT02 T":
-                        table = "ICT02_t_attendance";
-                        break;
-                    case "ICT02 P":
-                        table = "ICT02_p_attendance";
-                        break;
-                    case "ICT03 T":
-                        table = "ICT03_t_attendance";
-                        break;
-                    case "ICT03 P":
-                        table = "ICT03_p_attendance";
-                        break;
-                    case "ICT04 T":
-                        table = "ICT04_t_attendance";
-                        break;
-                    case "ICT04 P":
-                        table = "ICT04_p_attendance";
-                        break;
-                    default:
-                        table = "invalid option";
-                        break;
-                }
-                String sql = "UPDATE " + table + " SET attend = 0, exDetails = '' WHERE SID = '" + tctSid.getText() + "' AND date = '" + txtDate.getText() + "'";
-                System.out.println(sql);
-                Statement stmt = conn.createStatement();
-                int rowsAffected = stmt.executeUpdate(sql);
-                System.out.println("Rows updated: " + rowsAffected);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
         BackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 TechnicalOfficerDashBoard obj3 = new TechnicalOfficerDashBoard();
                 obj3.setVisible(true);
+            }
+        });
+;
+        clearButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                tctSid.setText("");
+                tctSid.setText("");
+                txtDate.setText("");
+                //comboBox1.setText("");
+                txtMid.setText("");
+
             }
         });
     }
