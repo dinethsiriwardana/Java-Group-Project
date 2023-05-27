@@ -35,11 +35,6 @@ public class Notices {
                 String Full_Notice = "<HTML><br><div style='font-size: 16px;'><B>&nbsp;" + Date +" - "+ Title + "</B></div><div style='font-size: 12px;'>&nbsp;&nbsp;" + Notice_Des  + "</div><br>";
                 System.out.println(Full_Notice);
                 data.add(Full_Notice);
-                data.add(Full_Notice);
-                data.add(Full_Notice);
-
-                data.add(Full_Notice);
-
             }
 
            jlist = new JList<>(data.toArray(new String[0]));

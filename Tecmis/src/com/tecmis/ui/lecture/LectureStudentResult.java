@@ -2,6 +2,7 @@ package com.tecmis.ui.lecture;
 
 import com.tecmis.database.Database;
 import com.tecmis.dto.ManageSubject;
+import com.tecmis.dto.StudentResult;
 import com.tecmis.dto.SubjectBulkResult;
 import com.tecmis.dto.SubjectDetails;
 
@@ -25,13 +26,10 @@ public class LectureStudentResult extends JFrame {
     private JTable table1;
     private JButton btnTotalQuizMarks;
     private JButton btnUploadMarks;
-
+    private JButton managemarks;
     private final SubjectBulkResult subjectBulkResult = new SubjectBulkResult();
-
     private final ManageSubject manageSubject = new ManageSubject();
-
     private SubjectDetails subjectDetails = new SubjectDetails();
-
 
     public LectureStudentResult() {
 
@@ -44,13 +42,14 @@ public class LectureStudentResult extends JFrame {
         setResizable(false);
 
         comboBox1.setModel(subjectDetails.getSubjectModel());
+
         btnDownload.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
-                    Connection conn = Database.getDatabaseConnection();
 
+                    Connection conn = Database.getDatabaseConnection();
                     String sql = "SELECT * FROM "+comboBox1.getModel().getSelectedItem()+"_marks";
                     System.out.println(sql);
                     Statement statement = conn.createStatement();
@@ -61,10 +60,10 @@ public class LectureStudentResult extends JFrame {
                     fileChooser.setDialogTitle("Save file");
                     int userSelection = fileChooser.showSaveDialog(null);
                     if (userSelection == JFileChooser.APPROVE_OPTION) {
+
                         File fileToSave = fileChooser.getSelectedFile();
                         String csvFilePath = fileToSave.getAbsolutePath();
                         FileWriter fileWriter = new FileWriter(csvFilePath);
-
                         // Get column names from ResultSetMetaData
                         ResultSetMetaData metadata = resultset.getMetaData();
                         int columnCount = metadata.getColumnCount();
@@ -76,6 +75,7 @@ public class LectureStudentResult extends JFrame {
                         }
                         fileWriter.append("\n");
                         while (resultset.next()) {
+
                             for (int i = 1; i <= columnCount; i++) {
                                 String value = resultset.getString(i);
                                 fileWriter.append(value);
@@ -88,8 +88,6 @@ public class LectureStudentResult extends JFrame {
                         fileWriter.close();
                         JOptionPane.showMessageDialog(null, "File downloaded successfully.\nPlease Fill it and upload");
                     }
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
                 }
@@ -141,21 +139,16 @@ public class LectureStudentResult extends JFrame {
 
                 Object[][] data = new Object[rows][columns];
 
-//                System.out.println(Arrays.deepToString(data));
-
                 for (int row = 0; row < rows; row++) {
                     for (int column = 0; column < columns; column++) {
-//                        System.out.println(model.getValueAt(row, column));
                         data[row][column] = model.getValueAt(row, column);
                     }
                 }
-                // Construct SQL query to create table
                 String[] columnNames = new String[columns];
 
                 for (int column = 0; column < columns; column++) {
                     columnNames[column] = model.getColumnName(column);
                 }
-
                 try {
                     Connection conn = Database.getDatabaseConnection();
                     Statement stmt = conn.createStatement();
@@ -167,15 +160,28 @@ public class LectureStudentResult extends JFrame {
                             } else if (data[row][column] == null || data[row][column] == "") {
                                 values[column] = "NULL";
                             } else {
-
                                 values[column] = data[row][column].toString();
                             }
                         }
-                        String insertSql = "INSERT INTO "+comboBox1.getModel().getSelectedItem()+"_marks (" +
-                                String.join(", ", columnNames) + ") " +
-                                "VALUES (" + String.join(", ", values) + ")";
-                        System.out.println(insertSql);
-                        stmt.executeUpdate(insertSql);
+                        // Check if record exists
+                        String sql = "SELECT * FROM " + comboBox1.getModel().getSelectedItem() + "_marks WHERE " + columnNames[0] + " = '" + data[row][0] + "'";
+                        ResultSet rs = stmt.executeQuery(sql);
+                        // If record exists, update it
+                        if (rs.next()) {
+                            String updateSql = "UPDATE " + comboBox1.getModel().getSelectedItem() + "_marks SET ";
+                            for (int i = 1; i < columns; i++) {
+                                updateSql += columnNames[i] + " = '" + data[row][i] + "', ";
+                            }
+                            updateSql = updateSql.substring(0, updateSql.length() - 2) + " WHERE " + columnNames[0] + " = '" + data[row][0] + "'";
+                            stmt.executeUpdate(updateSql);
+                        } else {
+                            // If record does not exist, insert it
+                            String insertSql = "INSERT INTO " + comboBox1.getModel().getSelectedItem() + "_marks (" +
+                                    String.join(", ", columnNames) + ") " +
+                                    "VALUES (" + String.join(", ", values) + ")";
+                            System.out.println(insertSql);
+                            stmt.executeUpdate(insertSql);
+                        }
                     }
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
@@ -183,6 +189,26 @@ public class LectureStudentResult extends JFrame {
 
             }
         });
+        managemarks.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println("sss");
+                StudentResult studentResult = null;
+                try {
+                    studentResult = new StudentResult(comboBox1.getModel().getSelectedItem().toString());
+                    studentResult.calfinalQuiz();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        LectureStudentResult lectureStudentResult = new LectureStudentResult();
+
     }
 
 }

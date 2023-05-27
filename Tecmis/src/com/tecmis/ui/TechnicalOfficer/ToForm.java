@@ -1,12 +1,9 @@
-package com.tecmis.ui;
+package com.tecmis.ui.TechnicalOfficer;
 
 import com.tecmis.database.Auth;
 import com.tecmis.database.Notices;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerAttendanceForm;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerForm;
-import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerMedicalForm;
-import com.tecmis.ui.lecture.LectureEditUser;
-import com.tecmis.ui.lecture.LectureStudentDetails;
+import com.tecmis.ui.LoginForm;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,7 +107,7 @@ public class ToForm extends JFrame{
                 try {
                     setVisible(false);
                     // Create and show the LectureEditUser frame
-                    TechnicalOfficerForm technicalOfficerForm = new  TechnicalOfficerForm();
+                    TechnicalOfficerProfile technicalOfficerForm = new  TechnicalOfficerProfile();
                     technicalOfficerForm.setVisible(true);
                     // When the LectureEditUser frame is closed, show the LectureForm frame again
                     technicalOfficerForm.addWindowListener(new WindowAdapter() {
@@ -136,6 +133,9 @@ public class ToForm extends JFrame{
 
     }
 
+    public static void main(String[] args) {
+        ToForm toForm1 = new ToForm();
+    }
 
 
 }

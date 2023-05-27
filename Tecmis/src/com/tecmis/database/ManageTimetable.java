@@ -1,8 +1,6 @@
 package com.tecmis.database;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -118,7 +116,53 @@ public class ManageTimetable {
         }
     }
 
+    public static void downlaodTimetable(){
+        try {
+            Connection conn = Database.getDatabaseConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT File_path FROM Timetable WHERE Timetable_ID = ?");
+            stmt.setString(1, "T12");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Blob fileData = rs.getBlob("File_path");
+                InputStream inputStream = fileData.getBinaryStream();
 
+                // Create a file chooser to select the destination for saving the downloaded file
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Save File");
+                int result = fileChooser.showSaveDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File saveFile = fileChooser.getSelectedFile();
+                    FileOutputStream outputStream = new FileOutputStream(saveFile);
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+
+                    outputStream.close();
+                    inputStream.close();
+
+                    JOptionPane.showMessageDialog(null, "File downloaded successfully.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Timetable not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            conn.close();
+        } catch (SQLException | FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error uploading file: " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
 

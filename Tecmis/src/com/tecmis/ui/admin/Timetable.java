@@ -138,6 +138,18 @@ public class Timetable extends JFrame {
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int selectedRow = timeTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Please select a timetable to download.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+
+                String timetableId = timeTable.getValueAt(selectedRow, 0).toString(); // Assuming timetable ID is stored in the first column
+                String filePath = timeTable.getValueAt(selectedRow, 3).toString(); // Assuming file path is stored in the fourth column
+                ManageTimetable manageTimetable = new ManageTimetable();
+                manageTimetable.downlaodTimetable();
+
 
             }
         });
