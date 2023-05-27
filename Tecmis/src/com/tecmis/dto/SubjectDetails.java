@@ -9,9 +9,7 @@ import java.util.HashMap;
 public class SubjectDetails {
     private HashMap<String, HashMap<String, String>> data;
 
-
     DefaultComboBoxModel<String> subjectModel = new DefaultComboBoxModel<>(new String[] {});
-
 
     public ComboBoxModel<String> getSubjectModel() {
         return subjectModel;
@@ -25,7 +23,7 @@ public class SubjectDetails {
             Connection conn = Database.getDatabaseConnection();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Courses_test");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Courses");
 
             while (rs.next()) {
                 HashMap<String, String> course = new HashMap<String, String>();

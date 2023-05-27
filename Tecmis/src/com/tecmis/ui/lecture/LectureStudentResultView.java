@@ -1,6 +1,8 @@
 package com.tecmis.ui.lecture;
 
 import com.tecmis.database.Database;
+import com.tecmis.dto.StudentResult;
+import com.tecmis.dto.SubjectDetails;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -28,43 +30,34 @@ public class LectureStudentResultView extends JFrame{
         setPreferredSize(new Dimension(220, 400));
         setResizable(false);
 
-        connection = Database.getDatabaseConnection();
+        SubjectDetails subjectDetails = new SubjectDetails();
+        comboBox1.setModel(subjectDetails.getSubjectModel());
+
         btnUploadMarks.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 System.out.println("ss");
+
                 try {
-                    Statement   stmt = connection.createStatement();
-                // Execute the SQL query and retrieve the result set
-                    ResultSet rs = stmt.executeQuery("SELECT * FROM ICT01_marks");
+                    StudentResult studentResult = new StudentResult(comboBox1.getModel().getSelectedItem().toString());
+                    table1.setModel(studentResult.showResult());
 
-                    // Create a DefaultTableModel object and add the column names to it
-                    DefaultTableModel model = new DefaultTableModel();
-                    ResultSetMetaData metaData = rs.getMetaData();
-                    int columnCount = metaData.getColumnCount();
-                    for (int i = 1; i <= columnCount; i++) {
-                        model.addColumn(metaData.getColumnLabel(i));
-                    }
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
 
-                // Iterate through the rows of the result set and add each row to the DefaultTableModel object
-                    while (rs.next()) {
-                        Object[] rowData = new Object[columnCount];
-                        for (int i = 1; i <= columnCount; i++) {
-                            rowData[i-1] = rs.getObject(i);
-                        }
-                        model.addRow(rowData);
-                    }
-                    table1.setModel(model);
-                }
-                catch (Exception ex){
-                    System.out.println(ex.getMessage());
-                }
 
 
             }
         });
     }
+
+
+    public static void main(String[] args) throws Exception {
+        LectureStudentResultView lectureStudentResultView = new LectureStudentResultView();
+    }
+
 
 
 

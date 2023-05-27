@@ -1,18 +1,16 @@
 package com.tecmis.ui.TechnicalOfficer;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 import java.util.HashMap;
+import java.util.Objects;
 
 import com.tecmis.database.Auth;
-import com.tecmis.database.Database;
 import com.tecmis.database.ManageUsers;
 
 import javax.swing.*;
 
-public class TechnicalOfficerForm extends JFrame {
+public class TechnicalOfficerProfile extends JFrame {
     private JTextField nameField;
     private JTextField emailField;
     private JTextField phoneField;
@@ -28,18 +26,19 @@ public class TechnicalOfficerForm extends JFrame {
     private JTextField txtEmailAdd;
     private JTextField txtDob;
     private JComboBox comboGender;
+    private JButton BackButton;
     private JTextField passwordField;
     private JTextField departmentField;
     private JTextArea addressArea;
     private JTextField userIdField;
     private JComboBox<String> departmentBox;
 
-    static TechnicalOfficerForm toUI;
+    static TechnicalOfficerProfile toUI;
     private static String username;
 
 
 
-    public TechnicalOfficerForm(){
+    public TechnicalOfficerProfile(){
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
 
@@ -47,8 +46,8 @@ public class TechnicalOfficerForm extends JFrame {
         setVisible(true);
         setTitle("Technical Officer Profile Update");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(600,600);
-        setPreferredSize(new Dimension(800,600));
+        setSize(600,1000);
+        //setPreferredSize(new Dimension(800,600));
         setResizable(false);
 
 
@@ -68,6 +67,14 @@ public class TechnicalOfficerForm extends JFrame {
                 dispose();
             }
         });
+        BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                TechnicalOfficerDashBoard obj4 = new TechnicalOfficerDashBoard();
+                obj4.setVisible(true);
+            }
+        });
     }
 
     static ManageUsers manageusers = new ManageUsers();
@@ -80,7 +87,8 @@ public class TechnicalOfficerForm extends JFrame {
         toUI.txtareaAddress.setText(String.join("\n", udata.get("Address").split(",\\s*")));
         toUI.txtDob.setText(udata.get("DOM"));
         toUI.txtEmailAdd.setText(udata.get("Email"));
-        toUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
+        System.out.println(udata.get("Gender"));
+        toUI.comboGender.getModel().setSelectedItem(Objects.equals(udata.get("Gender"), "M") ? "Male" : "Female");
         toUI.comboDepartment.getModel().setSelectedItem(udata.get("T_Dep_ID"));
 
     }
@@ -104,7 +112,7 @@ public class TechnicalOfficerForm extends JFrame {
     }
 
     public static void main(String[] args) {
-        TechnicalOfficerForm techOfficer = new TechnicalOfficerForm();
+        TechnicalOfficerProfile techOfficer = new TechnicalOfficerProfile();
     }
 }
 

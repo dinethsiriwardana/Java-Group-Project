@@ -66,11 +66,11 @@ public class LectureEditUser extends JFrame{
 
     static ManageUsers manageusers = new ManageUsers();
 
-//    public static void main(String[] args) throws SQLException {
-//        lecUI = new LectureEditUser();
-//
+    public static void main(String[] args) throws SQLException {
+        lecUI = new LectureEditUser();
+
 //        lecUI.dataLoad();
-//    }
+    }
     public  void dataLoad() {
         System.out.println(username);
         HashMap<String, String> udata = manageusers.getUserDetails(username,"Lecturer");
@@ -82,6 +82,7 @@ public class LectureEditUser extends JFrame{
         lecUI.txtEmailAdd.setText(udata.get("Email"));
         lecUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
         lecUI.comboPosition.getModel().setSelectedItem(udata.get("Position"));
+
 
     }
 

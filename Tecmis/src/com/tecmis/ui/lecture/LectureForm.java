@@ -155,33 +155,16 @@ public class LectureForm extends JFrame  {
                 }
             }
         });
-        btnStudentDetails.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                try {
-                    setVisible(false);
-                    LectureStudentDetails lectureStudentDetails = new LectureStudentDetails();
-                    lectureStudentDetails.setVisible(true);
-                    lectureStudentDetails.addWindowListener(new WindowAdapter() {
-                        @Override
-                        public void windowClosed(WindowEvent e) {
-                            super.windowClosed(e);
-                            setVisible(true);
-                        }
-                    });
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+
 
         btnStudentResult.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
+
+                try{
                     setVisible(false);
+
                     LectureStudentResultView lectureStudentResultView = new LectureStudentResultView();
                     lectureStudentResultView.setVisible(true);
                     lectureStudentResultView.addWindowListener(new WindowAdapter() {

@@ -1,7 +1,9 @@
 package com.tecmis.ui;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.UserLogin;
 import com.tecmis.ui.Student.StudentForm;
+import com.tecmis.ui.TechnicalOfficer.ToForm;
 import com.tecmis.ui.admin.AdminDashboard;
 import com.tecmis.ui.lecture.LectureEditUser;
 import com.tecmis.ui.lecture.LectureForm;
@@ -44,7 +46,10 @@ public class LoginForm extends JFrame {
                 UserLogin login = new UserLogin();
                 System.out.println("Logging ....");
                 try {
-                    boolean isCorrect = login.userLogin(acctype, username, password);
+//                    boolean isCorrect = login.userLogin(acctype, username, password);
+//                    boolean isCorrect = login.userLogin("Technical Officer", "to001", "to001");
+                    acctype = "Lecturer";
+                    boolean isCorrect = login.userLogin("Lecturer", "lec001", "lec001");
 
                     if (isCorrect) {
 
@@ -73,7 +78,7 @@ public class LoginForm extends JFrame {
                             });
                         } else if (acctype == "Technical Officer") {
                             setVisible(false);
-                            com.tecmis.ui.ToForm toForm = new com.tecmis.ui.ToForm();
+                            ToForm toForm = new ToForm();
                             toForm.setVisible(true);
                             toForm.addWindowListener(new WindowAdapter() {
                                 @Override

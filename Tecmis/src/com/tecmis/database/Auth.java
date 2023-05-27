@@ -12,7 +12,7 @@ public class Auth {
 
     public static Auth getInstance() {
         if (instance == null) {
-            instance = new Auth();
+             instance = new Auth();
         }
         return instance;
     }
