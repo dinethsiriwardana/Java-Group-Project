@@ -16,6 +16,8 @@ public class LectureCalMarks extends JFrame{
     private JButton btnCalQuiz;
     private JComboBox comboBox1;
     private JTable table1;
+    private JButton btncalAsses;
+
     public LectureCalMarks() throws Exception {
         add(pnlLecStuResult);
         setVisible(true);
@@ -34,7 +36,12 @@ public class LectureCalMarks extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
-                    studentResult.calfinalQuiz();
+                    if (studentResult.calfinalQuiz()){
+                        table1.setModel(studentResult.showResult());
+
+                    }else {
+                        System.out.println("Error");
+                    }
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -53,6 +60,22 @@ public class LectureCalMarks extends JFrame{
             }
         });
 
+        btncalAsses.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    if (studentResult.calfinalAssessment()){
+                        table1.setModel(studentResult.showResult());
+
+                    }else {
+                        System.out.println("Error");
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) throws Exception {

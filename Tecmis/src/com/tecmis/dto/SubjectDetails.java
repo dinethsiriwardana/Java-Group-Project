@@ -15,6 +15,8 @@ public class SubjectDetails {
         return subjectModel;
     }
 
+
+
     public SubjectDetails(){
         data = new HashMap<String, HashMap<String, String>>();
 
