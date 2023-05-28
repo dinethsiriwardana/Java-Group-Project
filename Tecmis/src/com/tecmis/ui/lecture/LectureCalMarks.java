@@ -42,7 +42,7 @@ public class LectureCalMarks extends JFrame{
                     }else {
                         System.out.println("Error");
                     }
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
@@ -71,7 +71,7 @@ public class LectureCalMarks extends JFrame{
                     }else {
                         System.out.println("Error");
                     }
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
