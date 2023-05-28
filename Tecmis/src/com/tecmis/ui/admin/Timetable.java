@@ -162,7 +162,7 @@ public class Timetable extends JFrame {
 
                 // Check if the user entered a timetable ID
                 if (timetableId != null && !timetableId.isEmpty()) {
-                    managetables.uploadTimetable(timetableId, department, level, filePath);
+                    //managetables.uploadTimetable(timetableId,department,level,filePath);
                     // Add code for downloading the timetable
                 } else {
                     // Display an error message or handle the case where no timetable ID was provided
