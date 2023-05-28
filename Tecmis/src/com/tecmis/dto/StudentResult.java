@@ -16,6 +16,9 @@ public class StudentResult {
    String subject;
    Connection conn = Database.getDatabaseConnection();
 
+   HashMap<String, String> singlecourse = new HashMap<String, String>();
+   SubjectDetails subjectDetails = new SubjectDetails();
+
    public StudentResult(String subject) throws Exception {
       System.out.println("Set Subject: "+ subject);
      this.subject = subject;
@@ -25,8 +28,10 @@ public class StudentResult {
       this.subject = subject;
    }
 
-   public DefaultTableModel showResult() throws SQLException {
+   public DefaultTableModel showResult() throws Exception {
       Statement stmt = conn.createStatement();
+
+       singlecourse = subjectDetails.getSinglecourse("subject");
 
       String sql = "SELECT * FROM "+subject+"_marks";
       System.out.println(sql);
@@ -61,6 +66,7 @@ public class StudentResult {
       ResultSet courseRs = courseStmt.executeQuery();
 
       if (courseRs.next()) {
+         System.out.println(singlecourse.get("No_of_Assessments"));
          int no_of_assessments = courseRs.getInt("No_of_Assessments");
          int assessments_to_end = courseRs.getInt("Assessments_to_End");
          System.out.println("Course " + subject + " has "+ no_of_assessments + " no_of_assessments, and " +assessments_to_end+ " assessments_to_end");
