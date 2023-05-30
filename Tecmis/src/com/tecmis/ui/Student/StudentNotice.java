@@ -18,7 +18,7 @@ public class StudentNotice extends JFrame{
     public StudentNotice(){
         add(pnlStudentNotice);
         setVisible(true);
-        setTitle("Student !!!");
+        setTitle("Student Notice!!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1500,1500);
         setPreferredSize(new Dimension(220,400));
