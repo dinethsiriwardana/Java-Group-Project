@@ -37,6 +37,7 @@ public class Medical_Details extends JFrame{
                 String courseID = textCourseID.getText();
                 String date = textDate.getText();
                 String selectedType = (String) TypecomboBox.getSelectedItem();
+                String type=TypecomboBox.getModel().getSelectedItem().toString();
             }
         });
         clearButton.addActionListener(new ActionListener() {
@@ -45,7 +46,7 @@ public class Medical_Details extends JFrame{
                 textStuID.setText("");
                 textCourseID.setText("");
                 textDate.setText("");
-                TypecomboBox.setSelectedIndex(0);
+                TypecomboBox.setSelectedItem("");
             }
         });
     }

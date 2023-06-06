@@ -13,7 +13,6 @@ import java.sql.Statement;
 public class Student_Marks extends JFrame {
     private JPanel Jresult;
     private JTable marksTable;
-
     private static final String[] marks_columns = {"MarkID","StudentID","Eligibility","QUIZ01","QUIZ02","QUIZ03","Assesment01","Assesment02","TotalCA","Midterm","FinalTheory","FinalPractical","FinalMark","SGPA","CGPA","Grade","LecturerID"};
     static Student_Marks marks;
 
@@ -35,7 +34,6 @@ public class Student_Marks extends JFrame {
 
     }
     public static DefaultTableModel showCourse() throws Exception {
-
 
         Connection conn = Database.getDatabaseConnection();
         Statement stmt = conn.createStatement();
