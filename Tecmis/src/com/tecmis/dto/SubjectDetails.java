@@ -23,7 +23,6 @@ public class SubjectDetails {
         try {
 
             Connection conn = Database.getDatabaseConnection();
-
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Courses");
 
@@ -47,9 +46,9 @@ public class SubjectDetails {
             }
 
             // Close the resources
-            rs.close();
-            stmt.close();
-            conn.close();
+//            rs.close();
+//            stmt.close();
+//            conn.close();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -62,8 +61,8 @@ public class SubjectDetails {
         Connection conn = Database.getDatabaseConnection();
 
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Courses WHERE Course_Name='"+CourseName+"'");
-
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Courses WHERE Course_ID='"+CourseName+"'");
+//        System.out.println("SELECT * FROM Courses WHERE Course_ID='"+CourseName+"'");
         if (rs.next()) {
             HashMap<String, String> singlecourse = new HashMap<String, String>();
             singlecourse.put("Course_Name", rs.getString("Course_Name"));
@@ -79,24 +78,23 @@ public class SubjectDetails {
             singlecourse.put("Mid_to_End", rs.getString("Mid_to_End"));
             singlecourse.put("Final_theory", rs.getString("Final_theory"));
             singlecourse.put("Final_preactical", rs.getString("Final_preactical"));
-            System.out.println(singlecourse);
+//            System.out.println(singlecourse.get("Course_Name"));
             return singlecourse;
 
         }
 
         HashMap<String, String> singlecourse = new HashMap<String, String>();
         // Close the resources
-        rs.close();
-        stmt.close();
-        conn.close();
+//        rs.close();
+//        stmt.close();
+//        conn.close();
         return singlecourse;
 
     }
 
 
     public static void main(String[] args) throws Exception {
-        SubjectDetails subjectDetails = new SubjectDetails();
-        subjectDetails.getSinglecourse("ICT01");
+
     }
 
 

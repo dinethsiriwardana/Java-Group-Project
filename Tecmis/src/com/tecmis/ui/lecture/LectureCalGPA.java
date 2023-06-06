@@ -1,10 +1,15 @@
 package com.tecmis.ui.lecture;
 
+import com.tecmis.database.Database;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,29 +30,33 @@ public LectureCalGPA() {
     btnGPACal.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-            String[] students = {
-                    "TG/2020/001", "TG/2020/0010", "TG/2020/002", "TG/2020/003",
-                    "TG/2020/004", "TG/2020/005", "TG/2020/006", "TG/2020/007",
-                    "TG/2020/008", "TG/2020/009"
-            };
 
-            // Column names
-            String[] columnNames = {"Student ID", "Column1", "Column2", "Column3", "Column4", "Column5"};
+            Connection conn;
+            try {
+                conn = Database.getDatabaseConnection();
 
-            // Create the DefaultTableModel
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-            // Populate the table with student data
-            for (String student : students) {
-                List<String> values = Arrays.asList("A", "B", "C+", "A");
-                Collections.shuffle(values);  // Randomize the values
 
-                Object[] rowData = {student, values.get(0), values.get(1), values.get(2), values.get(3), "NotCalculate"};
-                model.addRow(rowData);
+                String query = "SELECT (SUM(m1.credit) + SUM(m2.credit) + SUM(m3.credit) + SUM(m4.credit)) / 4 AS total_credit " +
+                        "FROM ICT01_marks m1 " +
+                        "JOIN ICT02_marks m2 ON m1.SID = m2.SID " +
+                        "JOIN ICT03_marks m3 ON m1.SID = m3.SID " +
+                        "JOIN ICT04_marks m4 ON m1.SID = m4.SID " +
+                        "WHERE m1.SID = ?";
+
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, "TG/2020/008");
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    double totalCredit = rs.getDouble("total_credit");
+                    System.out.println("Total Credit: " + totalCredit);
+                }
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+
             }
 
-            table1.setModel(model);
 
         }
     });
