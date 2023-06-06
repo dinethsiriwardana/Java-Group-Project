@@ -12,7 +12,7 @@ public class Database {
         Class.forName("org.mariadb.jdbc.Driver");
         // Create a connection to the database
         conn = DriverManager.getConnection(
-                "jdbc:mariadb://191.96.56.1:3306/u812963415_javag2", "u812963415_javag2", "qEc:0f=5");
+                "jdbc:mariadb://localhost:3306/u812963415_javag2", "root", "Rsm1129#");
         return conn;
     }
 
