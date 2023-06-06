@@ -23,7 +23,6 @@ public class SubjectDetails {
         try {
 
             Connection conn = Database.getDatabaseConnection();
-
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Courses");
 
@@ -47,9 +46,9 @@ public class SubjectDetails {
             }
 
             // Close the resources
-            rs.close();
-            stmt.close();
-            conn.close();
+//            rs.close();
+//            stmt.close();
+//            conn.close();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -57,8 +56,46 @@ public class SubjectDetails {
     public HashMap<String, HashMap<String, String>> getData() {
         return data;
     }
+    public static HashMap<String, String> getSinglecourse(String CourseName) throws Exception {
+
+        Connection conn = Database.getDatabaseConnection();
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Courses WHERE Course_ID='"+CourseName+"'");
+//        System.out.println("SELECT * FROM Courses WHERE Course_ID='"+CourseName+"'");
+        if (rs.next()) {
+            HashMap<String, String> singlecourse = new HashMap<String, String>();
+            singlecourse.put("Course_Name", rs.getString("Course_Name"));
+            singlecourse.put("Credit", rs.getString("Credit"));
+            singlecourse.put("Dep_ID", rs.getString("Dep_ID"));
+            singlecourse.put("Lec_ID", rs.getString("Lec_ID"));
+            singlecourse.put("No_of_Quiz", rs.getString("No_of_Quiz"));
+            singlecourse.put("Quiz_to_End", rs.getString("Quiz_to_End"));
+            singlecourse.put("Quiz_Percentage", rs.getString("Quiz_Percentage"));
+            singlecourse.put("No_of_Assessments", rs.getString("No_of_Assessments"));
+            singlecourse.put("Assessments_to_End", rs.getString("Assessments_to_End"));
+            singlecourse.put("Assessment_Percentage", rs.getString("Assessment_Percentage"));
+            singlecourse.put("Mid_to_End", rs.getString("Mid_to_End"));
+            singlecourse.put("Final_theory", rs.getString("Final_theory"));
+            singlecourse.put("Final_preactical", rs.getString("Final_preactical"));
+//            System.out.println(singlecourse.get("Course_Name"));
+            return singlecourse;
+
+        }
+
+        HashMap<String, String> singlecourse = new HashMap<String, String>();
+        // Close the resources
+//        rs.close();
+//        stmt.close();
+//        conn.close();
+        return singlecourse;
+
+    }
 
 
+    public static void main(String[] args) throws Exception {
+
+    }
 
 
 }

@@ -17,6 +17,7 @@ public class LectureCalMarks extends JFrame{
     private JComboBox comboBox1;
     private JTable table1;
     private JButton btncalAsses;
+    private JButton btncalGrade;
 
     public LectureCalMarks() throws Exception {
         add(pnlLecStuResult);
@@ -36,14 +37,16 @@ public class LectureCalMarks extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
-                    if (studentResult.calfinalQuiz()){
+                    String quizcalrespo = studentResult.calfinalQuiz();
+                    if ( quizcalrespo == "Done"){
                         table1.setModel(studentResult.showResult());
 
                     }else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(null, quizcalrespo, "Error", JOptionPane.ERROR_MESSAGE);
+
                     }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                } catch (Exception ex) {
+                    System.out.println(ex);
                 }
             }
         });
@@ -53,10 +56,13 @@ public class LectureCalMarks extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try {
                     studentResult.setSubject(comboBox1.getModel().getSelectedItem().toString());
+
                     table1.setModel(studentResult.showResult());
                 } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    System.out.println(ex.getMessage());
                 }
+
+
             }
         });
 
@@ -65,13 +71,30 @@ public class LectureCalMarks extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
-                    if (studentResult.calfinalAssessment()){
+                    String assessmentcalrespo = studentResult.calfinalAssessment();
+                    if ( assessmentcalrespo == "Done"){
                         table1.setModel(studentResult.showResult());
 
                     }else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(null, assessmentcalrespo, "Error", JOptionPane.ERROR_MESSAGE);
+
                     }
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+            }
+        });
+        btncalGrade.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+
+                try {
+
+                    studentResult.setSubject(comboBox1.getModel().getSelectedItem().toString());
+                    studentResult.calFinalMarks();
+                    table1.setModel(studentResult.showResult());
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
