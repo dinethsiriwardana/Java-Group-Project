@@ -1,15 +1,9 @@
 package com.tecmis.ui.Student;
 
-import com.tecmis.database.Database;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.*;
-import java.sql.*;
 
 public class Student_Timetable extends JFrame{
     private JLabel THeader;
@@ -24,7 +18,7 @@ public class Student_Timetable extends JFrame{
     private JPanel pnlTimetable;
 
 
-    public Student_Timetable() throws Exception {
+    public Student_Timetable() {
         add(pnlTimetable);
         setVisible(true);
         setTitle("Student !!!");
@@ -32,136 +26,42 @@ public class Student_Timetable extends JFrame{
         setSize(1500,1500);
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
-        Connection conn = Database.getDatabaseConnection();
 
-        downloadButton1.addMouseListener(new MouseAdapter() {
+        downloadButton1.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                try {
-                    Statement statement = conn.createStatement();
-                    ResultSet resultSet = statement.executeQuery("SELECT File_path FROM Timetable WHERE Timetable_ID = 'T/ID/005'");
+            public void actionPerformed(ActionEvent e) {
 
-                    if (resultSet.next()) {
-                        byte[] fileBytes = resultSet.getBytes("File_path");
-                        String fileName = "timetable.pdf";
-
-                        // Download the file
-                        File selectedFile = chooseFileLocation(fileName);
-                        if (selectedFile != null) {
-                            String filePath = selectedFile.getAbsolutePath();
-
-                            // Download the file
-                            downloadFile(fileBytes, filePath);
-
-                            // Open the downloaded file
-                            openFile(filePath);
-                        } else {
-                            System.out.println("No file location selected.");
-                        }
-                    } else {
-                        System.out.println("No timetable file found.");
-                    }
-                }
-                catch (Exception exception){
-                    throw new RuntimeException(exception);
-                }
             }
         });
 
-        downloadButton2.addMouseListener(new MouseAdapter() {
+
+        downloadButton2.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                File selectedFile = chooseFile();
-                if (selectedFile != null) {
-                    try  {
-                        // Prepare the SQL statement
-                        String sql = "INSERT INTO Timetable (DepartmentName, Level, File_path) VALUES (?, ?, ?)";
-                        PreparedStatement statement = conn.prepareStatement(sql);
+            public void actionPerformed(ActionEvent e) {
 
-                        // Set the values for the statement
-                        statement.setString(1, "Your Department");
-                        statement.setInt(2, 1);
-
-                        // Set the file as a binary stream
-                        FileInputStream fis = new FileInputStream(selectedFile);
-                        statement.setBinaryStream(3, fis, (int) selectedFile.length());
-
-                        // Execute the statement
-                        int rowsAffected = statement.executeUpdate();
-
-                        if (rowsAffected > 0) {
-                            System.out.println("File uploaded successfully.");
-                        } else {
-                            System.out.println("File upload failed.");
-                        }
-
-                    } catch (SQLException | IOException eaa) {
-                        eaa.printStackTrace();
-                    }
-                } else {
-                    System.out.println("No file selected for upload.");
-                }
             }
         });
-    }
 
-    private static File chooseFile() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(null);
 
-        if (result == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile();
-        } else {
-            return null;
-        }
-    }
+        downloadButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-    private static File chooseFileLocation(String fileName) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File(fileName + ".pdf"));
-
-        int result = fileChooser.showSaveDialog(null);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile();
-        } else {
-            return null;
-        }
-    }
-
-    private static void downloadFile(byte[] fileBytes, String fileName) {
-        try {
-            // Save the file to disk
-            File file = new File(fileName);
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(fileBytes);
-            fos.close();
-
-            System.out.println("File downloaded successfully.");
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void openFile(String fileName) {
-        if (Desktop.isDesktopSupported()) {
-            try {
-                File file = new File(fileName);
-                Desktop.getDesktop().open(file);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        } else {
-            System.out.println("Desktop is not supported.");
-        }
+        });
+
+
+        downloadButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Student_Timetable timetable=new Student_Timetable();
     }
 }
