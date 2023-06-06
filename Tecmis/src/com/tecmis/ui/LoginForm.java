@@ -1,5 +1,6 @@
 package com.tecmis.ui;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.UserLogin;
 import com.tecmis.ui.Student.StudentForm;
 import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerDashBoard;
@@ -47,10 +48,8 @@ public class LoginForm extends JFrame {
                 UserLogin login = new UserLogin();
                 System.out.println("Logging ....");
                 try {
-//                    boolean isCorrect = login.userLogin(acctype, username, password);
-//                    boolean isCorrect = login.userLogin("Technical Officer", "to001", "to001");
-                    acctype = "Technical Officer";
-                    boolean isCorrect = login.userLogin("Technical Officer", "to001", "to001");
+                    boolean isCorrect = login.userLogin(acctype, username, password);
+//                    boolean isCorrect = login.userLogin("Technical Officer", "to001", "to001");                
 
                     if (isCorrect) {
 
