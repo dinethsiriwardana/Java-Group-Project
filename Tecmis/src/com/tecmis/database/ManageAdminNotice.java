@@ -135,11 +135,11 @@ public class ManageAdminNotice {
 
         try {
             Connection conn = Database.getDatabaseConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Notice_Des=? WHERE Notice_Id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notice SET Date=?, Title=?,Notice_Des=? WHERE Notice_Id=?");
             stmt.setString(1, noticedetail.getDate());
-           // stmt.setString(2, noticedetail.getTitle());
-            stmt.setString(2, noticedetail.getNoticeDes());
-            stmt.setString(3, noticedetail.getNoticeID());
+           stmt.setString(2, noticedetail.getTitle());
+            stmt.setString(3, noticedetail.getNoticeDes());
+            stmt.setString(4, noticedetail.getNoticeID());
             int rowsUpdated = stmt.executeUpdate();
 
 

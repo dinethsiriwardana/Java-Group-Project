@@ -1,6 +1,7 @@
 package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
+import com.tecmis.dto.LecturerData;
 import com.tecmis.dto.StudentData;
 import com.tecmis.util.Security;
 
@@ -114,52 +115,55 @@ public class AddStudent extends JFrame{
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StudentData studentUser=new StudentData();
-                studentUser.setId(txtID.getText());
-                studentUser.setUserName(txtUserName.getText());
-                studentUser.setPassword(txtPassword.getText());
-                studentUser.setFirstName(txtFirstName.getText());
-                studentUser.setLastName(txtLastName.getText());
-                studentUser.setMobile(txtMobile.getText());
-                studentUser.setAddress(txtAddress.getText());
-                studentUser.setAge((txtAge.getText()));
-                studentUser.setEmail(txtEmail.getText());
-                studentUser.setDom(txtDOB.getText());
-                studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
-                studentUser.setLevel(txtLevel.getText());
-                studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
-
-
-
-                ManageUsers manageUser = new ManageUsers();
-                boolean isUpdated = manageUser.upStu(studentUser);
-                if (isUpdated) {
-                    txtID.setText("");
-                    txtUserName.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtLevel.setText("");
-                    txtDepartment.setSelectedItem("");
-
-                    DefaultTableModel model=studentUser.showStudent();
-                    studentTable.setModel(model);
-
-                    JOptionPane.showMessageDialog(null, "Student updated successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
+                if (txtID.getText().isEmpty() || txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty() ||
+                    txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() || txtAge.getText().isEmpty() ||
+                    txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() || txtGender.getModel().getSelectedItem().toString().isEmpty()|| txtLevel.getText().isEmpty() || txtDepartment.getModel().getSelectedItem().toString().isEmpty() )
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to update Student ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+                else {
+                    StudentData studentUser = new StudentData();
+                    studentUser.setId(txtID.getText());
+                    studentUser.setUserName(txtUserName.getText());
+                    studentUser.setPassword(txtPassword.getText());
+                    studentUser.setFirstName(txtFirstName.getText());
+                    studentUser.setLastName(txtLastName.getText());
+                    studentUser.setMobile(txtMobile.getText());
+                    studentUser.setAddress(txtAddress.getText());
+                    studentUser.setAge((txtAge.getText()));
+                    studentUser.setEmail(txtEmail.getText());
+                    studentUser.setDom(txtDOB.getText());
+                    studentUser.setGender(txtGender.getModel().getSelectedItem().toString());
+                    studentUser.setLevel(txtLevel.getText());
+                    studentUser.setDepartment(txtDepartment.getModel().getSelectedItem().toString());
 
+
+                    ManageUsers manageUser = new ManageUsers();
+                    boolean isUpdated = manageUser.upStu(studentUser);
+                    if (isUpdated) {
+                        txtID.setText("");
+                        txtUserName.setText("");
+                        txtPassword.setText("");
+                        txtFirstName.setText("");
+                        txtLastName.setText("");
+                        txtMobile.setText("");
+                        txtAddress.setText("");
+                        txtAge.setText("");
+                        txtEmail.setText("");
+                        txtDOB.setText("");
+                        txtGender.setSelectedItem("");
+                        txtLevel.setText("");
+                        txtDepartment.setSelectedItem("");
+
+                        DefaultTableModel model = studentUser.showStudent();
+                        studentTable.setModel(model);
+
+                        JOptionPane.showMessageDialog(null, "Student updated successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to update Student ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
         deleteButton.addActionListener(new ActionListener() {
