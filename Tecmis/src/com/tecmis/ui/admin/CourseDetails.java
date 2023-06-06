@@ -203,6 +203,7 @@ public class CourseDetails extends JFrame {
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }catch (SQLException ex){
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Failed to search course",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }

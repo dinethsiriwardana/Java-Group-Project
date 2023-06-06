@@ -12,8 +12,6 @@ import java.util.HashMap;
 public class Profile_Update extends  JFrame{
     private JLabel UpdateProHeader;
     private JTextField txtFname;
-    private JLabel lblFName;
-    private JLabel lblLName;
     private JTextField txtLname;
     private JLabel lblDOB;
     private JTextField txtMobileNo;
@@ -26,6 +24,7 @@ public class Profile_Update extends  JFrame{
     private JComboBox comboLevel;
     private JTextField txtDepartment;
     private JButton updateButton;
+    private JLabel lblImage;
 
     private static String username;
     
@@ -35,7 +34,7 @@ public class Profile_Update extends  JFrame{
         
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
-        
+        username = "tg001";
         add(pnlProfile);
         setVisible(true);
         setTitle("Student !!!");
@@ -63,29 +62,38 @@ public class Profile_Update extends  JFrame{
         System.out.println(username);
         HashMap<String, String> udata = manageusers.getUserDetails(username,"Student");
 //        System.out.println(udata.get("Fname"));
-        profileUpdate.txtFname.setText(udata.get("Fname"));
-        profileUpdate.txtLname.setText(udata.get("Lname"));
+        //profileUpdate.txtFname.setText(udata.get("Fname"));
+        //profileUpdate.txtLname.setText(udata.get("Lname"));
         profileUpdate.txtMobileNo.setText(udata.get("Mobile"));
         profileUpdate.txtareaAddress.setText(udata.get("Address"));
-        profileUpdate.txtDob.setText(udata.get("DOM"));
+        //profileUpdate.txtDob.setText(udata.get("DOM"));
         profileUpdate.txtEmailAdd.setText(udata.get("Email"));
-        profileUpdate.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
-        profileUpdate.comboLevel.getModel().setSelectedItem(udata.get("Level"));
-        profileUpdate.txtDepartment.setText(udata.get("Department"));
+        //profileUpdate.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
+//        profileUpdate.comboLevel.getModel().setSelectedItem(udata.get("Level"));
+        //profileUpdate.txtDepartment.setText(udata.get("Department"));
+        ImageIcon originalIcon = new ImageIcon("Tecmis/src/com/tecmis/assets/img/tg001.jpg");
+        int desiredWidth = 200;
+        int desiredHeight = 200;
+        Image scaledImage = originalIcon.getImage().getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
+
+        // Create a new ImageIcon with the scaled image
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        lblImage.setIcon(scaledIcon);
 
     }
 
     public void updateDetails(){
         HashMap<String, String> studentData = new HashMap<String, String>();
-        studentData.put("Fname", txtFname.getText());
-        studentData.put("Lname", txtLname.getText());
+        //studentData.put("Fname", txtFname.getText());
+        //studentData.put("Lname", txtLname.getText());
         studentData.put("Mobile", txtMobileNo.getText());
         studentData.put("Address", txtareaAddress.getText());
         studentData.put("Email", txtEmailAdd.getText());
-        studentData.put("DOM", txtDob.getText());
-        studentData.put("Gender", comboGender.getModel().getSelectedItem() == "Male" ? "M" : "F");
-        studentData.put("Level", comboLevel.getModel().getSelectedItem().toString());
-        studentData.put("Department", txtDepartment.getText());
+        //studentData.put("DOM", txtDob.getText());
+        //studentData.put("Gender", comboGender.getModel().getSelectedItem() == "Male" ? "M" : "F");
+        //studentData.put("Level", comboLevel.getModel().getSelectedItem().toString());
+        //studentData.put("Department", txtDepartment.getText());
         manageusers.updateUser(username,"Student",studentData);
     }
 

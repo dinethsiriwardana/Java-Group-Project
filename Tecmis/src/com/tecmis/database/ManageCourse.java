@@ -221,8 +221,6 @@ public  class ManageCourse {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally {
-            conn.close();
         }
         return rs;
     }
