@@ -19,8 +19,9 @@ public class Database {
 
         // Create a connection to the database
         conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/u812963415_javag2","root","");
 
+
+                "jdbc:mysql://localhost:3306/u812963415_javag2", "root", "Rsm1129#");
         return conn;
     }
 
