@@ -154,19 +154,19 @@ public class Timetable extends JFrame {
                 String timetableId = timeTable.getValueAt(selectedRow, 0).toString(); // Assuming timetable ID is stored in the first column
                 String filePath = timeTable.getValueAt(selectedRow, 3).toString(); // Assuming file path is stored in the fourth column
                 ManageTimetable manageTimetable = new ManageTimetable();
-                manageTimetable.downlaodTimetable();
+                manageTimetable.downlaodTimetable(timetableId);
 
 
                 // Prompt the user to enter the timetable ID
-                timetableId = JOptionPane.showInputDialog(null, "Enter Timetable ID:");
+//                timetableId = JOptionPane.showInputDialog(null, "Enter Timetable ID:");
 
                 // Check if the user entered a timetable ID
-                if (timetableId != null && !timetableId.isEmpty()) {
-                    //managetables.uploadTimetable(timetableId,department,level,filePath);
-                    // Add code for downloading the timetable
-                } else {
-                    // Display an error message or handle the case where no timetable ID was provided
-                }
+//                if (timetableId != null && !timetableId.isEmpty()) {
+//                    //managetables.uploadTimetable(timetableId,department,level,filePath);
+//                    // Add code for downloading the timetable
+//                } else {
+//                    // Display an error message or handle the case where no timetable ID was provided
+//                }
             }
         });
 
