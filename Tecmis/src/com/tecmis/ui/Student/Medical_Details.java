@@ -48,6 +48,7 @@ public class Medical_Details extends JFrame{
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 textStuID.setText("");
                 textCourseID.setText("");
                 textDate.setText("");
