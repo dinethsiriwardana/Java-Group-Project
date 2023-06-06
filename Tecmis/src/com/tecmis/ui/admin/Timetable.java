@@ -68,6 +68,11 @@ public class Timetable extends JFrame {
                 try {
                     DefaultTableModel model = managetables.showTimetable();
                     timeTable.setModel(model);
+                    txtTime_ID.setText("");
+                    txtDepartment.setSelectedItem("");
+                    txtLevel.setSelectedItem("");
+                    txtFilePath.setText("");
+
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -138,6 +143,7 @@ public class Timetable extends JFrame {
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 int selectedRow = timeTable.getSelectedRow();
                 if (selectedRow == -1) {
                     JOptionPane.showMessageDialog(null, "Please select a timetable to download.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -151,8 +157,19 @@ public class Timetable extends JFrame {
                 manageTimetable.downlaodTimetable();
 
 
+                // Prompt the user to enter the timetable ID
+                timetableId = JOptionPane.showInputDialog(null, "Enter Timetable ID:");
+
+                // Check if the user entered a timetable ID
+                if (timetableId != null && !timetableId.isEmpty()) {
+                    //managetables.uploadTimetable(timetableId,department,level,filePath);
+                    // Add code for downloading the timetable
+                } else {
+                    // Display an error message or handle the case where no timetable ID was provided
+                }
             }
         });
+
     }
 
 
