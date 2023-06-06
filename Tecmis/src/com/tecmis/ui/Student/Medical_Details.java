@@ -1,9 +1,13 @@
 package com.tecmis.ui.Student;
 
+import com.tecmis.database.Database;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 public class Medical_Details extends JFrame{
     private JLabel lblStuID;
@@ -20,6 +24,11 @@ public class Medical_Details extends JFrame{
     private JButton submitButton;
     private JPanel Jmedi;
 
+    String Stu_ID;
+    String Course_ID;
+    String Date;
+    String Type;
+
 
     public  Medical_Details(){
     add(Jmedi);
@@ -33,11 +42,7 @@ public class Medical_Details extends JFrame{
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String studentID = textStuID.getText();
-                String courseID = textCourseID.getText();
-                String date = textDate.getText();
-                String selectedType = (String) TypecomboBox.getSelectedItem();
-                String type=TypecomboBox.getModel().getSelectedItem().toString();
+                insertMedical();
             }
         });
         clearButton.addActionListener(new ActionListener() {
@@ -49,6 +54,30 @@ public class Medical_Details extends JFrame{
                 TypecomboBox.setSelectedItem("");
             }
         });
+
+
+    }
+
+    public void insertMedical(){
+        String query= "INSERT INTO Medical"+"(Stu_ID,Course_ID,DATE,Type)"+"Values(?,?,?,?)";
+        try {
+            Connection connection= Database.getDatabaseConnection();
+            PreparedStatement pst=connection.prepareStatement(query);
+            pst.setString(1,Stu_ID);
+            pst.setString(2,Course_ID);
+            pst.setString(3,Date);
+            pst.setString(4,Type);
+
+            int rowsAffected= pst.executeUpdate();
+            if(rowsAffected==1){
+                System.out.println("Record add successfully");
+            }else{
+                System.out.println("Record add failed");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void main(String[] args) {
