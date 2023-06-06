@@ -3,6 +3,8 @@ package com.tecmis.ui;
 import com.tecmis.database.Auth;
 import com.tecmis.database.UserLogin;
 import com.tecmis.ui.Student.StudentForm;
+import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerDashBoard;
+import com.tecmis.ui.TechnicalOfficer.TechnicalOfficerProfile;
 import com.tecmis.ui.TechnicalOfficer.ToForm;
 import com.tecmis.ui.admin.AdminDashboard;
 import com.tecmis.ui.lecture.LectureEditUser;
@@ -32,7 +34,7 @@ public class LoginForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(250, 400);
         setPreferredSize(new Dimension(220, 400));
-        setResizable(false);
+//        setResizable(false);
 
 
         btnLogin.addMouseListener(new MouseAdapter() {
@@ -47,6 +49,7 @@ public class LoginForm extends JFrame {
                 System.out.println("Logging ....");
                 try {
                     boolean isCorrect = login.userLogin(acctype, username, password);
+
                     if (isCorrect) {
 
                         if (acctype == "Lecturer") {
@@ -74,7 +77,7 @@ public class LoginForm extends JFrame {
                             });
                         } else if (acctype == "Technical Officer") {
                             setVisible(false);
-                            ToForm toForm = new ToForm();
+                            TechnicalOfficerDashBoard toForm = new TechnicalOfficerDashBoard();
                             toForm.setVisible(true);
                             toForm.addWindowListener(new WindowAdapter() {
                                 @Override

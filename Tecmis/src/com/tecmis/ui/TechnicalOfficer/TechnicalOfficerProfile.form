@@ -333,7 +333,7 @@
             <properties>
               <font size="14" style="1"/>
               <foreground color="-16777216"/>
-              <text value="Cancel"/>
+              <text value="Clear"/>
             </properties>
           </component>
           <component id="c147b" class="javax.swing.JButton" binding="BackButton">
