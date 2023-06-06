@@ -43,7 +43,7 @@ public class TechnicalOfficerProfile extends JFrame {
     public TechnicalOfficerProfile(){
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
-username = "to001";
+//username = "to001";
         add(panalTechnicalOfficer);
         setVisible(true);
         setTitle("Technical Officer Profile Update");
@@ -83,7 +83,6 @@ username = "to001";
                 txtLname.setText("");
                 txtMobileNo.setText("");
                 txtareaAddress.setText("");
-                departmentField.setText("");
                 txtEmailAdd.setText("");
                 txtDob.setText("");
                 comboGender.setSelectedItem("");
