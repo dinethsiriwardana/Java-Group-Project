@@ -9,6 +9,7 @@ import java.util.Date;
 public class AdminData extends  User {
 
     public AdminData() {
+
         this.userAccountType = "admin";
     }
 
