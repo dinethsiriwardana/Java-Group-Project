@@ -116,11 +116,11 @@ public class ManageTimetable {
         }
     }
 
-    public static void downlaodTimetable(){
+    public static void downlaodTimetable(String tid){
         try {
             Connection conn = Database.getDatabaseConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT File_path FROM Timetable WHERE Timetable_ID = ?");
-            stmt.setString(1, "T12");
+            stmt.setString(1, tid);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Blob fileData = rs.getBlob("File_path");
