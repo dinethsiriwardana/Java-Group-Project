@@ -19,6 +19,7 @@ public class LectureStudentResultView extends JFrame{
     private JComboBox comboBox1;
     private JButton btnUploadMarks;
     private JTable table1;
+    private JButton btnShopGpa;
     Connection connection;
 
     public LectureStudentResultView() throws Exception {
@@ -49,6 +50,27 @@ public class LectureStudentResultView extends JFrame{
 
 
 
+            }
+        });
+        btnShopGpa.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                    LectureCalGPA leccalGPA = new  LectureCalGPA();
+                    leccalGPA.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                    leccalGPA.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

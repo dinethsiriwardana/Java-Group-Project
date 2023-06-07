@@ -170,9 +170,12 @@ public class LectureStudentResult extends JFrame {
                         if (rs.next()) {
                             String updateSql = "UPDATE " + comboBox1.getModel().getSelectedItem() + "_marks SET ";
                             for (int i = 1; i < columns; i++) {
-                                updateSql += columnNames[i] + " = '" + data[row][i] + "', ";
+                                System.out.println(columnNames[i] + " = '" + (data[row][i] == "" ? 0 : data[row][i]) + "', ");
+                                updateSql += columnNames[i] + " = '" + (data[row][i] == "" ? 0 : data[row][i]) + "', ";
                             }
                             updateSql = updateSql.substring(0, updateSql.length() - 2) + " WHERE " + columnNames[0] + " = '" + data[row][0] + "'";
+
+                            System.out.println(updateSql);
                             stmt.executeUpdate(updateSql);
                         } else {
                             // If record does not exist, insert it
@@ -192,16 +195,22 @@ public class LectureStudentResult extends JFrame {
         managemarks.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                System.out.println("sss");
-                StudentResult studentResult = null;
-                try {
-                    studentResult = new StudentResult(comboBox1.getModel().getSelectedItem().toString());
-                    studentResult.calfinalQuiz();
+                 try {
+                    setVisible(false);
+                    // Create and show the LectureEditUser frame
+                     LectureCalMarks leccamm = new  LectureCalMarks();
+                     leccamm.setVisible(true);
+                    // When the LectureEditUser frame is closed, show the LectureForm frame again
+                     leccamm.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
-
             }
         });
     }

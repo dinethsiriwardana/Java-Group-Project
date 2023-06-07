@@ -1,6 +1,7 @@
 package com.tecmis.ui.lecture;
 
 import com.tecmis.database.Database;
+import com.tecmis.dto.StudentGPA;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -32,45 +33,13 @@ public class LectureCalGPA extends JFrame {
         btnGPACal.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                StudentGPA studentGPA = new StudentGPA();
                 try {
-                    Connection conn = Database.getDatabaseConnection();
-
-                    String studentQuery = "SELECT ID FROM Student where Level = 1";
-                    PreparedStatement studentStmt = conn.prepareStatement(studentQuery);
-                    ResultSet studentRs = studentStmt.executeQuery();
-
-                    List<String> studentIDs = new ArrayList<>();
-                    while (studentRs.next()) {
-                        studentIDs.add(studentRs.getString("ID"));
-                    }
-
-                    for (String studentID : studentIDs) {
-                        String query = "SELECT (SUM(m1.credit) + SUM(m2.credit) + SUM(m3.credit) + SUM(m4.credit)) / 4 AS total_credit " +
-                                "FROM ICT01_marks m1 " +
-                                "JOIN ICT02_marks m2 ON m1.SID = m2.SID " +
-                                "JOIN ICT03_marks m3 ON m1.SID = m3.SID " +
-                                "JOIN ICT04_marks m4 ON m1.SID = m4.SID " +
-                                "WHERE m1.SID = ?";
-
-                        PreparedStatement stmt = conn.prepareStatement(query);
-                        stmt.setString(1, studentID);
-                        ResultSet rs = stmt.executeQuery();
-
-                        if (rs.next()) {
-
-                            double totalCredit = rs.getDouble("total_credit");
-
-                            BigDecimal bd = new BigDecimal(totalCredit);
-                            bd = bd.setScale(2, RoundingMode.HALF_UP);
-                            System.out.println("Total Credit for Student " + studentID + ": " + bd);
-
-                        }
-                    }
-
-                    conn.close();
+                    table1.setModel(studentGPA.calGpa());
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
+
             }
         });
     }
