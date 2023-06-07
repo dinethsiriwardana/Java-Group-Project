@@ -30,8 +30,7 @@ public class TechnicalOfficerAttendanceForm extends JFrame {
         setVisible(true);
         setTitle("Technical Officer Attendance Form");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(500,400);
-        setPreferredSize(new Dimension(800,1600));
+        setSize(600,450);
         setResizable(true);
 
         conn = Database.getDatabaseConnection();

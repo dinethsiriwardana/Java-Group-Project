@@ -23,7 +23,7 @@ public class TechnicalOfficerDashBoard  extends JFrame{
         setVisible(true);
         setTitle("TechnicalOffiserDashBoard");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,600);
+        setSize(600,600);
         setPreferredSize(new Dimension(220,400));
 
 
