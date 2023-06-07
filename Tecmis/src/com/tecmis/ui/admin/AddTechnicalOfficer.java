@@ -234,6 +234,7 @@ public class AddTechnicalOfficer extends JFrame{
                     }
                     else
                     {
+                        
                         JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
                     }

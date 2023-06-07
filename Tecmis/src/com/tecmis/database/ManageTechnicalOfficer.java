@@ -165,13 +165,8 @@ public class ManageTechnicalOfficer extends User {
         } catch (Exception e) {
             System.out.println("Error in getting connection" + e.getMessage());
             return null;
-        }finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                System.out.println("Error in closing the connection"+e.getMessage());
-            }
+        }
         }
     }
-}
+
 

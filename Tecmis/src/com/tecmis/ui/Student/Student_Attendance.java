@@ -28,6 +28,7 @@ public class Student_Attendance extends JFrame{
 
         Auth auth = Auth.getInstance();
         username = auth.getUsername();
+        username = "tg001";
 
         add(pnlStudentAttendance);
         setVisible(true);
@@ -48,7 +49,8 @@ public class Student_Attendance extends JFrame{
                 try {
 
                     String filter =  comboType.getModel().getSelectedItem().toString();
-                    String search = auth.getSID();
+//                    String search = auth.getSID();
+                    String search = "TG/2020/001";
                     String subject = comboSubject.getModel().getSelectedItem().toString();
 
                     DefaultTableModel model = getattendance.getAttendance(filter,search,subject);

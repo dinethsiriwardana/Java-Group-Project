@@ -150,7 +150,7 @@ public class AdminData extends  User {
         }finally {
             try {
                 conn.close();
-            } catch (SQLException e) {
+             } catch (SQLException e) {
                 System.out.println("Error in closing the Connection..."+ e.getMessage());
             }
         }
