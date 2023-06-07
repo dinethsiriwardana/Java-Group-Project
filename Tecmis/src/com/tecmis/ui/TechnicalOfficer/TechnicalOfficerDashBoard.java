@@ -1,11 +1,11 @@
 package com.tecmis.ui.TechnicalOfficer;
 
 import com.tecmis.dto.TechnicalOfficer;
+import com.tecmis.ui.lecture.LectureStudentResult;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 public class TechnicalOfficerDashBoard  extends JFrame{
@@ -63,6 +63,48 @@ public class TechnicalOfficerDashBoard  extends JFrame{
                 toProfile.setVisible(true);
 
 
+            }
+        });
+        ToNotice.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+
+                    TechnicalOfficerNotice technicalOfficerNotice = new TechnicalOfficerNotice();
+                    technicalOfficerNotice.setVisible(true);
+                    technicalOfficerNotice.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        ToTimetable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    setVisible(false);
+
+                    TechnicalOfficerTimetable technicalOfficerTimetable = new TechnicalOfficerTimetable();
+                    technicalOfficerTimetable.setVisible(true);
+                    technicalOfficerTimetable.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            setVisible(true);
+                        }
+                    });
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

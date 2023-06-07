@@ -1,5 +1,7 @@
 package com.tecmis.ui.Student;
 
+import com.tecmis.database.ManageTimetable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,10 +29,12 @@ public class Student_Timetable extends JFrame{
         setPreferredSize(new Dimension(220,400));
         setResizable(true);
 
+        ManageTimetable manageTimetable = new ManageTimetable();
+
         downloadButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                manageTimetable.downlaodTimetable("ICTL1");
             }
         });
 
@@ -38,6 +42,7 @@ public class Student_Timetable extends JFrame{
         downloadButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL2");
 
             }
         });
@@ -46,6 +51,7 @@ public class Student_Timetable extends JFrame{
         downloadButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL3");
 
             }
         });
@@ -54,6 +60,7 @@ public class Student_Timetable extends JFrame{
         downloadButton4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL4");
 
             }
         });

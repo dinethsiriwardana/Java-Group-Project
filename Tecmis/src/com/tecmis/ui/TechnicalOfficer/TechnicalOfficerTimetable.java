@@ -1,6 +1,10 @@
 package com.tecmis.ui.TechnicalOfficer;
 
+import com.tecmis.database.ManageTimetable;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,28 +28,39 @@ public class TechnicalOfficerTimetable extends JFrame {
         setSize(1500,1500);
         setResizable(true);
 
-        downloadButton1.addMouseListener(new MouseAdapter() {
+        ManageTimetable manageTimetable = new ManageTimetable();
+
+        downloadButton1.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL1");
             }
         });
-        downloadButton2.addMouseListener(new MouseAdapter() {
+
+
+        downloadButton2.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL2");
+
             }
         });
-        downloadButton3.addMouseListener(new MouseAdapter() {
+
+
+        downloadButton3.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL3");
+
             }
         });
-        downloadButton4.addMouseListener(new MouseAdapter() {
+
+
+        downloadButton4.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                manageTimetable.downlaodTimetable("ICTL4");
+
             }
         });
     }
