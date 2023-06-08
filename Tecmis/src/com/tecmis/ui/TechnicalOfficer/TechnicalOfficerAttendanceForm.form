@@ -145,7 +145,7 @@
             <properties>
               <font style="1"/>
               <foreground color="-53151"/>
-              <text value="Attend"/>
+              <text value="Attendance"/>
             </properties>
           </component>
           <component id="6e15d" class="javax.swing.JLabel">
