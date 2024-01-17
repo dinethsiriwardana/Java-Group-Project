@@ -1,4 +1,6 @@
 
+
+out/production/Java-Group-Project/com/tecmis/util/Test.class
 /Tecmis/out/
 .DS_Store
 Tecmis/.DS_Store
@@ -15,3 +17,5 @@ out/production/Java-Group-Project/com/tecmis/ui/LoginForm$1$1.class
 out
 Tecmis/out/production/Tecmis/com/intellij/uiDesigner/core/AbstractLayout.class
 /out/
+Tecmis/src/com/tecmis/database/Database.java
+

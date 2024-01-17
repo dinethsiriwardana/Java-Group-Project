@@ -61,6 +61,7 @@ public class ManageUsers implements ManageUserInterface{
             Connection conn = Database.getDatabaseConnection();
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM "+accounttype+" WHERE username = " + "'"+username + "'";
+            System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
@@ -94,9 +95,18 @@ public class ManageUsers implements ManageUserInterface{
     @Override
     public boolean updateUser(User userUp) {
         if(userUp.getUserAccountType()=="lecturer"){
-            return  ManageLecturer.updateLecturer((LecturerData) userUp);
+            return ManageLecturer.updateLecturer((LecturerData) userUp);
         }
         return false;
+    }
+
+    @Override
+    public ResultSet serchUser(User userSea) {
+        if(userSea.getUserAccountType()=="lecturer"){
+            return ManageLecturer.searchLecturer((LecturerData) userSea);
+        }
+
+        return null;
     }
 
     @Override
@@ -124,6 +134,14 @@ public class ManageUsers implements ManageUserInterface{
         }
 
         return false;
+    }
+
+    @Override
+    public ResultSet serchStu(User userSea) {
+        if(userSea.getUserAccountType()=="student"){
+            return ManageStudent.searchStudent( (StudentData) userSea);
+        }
+        return null;
     }
 
     @Override
@@ -162,6 +180,15 @@ public class ManageUsers implements ManageUserInterface{
     }
 
     @Override
+    public ResultSet serchTo(User userSea) {
+        if(userSea.getUserAccountType()=="technical officer"){
+            return ManageTechnicalOfficer.searchTechnicalOfficer( (TechnicalOfficerData) userSea);
+        }
+
+        return null;
+    }
+
+    @Override
     public boolean addAdm(User userAdd) {
         if(userAdd.getUserAccountType()=="admin"){
             return ManageAdmin.addAdmin((AdminData) userAdd);
@@ -184,6 +211,14 @@ public class ManageUsers implements ManageUserInterface{
         }
 
         return false;
+    }
+
+    @Override
+    public ResultSet searchAdm(User userSea) {
+        if(userSea.getUserAccountType()=="admin"){
+            return ManageAdmin.searchAdmin((AdminData) userSea);
+        }
+        return null;
     }
 
 

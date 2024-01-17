@@ -18,7 +18,7 @@ public class UserLogin {
     }
 
     public boolean userLogin(String acctype, String username, String password) throws Exception {
-
+        Auth auth = Auth.getInstance();
         Security security = new Security();
         String encryptedpwd = security.encryption(password);
         Database database = new Database();
@@ -33,7 +33,8 @@ public class UserLogin {
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next() == true){
             System.out.println("Logged as "+ username + " As a " +  acctype);
-            this.username = username;
+                auth.setSID(resultSet.getString("ID"));
+                auth.setUsername(username);
             return true;
         }
         return resultSet.next();

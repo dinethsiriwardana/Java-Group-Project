@@ -1,5 +1,11 @@
 package com.tecmis.dto;
 
+import com.tecmis.database.Database;
+
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+
+
 public class TechnicalOfficerData extends User{
 
     public  TechnicalOfficerData(){
@@ -107,4 +113,42 @@ public class TechnicalOfficerData extends User{
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    private static final String[] to_table_columns = {"ID", "username", "password", "Fname", "Lname", "Mobile", "Address", "Age", "Email", "DOM", "Gender"};
+
+    public static DefaultTableModel showTechnicalOfficer()  {
+
+        Connection conn = null;
+        Statement stmt = null;
+        DefaultTableModel model=null;
+
+        try {
+            conn = Database.getDatabaseConnection();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT " + String.join(",", to_table_columns) + " FROM TechnicalOfficer");
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            model = new DefaultTableModel(to_table_columns, 0);
+
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error in getting connection " + e.getMessage());
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("Error in closing the Connection..."+ e.getMessage());
+            }
+        }
+        return model;
+
+    }
+
 }

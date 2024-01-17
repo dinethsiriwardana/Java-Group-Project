@@ -2,12 +2,15 @@ package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
 import com.tecmis.dto.LecturerData;
-import com.tecmis.ui.lecture.LectureEditUser;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static java.lang.Integer.parseInt;
 
@@ -28,11 +31,12 @@ public class AddLecturerForm extends JFrame {
     private JButton ADDButton;
     private JButton DELETEButton;
     private JButton UPDATEButton;
-    private JTable table1;
 
     private JTextField txtUsername;
     private JTextField txtPassword;
-    private JButton Searchbtn;
+    private JButton SEARCHButton;
+    private JTable lecturerTable;
+    private JButton backButton;
 
 
     public AddLecturerForm() {
@@ -42,6 +46,13 @@ public class AddLecturerForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000, 600);
         setPreferredSize(new Dimension(220, 400));
+        LecturerData lecturerUser=new LecturerData();
+        Security security=new Security();
+        try {
+            lecturerTable.setModel(lecturerUser.showLecturer());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         ADDButton.addActionListener(new ActionListener() {
@@ -58,7 +69,12 @@ public class AddLecturerForm extends JFrame {
                 lecturerUser.setDom(txtDOB.getText());
                 lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
-                lecturerUser.setPassword(txtPassword.getText());
+
+                try {
+                    lecturerUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 lecturerUser.setUsername(txtUsername.getText());
 
 
@@ -77,12 +93,15 @@ public class AddLecturerForm extends JFrame {
                     txtPosition.setSelectedItem("");
                     txtPassword.setText("");
                     txtUsername.setText("");
-                    JOptionPane.showMessageDialog(null, "User added successfully",
+
+                    DefaultTableModel model=lecturerUser.showLecturer();
+                    lecturerTable.setModel(model);
+                    JOptionPane.showMessageDialog(null, "Lecturer added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to add user ",
+                    JOptionPane.showMessageDialog(null, "Failed to add Lecturer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -92,6 +111,8 @@ public class AddLecturerForm extends JFrame {
         DELETEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 LecturerData lecturerUser = new LecturerData();
                 lecturerUser.setId(txtID.getText());
                 lecturerUser.setPassword(txtPassword.getText());
@@ -123,11 +144,14 @@ public class AddLecturerForm extends JFrame {
                     txtGender.setSelectedItem("");
                     txtPosition.setSelectedItem("");
 
-                    JOptionPane.showMessageDialog(null, "User deleted successfully",
+                    DefaultTableModel model=lecturerUser.showLecturer();
+                    lecturerTable.setModel(model);
+
+                    JOptionPane.showMessageDialog(null, "Lecturer deleted successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to delete user",
+                    JOptionPane.showMessageDialog(null, "Failed to delete Lecturer",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -137,43 +161,110 @@ public class AddLecturerForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                LecturerData lecturerUser=new LecturerData();
+                if (txtID.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() ||
+                    txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() || txtAge.getText().isEmpty() ||
+                    txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() || txtGender.getModel().getSelectedItem().toString().isEmpty() || txtPosition.getModel().getSelectedItem().toString().isEmpty()) {
+
+                    JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+                else{
+                    LecturerData lecturerUser = new LecturerData();
+                    lecturerUser.setId(txtID.getText());
+                    lecturerUser.setFirstName(txtFirstName.getText());
+                    lecturerUser.setLastName(txtLastName.getText());
+                    lecturerUser.setMobile(txtMobile.getText());
+                    lecturerUser.setAddress(txtAddress.getText());
+                    lecturerUser.setAge((txtAge.getText()));
+                    lecturerUser.setEmail(txtEmail.getText());
+                    lecturerUser.setDom(txtDOB.getText());
+                    lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
+                    lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
+                    lecturerUser.setPassword(txtPassword.getText());
+                    lecturerUser.setUsername(txtUsername.getText());
+
+
+                    ManageUsers manageUser = new ManageUsers();
+                    boolean isUpdated = manageUser.updateUser(lecturerUser);
+                    if (isUpdated) {
+                        txtID.setText("");
+                        txtFirstName.setText("");
+                        txtLastName.setText("");
+                        txtMobile.setText("");
+                        txtAddress.setText("");
+                        txtAge.setText("");
+                        txtEmail.setText("");
+                        txtDOB.setText("");
+                        txtGender.setSelectedItem("");
+                        txtPosition.setSelectedItem("");
+                        txtPassword.setText("");
+                        txtUsername.setText("");
+
+                        DefaultTableModel model = lecturerUser.showLecturer();
+                        lecturerTable.setModel(model);
+
+                        JOptionPane.showMessageDialog(null, "Lecturer update successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to update Lecturer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+        SEARCHButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LecturerData lecturerUser = new LecturerData();
                 lecturerUser.setId(txtID.getText());
-                lecturerUser.setPassword(txtPassword.getText());
-                lecturerUser.setUsername(txtUsername.getText());
                 lecturerUser.setFirstName(txtFirstName.getText());
                 lecturerUser.setLastName(txtLastName.getText());
                 lecturerUser.setMobile(txtMobile.getText());
                 lecturerUser.setAddress(txtAddress.getText());
-                lecturerUser.setAge(txtAge.getText());
+                lecturerUser.setAge((txtAge.getText()));
                 lecturerUser.setEmail(txtEmail.getText());
                 lecturerUser.setDom(txtDOB.getText());
                 lecturerUser.setGender(txtGender.getModel().getSelectedItem().toString());
                 lecturerUser.setPosition(txtPosition.getModel().getSelectedItem().toString());
+                lecturerUser.setPassword(txtPassword.getText());
+                lecturerUser.setUsername(txtUsername.getText());
 
                 ManageUsers manageUser = new ManageUsers();
-                boolean isUpdated = manageUser.updateUser(lecturerUser);
-                if (isUpdated) {
-                    txtID.setText("");
-                    txtPassword.setText("");
-                    txtUsername.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    txtPosition.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "User update successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                ResultSet lecSearch = manageUser.serchUser(lecturerUser);
+                try {
+                    if (lecSearch.next()) {
+
+                        txtID.setText(lecSearch.getString("ID"));
+                        txtUsername.setText(lecSearch.getString("username"));
+                        txtPassword.setText(lecSearch.getString("password"));
+                        txtFirstName.setText(lecSearch.getString("Fname"));
+                        txtLastName.setText(lecSearch.getString("Lname"));
+                        txtMobile.setText(lecSearch.getString("Mobile"));
+                        txtAddress.setText(lecSearch.getString("Address"));
+                        txtAge.setText(lecSearch.getString("Age"));
+                        txtEmail.setText(lecSearch.getString("Email"));
+                        txtDOB.setText(lecSearch.getString("DOM"));
+                        txtGender.setSelectedItem(lecSearch.getString("Gender"));
+                        txtPosition.setSelectedItem(lecSearch.getString("Position"));
+
+                        JOptionPane.showMessageDialog(null, "Lecturer search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Lecturer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Failed to update user ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminDashboard object = new AdminDashboard();
+                object.setVisible(true);
             }
         });
     }

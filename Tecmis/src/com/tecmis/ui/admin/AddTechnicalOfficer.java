@@ -1,16 +1,18 @@
 package com.tecmis.ui.admin;
 
 import com.tecmis.database.ManageUsers;
-import com.tecmis.dto.StudentData;
 import com.tecmis.dto.TechnicalOfficerData;
+import com.tecmis.util.Security;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AddTechnicalOfficer extends JFrame{
-    private JPanel pnlUser;
     private JTextField txtID;
     private JTextField txtFirstName;
     private JTextField txtLastName;
@@ -20,24 +22,32 @@ public class AddTechnicalOfficer extends JFrame{
     private JTextField txtEmail;
     private JTextField txtDOB;
     private JComboBox txtGender;
-    private JTable table1;
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
     private JPanel pnlTechnicalOfficer;
     private JTextField txtUserName;
     private JTextField txtPassword;
+    private JButton searchButton;
+    private JTable toTable;
+    private JButton backButton;
 
 
     public AddTechnicalOfficer(){
         add(pnlTechnicalOfficer);
         setVisible(true);
-        setTitle("Technical Officer Details!!!");
+        setTitle("Admin !!!");
         setSize(1000,600);
         setPreferredSize(new Dimension(220,400));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(true);
-
+        TechnicalOfficerData toUser=new TechnicalOfficerData();
+        Security security=new Security();
+        try {
+            toTable.setModel(toUser.showTechnicalOfficer());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +55,11 @@ public class AddTechnicalOfficer extends JFrame{
                 TechnicalOfficerData toUser=new TechnicalOfficerData();
                 toUser.setId(txtID.getText());
                 toUser.setUserName(txtUserName.getText());
-                toUser.setPassword(txtPassword.getText());
+                try {
+                    toUser.setPassword(security.encryption(txtPassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 toUser.setFirstName(txtFirstName.getText());
                 toUser.setLastName(txtLastName.getText());
                 toUser.setMobile(txtMobile.getText());
@@ -73,12 +87,15 @@ public class AddTechnicalOfficer extends JFrame{
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
 
-                    JOptionPane.showMessageDialog(null, "User added successfully",
+                    DefaultTableModel model=toUser.showTechnicalOfficer();
+                    toTable.setModel(model);
+
+                    JOptionPane.showMessageDialog(null, "Technical officer added successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to add user ",
+                    JOptionPane.showMessageDialog(null, "Failed to add Technical officer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -87,40 +104,49 @@ public class AddTechnicalOfficer extends JFrame{
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TechnicalOfficerData updateTo=new TechnicalOfficerData();
-                updateTo.setId(txtID.getText());
-                updateTo.setUserName(txtUserName.getText());
-                updateTo.setPassword(txtPassword.getText());
-                updateTo.setFirstName(txtFirstName.getText());
-                updateTo.setLastName(txtLastName.getText());
-                updateTo.setMobile(txtMobile.getText());
-                updateTo.setAddress(txtAddress.getText());
-                updateTo.setAge(txtAge.getText());
-                updateTo.setEmail(txtEmail.getText());
-                updateTo.setDom(txtDOB.getText());
-                updateTo.setGender(txtGender.getModel().getSelectedItem().toString());
+                if (txtID.getText().isEmpty() || txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty() ||
+                   txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtMobile.getText().isEmpty() || txtAge.getText().isEmpty() || txtEmail.getText().isEmpty() || txtDOB.getText().isEmpty() || txtGender.getModel().getSelectedItem().toString().isEmpty() )
 
-                ManageUsers manageUser = new ManageUsers();
-                boolean isUpdated = manageUser.upTo(updateTo);
-                if (isUpdated) {
-                    txtID.setText("");
-                    txtUserName.setText("");
-                    txtPassword.setText("");
-                    txtFirstName.setText("");
-                    txtLastName.setText("");
-                    txtMobile.setText("");
-                    txtAddress.setText("");
-                    txtAge.setText("");
-                    txtEmail.setText("");
-                    txtDOB.setText("");
-                    txtGender.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "User updated successfully",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to update user ",
-                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);}
+
+                else {
+                    TechnicalOfficerData updateTo = new TechnicalOfficerData();
+                    updateTo.setId(txtID.getText());
+                    updateTo.setUserName(txtUserName.getText());
+                    updateTo.setPassword(txtPassword.getText());
+                    updateTo.setFirstName(txtFirstName.getText());
+                    updateTo.setLastName(txtLastName.getText());
+                    updateTo.setMobile(txtMobile.getText());
+                    updateTo.setAddress(txtAddress.getText());
+                    updateTo.setAge(txtAge.getText());
+                    updateTo.setEmail(txtEmail.getText());
+                    updateTo.setDom(txtDOB.getText());
+                    updateTo.setGender(txtGender.getModel().getSelectedItem().toString());
+
+                    ManageUsers manageUser = new ManageUsers();
+                    boolean isUpdated = manageUser.upTo(updateTo);
+                    if (isUpdated) {
+                        txtID.setText("");
+                        txtUserName.setText("");
+                        txtPassword.setText("");
+                        txtFirstName.setText("");
+                        txtLastName.setText("");
+                        txtMobile.setText("");
+                        txtAddress.setText("");
+                        txtAge.setText("");
+                        txtEmail.setText("");
+                        txtDOB.setText("");
+                        txtGender.setSelectedItem("");
+
+                        DefaultTableModel model = toUser.showTechnicalOfficer();
+                        toTable.setModel(model);
+                        JOptionPane.showMessageDialog(null, "Technical officer updated successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to update Technical officer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -158,14 +184,70 @@ public class AddTechnicalOfficer extends JFrame{
                     txtEmail.setText("");
                     txtDOB.setText("");
                     txtGender.setSelectedItem("");
-                    JOptionPane.showMessageDialog(null, "User delete successfully",
+
+                    DefaultTableModel model=toUser.showTechnicalOfficer();
+                    toTable.setModel(model);
+                    JOptionPane.showMessageDialog(null, "Technical officer delete successfully",
                             "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Failed to delete user ",
+                    JOptionPane.showMessageDialog(null, "Failed to delete Technical officer ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TechnicalOfficerData searchTo=new TechnicalOfficerData();
+                searchTo.setId(txtID.getText());
+                searchTo.setUserName(txtUserName.getText());
+                searchTo.setPassword(txtPassword.getText());
+                searchTo.setFirstName(txtFirstName.getText());
+                searchTo.setLastName(txtLastName.getText());
+                searchTo.setMobile(txtMobile.getText());
+                searchTo.setAddress(txtAddress.getText());
+                searchTo.setAge((txtAge.getText()));
+                searchTo.setEmail(txtEmail.getText());
+                searchTo.setDom(txtDOB.getText());
+                searchTo.setGender(txtGender.getModel().getSelectedItem().toString());
+
+                ManageUsers manageUser = new ManageUsers();
+                ResultSet serachTec = manageUser.serchTo(searchTo);
+                try {
+                    if (serachTec.next()) {
+                        txtID.setText(serachTec.getString("ID"));
+                        txtUserName.setText(serachTec.getString("username"));
+                        txtPassword.setText(serachTec.getString("password"));
+                        txtFirstName.setText(serachTec.getString("Fname"));
+                        txtLastName.setText(serachTec.getString("Lname"));
+                        txtMobile.setText(serachTec.getString("Mobile"));
+                        txtAddress.setText(serachTec.getString("Address"));
+                        txtAge.setText(serachTec.getString("Age"));
+                        txtEmail.setText(serachTec.getString("Email"));
+                        txtDOB.setText(serachTec.getString("DOM"));
+                        txtGender.setSelectedItem(serachTec.getString("Gender"));
+
+                        JOptionPane.showMessageDialog(null, "Technical officer search successfully",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to search Technical officer ",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                AdminDashboard object = new AdminDashboard();
+                object.setVisible(true);
             }
         });
     }

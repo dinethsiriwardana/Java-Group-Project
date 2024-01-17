@@ -1,6 +1,8 @@
 package com.tecmis.ui.lecture;
 
+import com.tecmis.database.Auth;
 import com.tecmis.database.ManageUsers;
+import com.tecmis.dto.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +29,11 @@ public class LectureEditUser extends JFrame{
 
     static LectureEditUser lecUI;
 
-    public  LectureEditUser(String username)  throws SQLException {
-        this.username = username;
+    public  LectureEditUser()  throws SQLException {
+
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+
         add(pnlEditLecDetilas);
         setVisible(true);
         setTitle("Lecturer Details");
@@ -61,11 +66,11 @@ public class LectureEditUser extends JFrame{
 
     static ManageUsers manageusers = new ManageUsers();
 
-//    public static void main(String[] args) throws SQLException {
-//        lecUI = new LectureEditUser("lec001");
-//
+    public static void main(String[] args) throws SQLException {
+        lecUI = new LectureEditUser();
+
 //        lecUI.dataLoad();
-//    }
+    }
     public  void dataLoad() {
         System.out.println(username);
         HashMap<String, String> udata = manageusers.getUserDetails(username,"Lecturer");
@@ -77,6 +82,7 @@ public class LectureEditUser extends JFrame{
         lecUI.txtEmailAdd.setText(udata.get("Email"));
         lecUI.comboGender.getModel().setSelectedItem(udata.get("Gender") == "M" ? "Male" : "Female");
         lecUI.comboPosition.getModel().setSelectedItem(udata.get("Position"));
+
 
     }
 
